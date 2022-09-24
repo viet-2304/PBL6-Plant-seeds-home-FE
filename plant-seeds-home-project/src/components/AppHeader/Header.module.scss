@@ -1,0 +1,23 @@
+.wrapper {
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+}
+
+.image {
+    background-color: var(--header-background-color);
+    width: var(--default-logo-width);
+}
+
+.menu {
+    border-bottom: none;
+
+    &:hover {
+        color: #3f7652;
+    }
+}
+
+.search {
+    height: 90px;
+    width: 200px;
+}
