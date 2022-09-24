@@ -1,24 +1,23 @@
 .wrapper {
-    display: block;
-    width: 100%;
-    box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
-    background-color: rgb(255, 255, 255);
-    height: var(--default-layout-header-height);
+    display: flex;
+    // justify-content: center;
+    align-items: center;
 }
 
-#components-layout-demo-top-side-2 .logo {
-    float: left;
-    width: 120px;
-    height: 31px;
-    margin: 16px 24px 16px 0;
-    background: rgba(255, 255, 255, 0.3);
+.image {
+    background-color: var(--header-background-color);
+    width: var(--default-logo-width);
 }
 
-.ant-row-rtl #components-layout-demo-top-side-2 .logo {
-    float: right;
-    margin: 16px 0 16px 24px;
+.menu {
+    border-bottom: none;
+
+    &:hover {
+        color: #3f7652;
+    }
 }
 
-.site-layout-background {
-    background: #fff;
+.search {
+    height: 90px;
+    width: 200px;
 }

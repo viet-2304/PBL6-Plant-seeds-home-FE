@@ -1,32 +1,37 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import { Menu } from 'antd';
+import { Menu, Image, Input } from 'antd';
 
 import styles from './Header.module.scss';
+import logo from '../../assets/images/logo.png';
 
 const cx = classNames.bind(styles);
+const { Search } = Input;
 
 const items = [
-    { label: 'Trang chủ', key: 'item-1' },
-    { label: 'Cửa hàng', key: 'item-2' },
-    { label: 'Đăng nhập', key: 'item-3' },
-    { label: 'Đăng kí', key: 'item-4' },
+    { key: 'home', label: 'Trang chủ' },
+    { key: 'shop', label: 'Cửa hàng' },
+    { key: 'login', label: 'Đăng nhập' },
+    { key: 'register', label: 'Đăng kí' },
 ];
-const items1 = ['1', '2', '3'].map((key) => ({
-    key,
-    label: `nav ${key}`,
-}));
 
 function AppHeader() {
     return (
-        // <Menu className={cx('wrapper')}>
-        //     {items.map((item, index) => {
-        //         return <Menu.Item key={item.key}><Button{item.label}/></Menu.Item>;
-        //     })}
-        // </Menu>
-        <div>
-            <div className="logo" />
-            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={items1} />
+        <div className={cx('wrapper')}>
+            <Image className={cx('image')} src={logo} alt="logo" preview={false} />
+
+            <Menu
+                className={cx('menu')}
+                items={items}
+                mode="horizontal"
+                defaultSelectedKeys={['home']}
+            ></Menu>
+            <Search
+                className={cx('search')}
+                placeholder="input search text"
+                allowClear
+                onSearch={''}
+            />
         </div>
     );
 }

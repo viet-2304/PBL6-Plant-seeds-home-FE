@@ -1,12 +1,12 @@
 //Layouts
-import DefaultLayout from '../components/Layout/DefaultLayout';
+import DefaultLayout from '../components/Layout/DefaultLayout/DefaultLayout';
 
 //Pages
-import Home from '../pages/Home';
-import Login from '../pages/Login';
-import Register from '../pages/Register';
-import Cart from '../pages/Cart';
-import Shop from '../pages/Shop';
+import Home from '../pages/Home/Home';
+import Login from '../pages/Login/Login';
+import Register from '../pages/Register/Register';
+import Cart from '../pages/Cart/Cart';
+import Shop from '../pages/Shop/Shop';
 
 //Public routes
 const publicRoutes = [

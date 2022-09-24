@@ -16,8 +16,12 @@
     --box-shadow-base: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),
         0 9px 28px 8px rgba(0, 0, 0, 0.05); // major shadow for layers
 
+    --header-background-color: rgba(255, 255, 255, 0);
+
     --font-size-base: 14px; // major text font size
-    --default-layout-header-height: 200px;
+    --default-layout-header-height: 100px;
+    --default-logo-width: 257px;
+    --default-logo-height: 73px;
 }
 
 * {
