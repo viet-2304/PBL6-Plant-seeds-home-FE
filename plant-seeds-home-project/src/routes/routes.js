@@ -8,13 +8,15 @@ import Register from '../pages/Register/Register';
 import Cart from '../pages/Cart/Cart';
 import Shop from '../pages/Shop/Shop';
 
+import routes from '../config/routes';
+
 //Public routes
 const publicRoutes = [
-    { path: '/', component: Home, layout: DefaultLayout },
-    { path: '/login', component: Login },
-    { path: '/register', component: Register },
-    { path: '/cart', component: Cart, layout: DefaultLayout },
-    { path: '/shop', component: Shop, layout: DefaultLayout },
+    { path: routes.home, component: Home, layout: DefaultLayout },
+    { path: routes.login, component: Login },
+    { path: routes.register, component: Register },
+    { path: routes.cart, component: Cart, layout: DefaultLayout },
+    { path: routes.shop, component: Shop, layout: DefaultLayout },
 ];
 
 const privateRoutes = [];
