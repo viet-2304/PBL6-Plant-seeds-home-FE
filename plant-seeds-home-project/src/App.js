@@ -2,9 +2,8 @@ import { Fragment } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'antd/dist/antd.min.css';
 
-// import DefaultLayout from './components/Layout/DefaultLayout';
-
 import { publicRoutes } from './routes/routes';
+
 function App() {
     return (
         <Router>

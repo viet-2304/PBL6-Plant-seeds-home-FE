@@ -1,7 +1,9 @@
 .wrapper {
     display: flex;
-    // justify-content: center;
+    justify-content: space-around;
     align-items: center;
+
+    height: 100%;
 }
 
 .image {
@@ -10,14 +12,23 @@
 }
 
 .menu {
-    border-bottom: none;
-
-    &:hover {
-        color: #3f7652;
+    :global {
+        .ant-menu-horizontal,
+        .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover,
+        .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected,
+        .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected:after {
+            border-bottom: none;
+            background-color: transparent;
+        }
     }
 }
 
 .search {
     height: 90px;
     width: 200px;
+}
+
+.link {
+    text-decoration: none;
+    color: rgb(216, 131, 27);
 }
