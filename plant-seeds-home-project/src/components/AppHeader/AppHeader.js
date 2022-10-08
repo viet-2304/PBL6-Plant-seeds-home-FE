@@ -1,22 +1,21 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import { Image, Input, Menu } from 'antd';
+import { Image, Menu } from 'antd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Header.module.scss';
 import logo from '../../assets/images/logo.png';
-// import MenuComponent from './Menu/MenuComponent';
 import routes from '../../config/routes';
 import MenuItem from './Menu/MenuItem';
 import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
-const { Search } = Input;
 
 const items = [
     MenuItem('home', 'Trang chủ', routes.home),
     MenuItem('shop', 'Cửa hàng', routes.shop),
-    MenuItem('login', 'Đăng nhập', routes.login),
-    MenuItem('register', 'Đăng ký', routes.register),
+    MenuItem('history', 'Lịch sử mua hàng', routes.history),
 ];
 
 function AppHeader() {
@@ -26,12 +25,17 @@ function AppHeader() {
             <div className={cx('menu')}>
                 <Menu items={items} mode="horizontal" defaultSelectedKeys={['home']}></Menu>
             </div>
-            <Search
-                className={cx('search')}
-                placeholder="input search text"
-                allowClear
-                onSearch={''}
-            />
+            <div className={cx('search')}>
+                <input placeholder="Search" spellCheck={false} />
+                <button className={cx('clear')}>
+                    <FontAwesomeIcon icon={faCircleXmark} />
+                </button>
+                <button className={cx('search-btn')}>
+                    <div className={cx('icon')}>
+                        <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </div>
+                </button>
+            </div>
             <Link to="/shop" className={cx('link')}>
                 Login
             </Link>

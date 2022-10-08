@@ -1,4 +1,5 @@
 @import 'normalize.css';
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 :root {
     // --primary-color: #1890ff; // primary color for all components
@@ -21,6 +22,8 @@
     --default-layout-header-height: 100px;
     --default-logo-width: 257px;
     --default-logo-height: 73px;
+    --default-search-width: 250px;
+    --default-search-height: 50px;
 }
 
 * {
@@ -35,9 +38,17 @@ html {
 
 body {
     font-size: 1.6rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Open Sans', sans-serif;
+
     overflow-x: auto;
     overflow-y: scroll;
     height: 100%;
     background: transparent;
+}
+
+button,
+input,
+[tabindex] {
+    outline: none;
+    border: none;
 }
