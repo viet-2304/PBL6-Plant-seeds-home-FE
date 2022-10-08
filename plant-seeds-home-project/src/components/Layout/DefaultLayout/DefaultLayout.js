@@ -6,7 +6,7 @@ import AppHeader from '../../AppHeader/AppHeader';
 import AppFooter from '../../AppFooter/AppFooter';
 
 const cx = classNames.bind(styles);
-const { Header, Content, Footer } = Layout;
+const { Header, Content, Sider, Footer } = Layout;
 
 function DefaultLayout({ children }) {
     return (
@@ -14,7 +14,13 @@ function DefaultLayout({ children }) {
             <Header className={cx('header')}>
                 <AppHeader />
             </Header>
-            <Content className={cx('content')}>{children}</Content>
+            <Layout>
+                <Header className={cx('layout')}>Silder here</Header>
+                <Layout>
+                    <Sider className={cx('layout')}>Sider</Sider>
+                    <Content className={cx('content')}>{children}</Content>
+                </Layout>
+            </Layout>
             <Footer className={cx('footer')}>
                 <AppFooter />
             </Footer>
