@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { Container, Form, Row } from "react-bootstrap";
 import { getAllProducts, getProductBySearch } from "../../api/api.js";
-import Product from "./Product";
+import Product from './Product';
 import SpinnerDiv from "../SpinnerDiv";
-import Breadcrumbs from "../Breadcrumbs";
+import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
+import ProductItem from "../ProductItem/ProductItem";
 import { useLocation } from "react-router-dom";
 
 const ProductList = ({ cat, searchQuery }) => {
@@ -103,18 +104,19 @@ const ProductList = ({ cat, searchQuery }) => {
             </div>
             {isFetching ? (
                 <div className="w-100 bg-dark bg-opacity-10 d-flex justify-content-center align-items-center py-5">
-                    <SpinnerDiv />
+                    {/* <SpinnerDiv /> */}
                 </div>
             ) : (
-                <Row className="mx-0">
-                    {products &&
-                        products.map((product) => (
-                            <Product
-                                product={product}
-                                key={product.productId}
-                            />
-                        ))}
-                </Row>
+                // <Row className="mx-0">
+                //     {products &&
+                //         products.map((product) => (
+                //             <Product
+                //                 product={product}
+                //                 key={product.productId}
+                //             />
+                //         ))}
+                // </Row>
+                <ProductItem/>
             )}
         </Container>
     );

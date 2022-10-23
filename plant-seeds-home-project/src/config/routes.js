@@ -5,6 +5,7 @@ const routes = {
     history: '/history',
     cart: '/cart',
     shop: '/shop',
+    products: '/products/:category/:id'
 };
 
 export default routes;
