@@ -1,12 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import routes from '../../config/routes';
 import 'bootstrap/dist/css/bootstrap.css';
+import BASE_API_URL from '../../api/api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckSquare } from '@fortawesome/free-regular-svg-icons';
-import { faCircleXmark, faXmark, faXmarksLines } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import axios from 'axios';
 import './Login.scss';
 
 function Login() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+    const handleUserLogin = (e) => {
+        e.preventDefault();
+        const body = {
+            email: email,
+            password: password,
+        };
+        axios
+            .post(BASE_API_URL+'auth/login', body)
+            .then((res) => {
+                //    navigate(routes.home);
+                let token = res.data.token;
+                localStorage.setItem('token', token);
+                navigate(routes.home);
+            })
+            .catch((err) => {
+                console.log('login failed', err);
+            });
+    };
+
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            navigate(routes.home);
+        }
+    }, []);
+
     return (
         <section className="wrapper-content">
             <div className="d-flex justify-content-start ">
@@ -26,46 +59,54 @@ function Login() {
                             <div className="img"></div>
                             <div className="login-wrap p-4 p-md-5">
                                 <div className="d-flex">
-                                    <div class="w-100">
-                                        <h3 class="mb-4">Sign In</h3>
+                                    <div className="w-100">
+                                        <h3 className="mb-4">Sign In</h3>
                                     </div>
-                                    <div class="w-100">
-                                        <p class="social-media d-flex justify-content-end">
+                                    <div className="w-100">
+                                        <p className="social-media d-flex justify-content-end">
                                             <a
                                                 href="#"
-                                                class="social-icon d-flex align-items-center justify-content-center"
+                                                className="social-icon d-flex align-items-center justify-content-center"
                                             >
                                                 <FontAwesomeIcon icon={faGoogle} />
                                             </a>
                                             <a
                                                 href="#"
-                                                class="social-icon d-flex align-items-center justify-content-center"
+                                                className="social-icon d-flex align-items-center justify-content-center"
                                             >
                                                 <FontAwesomeIcon icon={faFacebook} />
                                             </a>
                                         </p>
                                     </div>
                                 </div>
-                                <form action="" className="signin-form">
+                                <form
+                                    action=""
+                                    className="signin-form"
+                                    onSubmit={(e) => handleUserLogin(e)}
+                                >
                                     <div className="form-group mb-3">
-                                        <label class="label" for="name">
-                                            Username
+                                        <label className="label" htmlFor="name">
+                                            Email
                                         </label>
                                         <input
                                             type="text"
-                                            class="form-control"
-                                            placeholder="Username"
+                                            className="form-control"
+                                            placeholder="Email"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
                                             required=""
                                         />
                                     </div>
                                     <div className="form-group mb-3">
-                                        <label className="label" for="password">
+                                        <label className="label" htmlFor="password">
                                             Password
                                         </label>
                                         <input
                                             type="password"
                                             className="form-control"
                                             placeholder="Password"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
                                             required
                                         />
                                     </div>
@@ -96,9 +137,9 @@ function Login() {
                                 </form>
                                 <p className="text-center">
                                     Not a member?{' '}
-                                    <a data-toggle="tab" href="../register/">
-                                        Sign Up
-                                    </a>
+                                    <Link to="/register">
+                                        <b>Register Here</b>
+                                    </Link>
                                 </p>
                             </div>
                         </div>
