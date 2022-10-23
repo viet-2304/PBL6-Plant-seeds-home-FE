@@ -3,13 +3,17 @@
     justify-content: space-around;
     align-items: center;
     height: 100%;
-}
 
+    @media (max-width: 1023px) {
+        justify-content: left;
+    }
+}
 .image {
-    background-color: var(--header-background-color);
-    width: var(--default-logo-width);
+    max-height: 70px;
+    @media (max-width: 1023px) {
+        display: none;
+    }
 }
-
 .menu {
     :global {
         .ant-menu-horizontal,
@@ -17,7 +21,7 @@
         .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover::after,
         .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected::after {
             border-bottom: none;
-            font-weight: 500;
+            font-weight: 550;
             color: transparent;
         }
         .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item a:hover {
@@ -26,76 +30,147 @@
         .ant-menu-horizontal > .ant-menu-item-selected a {
             color: #12bc12;
         }
+        .ant-menu {
+            background-color: transparent;
+        }
     }
 }
-
 .search {
     position: relative;
     width: var(--default-search-width);
     height: var(--default-search-height);
     display: flex;
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0);
     border-radius: 50px;
     border: 1.5px solid rgba(63, 118, 82, 0.67);
-
     input {
         flex: 1;
         height: 100%;
         font-size: 1.6rem;
-        padding: 0px 12px;
+        padding: 0px 15px;
         caret-color: rgba(63, 118, 82, 0.67) red;
-        background-color: transparent;
+        background-color: rgba(255, 255, 255, 0);
         border-color: transparent;
     }
-
     &:focus-within {
         border: 2px solid rgba(4, 88, 33, 0.925);
-        background-color: transparent;
+        background-color: rgba(255, 255, 255, 0);
     }
-
-    // &:hover {
-    //     border: 2px solid rgba(10, 100, 42, 0.925);
-    //     background-color: rgba(218, 249, 229, 0.925);
-    // }
 }
-
 .clear {
+    width: 16px;
     position: absolute;
-    height: 100%;
-    right: 40px;
+    right: 35px;
     top: 50%;
     transform: translateY(-50%);
     color: rgba(22, 24, 35, 0.34);
-
-    &:hover {
-        cursor: pointer;
-    }
-}
-
-.search-btn {
-    width: 40px;
-    height: 100%;
-    font-size: 1.8rem;
-    background-color: transparent;
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-
+    background-color: rgba(255, 255, 255, 0);
     &:hover {
         cursor: pointer;
         font-size: 1.5rem;
     }
-
+}
+.search-btn {
+    width: 30px;
+    height: 100%;
+    font-size: 1.8rem;
+    background-color: rgba(255, 255, 255, 0);
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    &:hover {
+        cursor: pointer;
+        font-size: 1.5rem;
+    }
     .icon {
-        height: 30px;
+        width: 30px;
+        height: 100%;
         svg {
-            margin-bottom: 15px;
-            margin-right: 5px;
+            margin-bottom: 8px;
+            margin-right: 30px;
             color: #ccc;
         }
     }
 }
+.action {
+    svg {
+        height: 1em;
+    }
+    .sale {
+        @media (max-width: 1023px) {
+            display: none;
+        }
+    }
+    .icon-sale {
+        width: 30px;
+        svg {
+            height: 1.5em;
+            color: #3f7652;
+        }
+        &:hover {
+            svg {
+                cursor: pointer;
+                color: black;
+            }
+        }
+        @media (min-width: 1024px) {
+            display: none;
+        }
+    }
+}
 
-.link {
-    text-decoration: none;
-    color: rgb(216, 131, 27);
+.icon-bell {
+    width: 30px;
+    position: relative;
+    svg {
+        height: 1.5em;
+        color: #e8e217;
+    }
+    &:hover {
+        svg {
+            cursor: pointer;
+            color: black;
+        }
+    }
+}
+.icon-cart {
+    width: 30px;
+    position: relative;
+    svg {
+        height: 1.5em;
+        color: #3f7652;
+    }
+    &:hover {
+        svg {
+            cursor: pointer;
+            color: black;
+        }
+    }
+}
+.icon-user {
+    svg {
+        height: 1.5em;
+        color: #794577;
+    }
+    &:hover {
+        svg {
+            cursor: pointer;
+            color: black;
+        }
+    }
+}
+.item-number {
+    height: 15px;
+    width: 25px;
+    font-size: 10px;
+    color: white;
+    background-color: #3f7652;
+    border-color: transparent;
+    border-radius: 50px;
+
+    margin-top: -60px;
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
 }

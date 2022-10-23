@@ -4,27 +4,31 @@ import { Layout } from 'antd';
 import styles from './DefaultLayout.module.scss';
 import AppHeader from '../../AppHeader/AppHeader';
 import AppFooter from '../../AppFooter/AppFooter';
+import Slider from '../../Slider/Slider';
+import Features from '../../Features/Features';
 
 const cx = classNames.bind(styles);
-const { Header, Content, Sider, Footer } = Layout;
+const { Header, Content, Footer } = Layout;
 
 function DefaultLayout({ children }) {
     return (
-        <Layout className={cx('layout')}>
-            <Header className={cx('header')}>
-                <AppHeader />
-            </Header>
-            <Layout>
-                <Header className={cx('layout')}>Silder here</Header>
-                <Layout>
-                    <Sider className={cx('layout')}>Sider</Sider>
+        <div>
+            <Layout className={cx('layout')}>
+                <Header className={cx('header')}>
+                    <AppHeader />
+                </Header>
+                <Layout className={cx('content-layout')}>
+                    <Header className={cx('slider')}>
+                        <Slider />
+                        <Features />
+                    </Header>
                     <Content className={cx('content')}>{children}</Content>
                 </Layout>
+                <Footer className={cx('footer')}>
+                    <AppFooter />
+                </Footer>
             </Layout>
-            <Footer className={cx('footer')}>
-                <AppFooter />
-            </Footer>
-        </Layout>
+        </div>
     );
 }
 

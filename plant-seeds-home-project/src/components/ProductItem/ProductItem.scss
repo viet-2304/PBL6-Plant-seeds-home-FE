@@ -1,0 +1,58 @@
+.container {
+    position: relative;
+    .overview {
+        display: none;
+        font-size: 20px;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0px;
+        text-align: center;
+        color: #000;
+        background-color: transparent;
+    }
+    // &:hover {
+    //     .overview {
+    //         display: block;
+    //     }
+    // }
+    .card {
+        background-color: #fff;
+        margin-bottom: 5px;
+        width: 185px;
+        height: 100%;
+        max-height: 300px;
+        border-radius: 10px;
+        img {
+            height: 185px;
+            width: 100%;
+        }
+        + .card {
+            margin-bottom: 5px;
+        }
+    }
+    .heart-icon {
+        background-color: transparent;
+        position: absolute;
+        right: 0%;
+        svg {
+            height: 1.5em;
+        }
+        &:hover {
+            svg {
+                cursor: pointer;
+                color: red;
+            }
+        }
+    }
+    .card-title {
+        padding-top: 5px;
+        font-weight: 700px;
+    }
+    .bi {
+        text-align: right;
+        padding-right: 10px;
+        font-size: 26px;
+        cursor: pointer;
+    }
+}
