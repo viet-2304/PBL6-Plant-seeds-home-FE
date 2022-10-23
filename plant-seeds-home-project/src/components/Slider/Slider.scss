@@ -1,0 +1,73 @@
+.slideContainer {
+    height: calc(100vh - 96px);
+    position: relative;
+    @media (max-width: 1024px) {
+        height: 100px;
+    }
+    .info {
+        position: absolute;
+        top: 0;
+        z-index: 5;
+        height: 100%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+
+        .carouselInfo {
+            color: white;
+            h1 {
+                align-items: flex-start !important;
+                color: white;
+                font-size: 70px;
+                @media (max-width: 1024px) {
+                    display: none;
+                }
+            }
+            .btn{
+                font-size: 20px;
+            }
+        }
+    }
+
+    .carousel {
+        height: 100%;
+        .carousel-indicators {
+            z-index: 1;
+        }
+        .carousel-inner {
+            height: 100%;
+            .slide1 {
+                height: 100%;
+                background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+                    url('../../assets/images/slide1.png') no-repeat center;
+                background-size: cover;
+                color: white;
+            }
+
+            .slide2 {
+                height: 100%;
+                background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+                    url('../../assets/images/slide2.png') no-repeat center;
+                background-size: cover;
+                color: white;
+            }
+
+            .slide3 {
+                height: 100%;
+                background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+                    url('../../assets/images/slide3.png') no-repeat bottom;
+                background-size: cover;
+                color: white;
+            }
+        }
+    }
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 2em;
+        cursor: pointer;
+        z-index: 99;
+    }
+    .carousel-indicators {
+        z-index: 99;
+    }
+}
