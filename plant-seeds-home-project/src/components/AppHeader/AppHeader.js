@@ -16,6 +16,7 @@ import styles from './Header.module.scss';
 import routes from '../../config/routes';
 import MenuItem from './Menu/MenuItem';
 import Button from '../Button/Button';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -26,6 +27,9 @@ const items = [
 ];
 
 function AppHeader() {
+    const user = {
+        id: 1,
+    };
     return (
         <div className={cx('wrapper')}>
             <Image className={cx('image')} src={logo} alt="logo" preview={false} />
@@ -68,11 +72,33 @@ function AppHeader() {
                         <div className={cx('item-number')}>100</div>
                     </div>
                 </Button>
-                <Button>
+
+                {!user ? (
                     <div className={cx('icon-user')}>
-                        <FontAwesomeIcon icon={faCircleUser} />
+                        <Button>
+                            <FontAwesomeIcon icon={faCircleUser} />
+                        </Button>
+                        <div className={cx('user-content')}>
+                            <Button className={cx('button')} to={'./login'}>
+                                LOGIN/REGISTER
+                            </Button>
+                        </div>
                     </div>
-                </Button>
+                ) : (
+                    <div className={cx('icon-user')}>
+                        <Button>
+                            <FontAwesomeIcon icon={faCircleUser} />
+                        </Button>
+                        <div className={cx('user-content')}>
+                            <Button className={cx('button')} to={`/account/userid=${user.id}`}>
+                                MY ACCOUNT
+                            </Button>
+                            <Button className={cx('button')} to={'./login'}>
+                                LOGOUT
+                            </Button>
+                        </div>
+                    </div>
+                )}
                 {/* <Button text to="/login">
                     Đăng nhập
                 </Button> */}

@@ -26,14 +26,12 @@ function SliderItem({ items, title }) {
                 ]}
                 mobileBreakpoint={670}
             >
-                {items.map((item, indx) => {
+                {items?.map((item) => {
                     return (
-                        <Carousel.Item key={indx} className="container">
+                        <Carousel.Item key={item.productId} className="container">
                             <ProductItem
-                                title={item.description}
-                                image={
-                                    'https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg'
-                                }
+                                title={item.name}
+                                image={'https://jacks-garden-server.herokuapp.com/images/plant.jpg'}
                                 price={item.price}
                                 button
                             />

@@ -9,11 +9,10 @@
     background-color: transparent;
     user-select: none;
 
-    + .wrapper {
-        margin-left: 5px;
-    }
-    //Disbled
-    &.disabled {
+    // + .wrapper {
+    //     margin-left: 5px;
+    // }
+    Disbled &.disabled {
         pointer-events: none;
         opacity: 0.5;
     }

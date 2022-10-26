@@ -1,6 +1,7 @@
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
 import './ProductItem.scss';
 
@@ -21,9 +22,9 @@ function ProductItem({ to = false, title, price, image, button = false }) {
                         </Button>
                     )}
                 </div>
-            </div>
-            <div className="overview">
-                <span>Xem nhanh</span>
+                <div className="overview d-flex align-items-center justify-content-center">
+                    <Link to={`/products/${1}`}>View</Link>
+                </div>
             </div>
         </div>
     );

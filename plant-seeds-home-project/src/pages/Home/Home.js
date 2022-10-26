@@ -18,13 +18,13 @@ function Home() {
     const [products, setProducts] = useState([]);
     useEffect(() => {
         const fetchUserList = () => {
-            const response = API.get('/v1/product/getAllProduct')
+            API.get('/v1/product/getAllProduct')
                 .then((res) => {
-                    console.log('res: ', res);
+                    console.log('res: ', res.data);
+                    setProducts(res.data);
                 })
                 .catch((err) => console.log(err));
-            const data = response;
-            setProducts(data);
+            // const data = response;
             // console.log(data);
         };
         fetchUserList();
@@ -35,11 +35,6 @@ function Home() {
                 <Categories />
                 <SliderItem items={products1} title={'News products'}></SliderItem>
             </div>
-            <Pagination data={products1} numberPerPage={6} />
-            {/* <div className={cx('wrapper')}>
-                <h1>Sản phẩm theo loại</h1>
-                <Pagination data={products} numberPerPage={6}></Pagination>
-            </div> */}
         </div>
     );
 }
