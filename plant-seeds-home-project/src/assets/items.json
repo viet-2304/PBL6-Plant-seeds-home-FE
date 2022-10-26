@@ -1,33 +1,33 @@
 [
     {
         "id": 1,
-        "name": "Cây 1",
+        "name": "Cây 1111111111111111111111111111111111111111111111111",
         "price": 1000,
-        "image": "https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg"
+        "image": "https://jacks-garden-server.herokuapp.com/images/plant.jpg"
     },
     {
         "id": 2,
         "name": "Cây 2",
         "price": 1000,
-        "image": "https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg"
+        "image": "https://jacks-garden-server.herokuapp.com/images/plant.jpg"
     },
     {
         "id": 3,
         "name": "Cây 3",
         "price": 1000,
-        "image": "https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg"
+        "image": "https://jacks-garden-server.herokuapp.com/images/plant.jpg"
     },
     {
         "id": 4,
         "name": "Cây 4",
         "price": 1000,
-        "image": "https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg"
+        "image": "https://jacks-garden-server.herokuapp.com/images/plant.jpg"
     },
     {
         "id": 5,
         "name": "Cây 5",
         "price": 1000,
-        "image": "https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg"
+        "image": "https://jacks-garden-server.herokuapp.com/images/plant.jpg"
     },
     {
         "id": 6,

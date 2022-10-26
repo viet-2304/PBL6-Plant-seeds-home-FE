@@ -1,4 +1,4 @@
-import { Col, Container, Row } from 'react-bootstrap';
+import { ButtonGroup, Col, Container, Dropdown, DropdownButton, Row } from 'react-bootstrap';
 import CategoryItem from './CategoryItem';
 import './Categories.scss';
 import Button from '../Button/Button';
