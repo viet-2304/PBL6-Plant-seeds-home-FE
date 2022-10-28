@@ -16,7 +16,8 @@ import styles from './Header.module.scss';
 import routes from '../../config/routes';
 import MenuItem from './Menu/MenuItem';
 import Button from '../Button/Button';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -29,6 +30,11 @@ const items = [
 function AppHeader() {
     const user = {
         id: 1,
+    };
+    const [currentUser, setCurrentUSer] = useState(user);
+
+    const handleLogout = () => {
+        setCurrentUSer(null);
     };
     return (
         <div className={cx('wrapper')}>
@@ -73,13 +79,13 @@ function AppHeader() {
                     </div>
                 </Button>
 
-                {!user ? (
+                {!currentUser ? (
                     <div className={cx('icon-user')}>
                         <Button>
                             <FontAwesomeIcon icon={faCircleUser} />
                         </Button>
                         <div className={cx('user-content')}>
-                            <Button className={cx('button')} to={'./login'}>
+                            <Button className={cx('button')} to={'/login'}>
                                 LOGIN/REGISTER
                             </Button>
                         </div>
@@ -93,15 +99,12 @@ function AppHeader() {
                             <Button className={cx('button')} to={`/account/userid=${user.id}`}>
                                 MY ACCOUNT
                             </Button>
-                            <Button className={cx('button')} to={'./login'}>
+                            <Button className={cx('button')} onClick={handleLogout}>
                                 LOGOUT
                             </Button>
                         </div>
                     </div>
                 )}
-                {/* <Button text to="/login">
-                    Đăng nhập
-                </Button> */}
             </div>
         </div>
     );

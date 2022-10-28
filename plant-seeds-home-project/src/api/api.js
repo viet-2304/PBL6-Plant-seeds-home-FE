@@ -1,3 +1,3 @@
-const BASE_API_URL="http://10.20.3.175:8080/api/v1/";
+const BASE_API_URL = 'http://10.20.2.104:8080/api/';
 
-export default BASE_API_URL; 
+export default BASE_API_URL;

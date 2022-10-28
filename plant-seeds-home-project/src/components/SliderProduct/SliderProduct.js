@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import Carousel from 'react-grid-carousel';
 
-import ProductItem from '../ProductItem/ProductItem';
+import ProductCard from '../ProductCard/ProductCard';
 import './SliderItem.scss';
 
 function SliderItem({ items, title }) {
@@ -29,10 +29,11 @@ function SliderItem({ items, title }) {
                 {items?.map((item) => {
                     return (
                         <Carousel.Item key={item.productId} className="container">
-                            <ProductItem
-                                title={item.name}
-                                image={'https://jacks-garden-server.herokuapp.com/images/plant.jpg'}
+                            <ProductCard
+                                title={item.productName}
+                                image="https://jacks-garden-server.herokuapp.com/images/spider_plant.jpg"
                                 price={item.price}
+                                to={`/products/${item.productType}/${item.productId}`}
                                 button
                             />
                         </Carousel.Item>

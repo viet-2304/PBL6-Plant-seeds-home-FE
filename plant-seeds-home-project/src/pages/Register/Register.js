@@ -16,7 +16,7 @@ function Register() {
     const handleUserSignUp = (e) => {
         e.preventDefault();
         axios
-            .post(BASE_API_URL + 'users/createUser', {
+            .post(BASE_API_URL + 'v1/users/createUser', {
                 userName: username,
                 email: email,
                 password: password,

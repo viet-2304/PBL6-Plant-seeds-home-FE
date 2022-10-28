@@ -22,7 +22,7 @@ function Login() {
             password: password,
         };
         axios
-            .post(BASE_API_URL+'auth/login', body)
+            .post(BASE_API_URL+'v1/auth/login', body)
             .then((res) => {
                 //    navigate(routes.home);
                 let token = res.data.token;

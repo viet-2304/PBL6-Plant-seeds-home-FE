@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom";
-import { Col, Image } from "react-bootstrap";
-import { Search } from "react-bootstrap-icons";
+import { Link } from 'react-router-dom';
+import { Col, Image } from 'react-bootstrap';
+import { Search } from 'react-bootstrap-icons';
 
 const Product = ({ product }) => {
     const URL = process.env.REACT_APP_BASE_URL;
     return (
-        <Col xs={6} sm={3} className="img-col p-2" key={product.productId}>
-            <div className="img-container mb-3">
+        <Col xs={6} sm={3} className="img-col p-2" key={product}>
+            {/* <div className="img-container mb-3">
                 <Image
                     src={URL + product.productImage}
                     className="rounded w-100"
@@ -31,7 +31,7 @@ const Product = ({ product }) => {
                 >
                     $ {product.price}
                 </p>
-            </div>
+            </div> */}
         </Col>
     );
 };

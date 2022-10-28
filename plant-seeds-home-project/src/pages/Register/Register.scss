@@ -11,17 +11,7 @@ body {
     // background: #f8f9fd;
     color: gray;
 }
-a {
-    text-decoration: none;
-    transition: 0.3s all ease;
-    color: $primary;
-    &:hover,
-    &:focus {
-        text-decoration: none !important;
-        outline: none !important;
-        box-shadow: none;
-    }
-}
+
 h1,
 h2,
 h3,
@@ -40,20 +30,31 @@ h5,
 
 .signup-wrapper {
     padding: 7em 0;
-    background-image: linear-gradient(to bottom right, rgb(0 0 0 / 20%),rgb(0 0 0 / 20%) ), url(../../assets/images/anhcay1.jpg)!important;
+    background-image: linear-gradient(to bottom right, rgb(0 0 0 / 20%), rgb(0 0 0 / 20%)),
+        url(../../assets/images/anhcay1.jpg) !important;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 125vh ;
+    height: 125vh;
     width: 100%;
-   
-    .btn-exit{
+    a {
+        text-decoration: none;
+        transition: 0.3s all ease;
+        color: $primary;
+        &:hover,
+        &:focus {
+            text-decoration: none;
+            outline: none;
+            box-shadow: none;
+        }
+    }
+    .btn-exit {
         background-color: transparent;
         padding-left: 30px;
         margin-top: -100px;
-        svg{
+        svg {
             color: rgba(255, 255, 255, 0.5);
-            font-size: 30px
+            font-size: 30px;
         }
     }
 
@@ -222,7 +223,7 @@ h5,
                             margin-top: -4px;
                             transition: all ease 0.3s;
                         }
-                        svg{
+                        svg {
                             color: $primary;
                         }
                     }
@@ -243,39 +244,39 @@ h5,
     }
 }
 @media (max-width: 768px) {
-    .wrapper-content{
+    .wrapper-content {
         width: 100%;
         height: 140vh;
     }
-    .d-md-flex{
+    .d-md-flex {
         display: flex !important;
     }
     .wrap {
         display: block !important;
-        .img{
+        .img {
             // display: block;
             height: 250px !important;
             width: 100%;
         }
-        .login-wrap{
+        .login-wrap {
             // display: block;
             width: 100%;
         }
     }
-    .text-md-right{
+    .text-md-right {
         text-align: end;
     }
 }
 @media (max-width: 992px) {
-    .img{
+    .img {
         width: 100% !important;
     }
     .login-wrap {
         width: 100% !important;
     }
 }
-@media (min-width: 1400px){
-    .wrapper-content{
+@media (min-width: 1400px) {
+    .wrapper-content {
         width: 100%;
         height: 100vh;
     }
