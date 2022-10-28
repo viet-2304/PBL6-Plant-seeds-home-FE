@@ -1,10 +1,12 @@
 .category-container {
     height: 100%;
-    background-color: #fdf3e1;
+    background-color: #c1dfcc;
     h3 {
-        color: var(--text-color);
+        color: black;
     }
-}
-.category-name {
-    font-size: 32px;
+    a {
+        &:hover {
+            color: rgba(4, 88, 33, 0.925);
+        }
+    }
 }

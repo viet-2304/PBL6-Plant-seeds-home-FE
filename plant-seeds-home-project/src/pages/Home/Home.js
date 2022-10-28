@@ -1,10 +1,10 @@
 import classNames from 'classnames/bind';
 import axios from 'axios';
 
-import SliderItem from '../../components/SliderItem/SliderItem';
 import products1 from '../../assets/items.json';
-import Pagination from '../../components/Pagination/Pagination';
+import BASE_API_URL from '../../api/api';
 
+import SliderProduct from '../../components/SliderProduct/SliderProduct';
 import styles from './Home.module.scss';
 import Categories from '../../components/Categories/Categories';
 import { useEffect, useState } from 'react';
@@ -13,11 +13,11 @@ const cx = classNames.bind(styles);
 
 function Home() {
     const API = axios.create({
-        baseURL: 'http://10.20.3.175:8080/api',
+        baseURL: BASE_API_URL,
     });
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        const fetchUserList = () => {
+        const fetchProdutList = () => {
             API.get('/v1/product/getAllProduct')
                 .then((res) => {
                     console.log('res: ', res.data);
@@ -27,13 +27,13 @@ function Home() {
             // const data = response;
             // console.log(data);
         };
-        fetchUserList();
+        fetchProdutList();
     }, []);
     return (
         <div>
             <div className={cx('wrapper')}>
                 <Categories />
-                <SliderItem items={products1} title={'News products'}></SliderItem>
+                <SliderProduct items={products} title={'News products'}></SliderProduct>
             </div>
         </div>
     );

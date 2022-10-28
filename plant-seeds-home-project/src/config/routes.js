@@ -5,7 +5,9 @@ const routes = {
     history: '/history',
     cart: '/cart',
     shop: '/shop',
-    products: '/products/:category/:id'
+    products: '/products',
+    productsByCategory: '/products/:category',
+    productByID: '/products/:category/:id',
 };
 
 export default routes;

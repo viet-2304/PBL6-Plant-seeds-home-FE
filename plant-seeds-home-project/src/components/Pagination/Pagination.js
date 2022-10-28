@@ -1,38 +1,48 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import { Container } from 'react-bootstrap';
 import ReactPaginate from 'react-paginate';
 import classNames from 'classnames/bind';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import styles from './Pagination.module.scss';
-import ProductItem from '../ProductItem/ProductItem';
+import ProductCard from '../ProductCard/ProductCard';
+
 const cx = classNames.bind(styles);
 
-function Pagination({ data, numberPerPage }) {
+function Pagination({ title, data, numberPerPage }) {
     const [pageNumber, setPageNumber] = useState(0);
-    const [displayUsers, setDisplayUsers] = useState([]);
+    const [displayProducts, setDisplayProducts] = useState([]);
+
     const pageCount = Math.ceil(data.length / numberPerPage);
     const visitedPage = pageNumber * numberPerPage;
     const handlePageChange = ({ selected }) => {
         setPageNumber(selected);
     };
     useEffect(() => {
-        setDisplayUsers(data?.slice(visitedPage, visitedPage + numberPerPage));
+        setDisplayProducts(data?.slice(visitedPage, visitedPage + numberPerPage));
     }, [data, numberPerPage, visitedPage]);
+
     return (
-        <div>
+        <Container className={cx('container')}>
+            <h1 className="fw-bold mb-0">{title.toUpperCase()}</h1>
             <div className="row row-cols-lg-6 row-cols-md-2 g-4">
-                {displayUsers?.map((product) => (
-                    <div className="col">
-                        <ProductItem
-                            title={product.name}
-                            image={product.image}
-                            price={product.price}
-                            button
-                        />
-                    </div>
-                ))}
+                {displayProducts?.map((product) => {
+                    return (
+                        <div className="col">
+                            <ProductCard
+                                key={product.productId}
+                                title={product.productName}
+                                image="https://jacks-garden-server.herokuapp.com/images/spider_plant.jpg"
+                                // image={product.image}
+                                price={product.price}
+                                to={`/products/${product.productType}/${product.productId}`}
+                                button
+                            />
+                        </div>
+                    );
+                })}
             </div>
             <ReactPaginate
                 previousLabel={<FontAwesomeIcon icon={faAngleLeft} />}
@@ -45,7 +55,7 @@ function Pagination({ data, numberPerPage }) {
                 disabledClassName={cx('paginationDisabled')}
                 activeClassName={cx('paginationActive')}
             />
-        </div>
+        </Container>
     );
 }
 
