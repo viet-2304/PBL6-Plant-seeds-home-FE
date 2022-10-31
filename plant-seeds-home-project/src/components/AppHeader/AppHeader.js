@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import { Image, Menu } from 'antd';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faMagnifyingGlass,
@@ -18,6 +19,7 @@ import MenuItem from './Menu/MenuItem';
 import Button from '../Button/Button';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import CartSidebar from '../CartSidebar/CartSidebar';
 
 const cx = classNames.bind(styles);
 
@@ -73,10 +75,7 @@ function AppHeader() {
                     </div>
                 </Button>
                 <Button>
-                    <div className={cx('icon-cart')}>
-                        <FontAwesomeIcon icon={faCartShopping} />
-                        <div className={cx('item-number')}>100</div>
-                    </div>
+                        <CartSidebar/>
                 </Button>
 
                 {!currentUser ? (
