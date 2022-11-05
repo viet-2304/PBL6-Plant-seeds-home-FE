@@ -1,5 +1,6 @@
 //Layouts
 import DefaultLayout from '../components/Layout/DefaultLayout/DefaultLayout';
+import AccountLayout from '../components/Layout/AccountLayout/AccountLayout';
 
 //Pages
 import Home from '../pages/Home/Home';
@@ -9,6 +10,7 @@ import History from '../pages/History/History';
 import Cart from '../pages/Cart/Cart';
 import Shop from '../pages/Shop/Shop';
 import Products from '../pages/Products/Products';
+import Account from '../pages/Account/Account';
 
 import routes from '../config/routes';
 
@@ -23,6 +25,7 @@ const publicRoutes = [
     { path: routes.products, component: Products, layout: DefaultLayout },
     { path: routes.productsByCategory, component: Products, layout: DefaultLayout },
     { path: routes.productByID, component: Products, layout: DefaultLayout },
+    { path: routes.account, component: Account, layout: AccountLayout },
 ];
 
 const privateRoutes = [];
