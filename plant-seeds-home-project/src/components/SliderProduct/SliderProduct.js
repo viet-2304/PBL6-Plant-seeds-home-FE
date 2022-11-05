@@ -3,12 +3,13 @@ import { Container } from 'react-bootstrap';
 import Carousel from 'react-grid-carousel';
 
 import ProductCard from '../ProductCard/ProductCard';
-import './SliderItem.scss';
+import './SliderProduct.scss';
 
 function SliderItem({ items, title }) {
     return (
         <Container className="sliderItem-container">
             <h1 className="ps-4 fw-bold mb-0">{title}</h1>
+            {/* <hr className='border-round'/> */}
             <Carousel
                 cols={6}
                 rows={1}

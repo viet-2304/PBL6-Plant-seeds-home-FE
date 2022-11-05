@@ -1,4 +1,7 @@
 import React from 'react';
+import classNames from 'classnames/bind';
+import { Image, Menu } from 'antd';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faMagnifyingGlass,
@@ -16,6 +19,11 @@ import logo from '../../assets/images/logo.png';
 import './Header.scss';
 import routes from '../../config/routes';
 import Button from '../Button/Button';
+import { useEffect } from 'react';
+import CartSidebar from '../CartSidebar/CartSidebar';
+
+
+
 
 function AppHeader() {
     const user = {
@@ -68,10 +76,7 @@ function AppHeader() {
                             </div>
                         </Button>
                         <Button>
-                            <div className="icon-cart">
-                                <FontAwesomeIcon icon={faCartShopping} />
-                                <div className="item-number">100</div>
-                            </div>
+                            <CartSidebar/>
                         </Button>
 
                         {!currentUser ? (

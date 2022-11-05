@@ -66,6 +66,7 @@ function Categories() {
         >
             <div className="container-xl px-0 pb-2 d-flex flex-row justify-content-between align-items-center">
                 <h1 className="ps-4 fw-bold mb-3 mt-3">Shop plants by categories</h1>
+                
                 <Button
                     onClick={() => navigate('/products')}
                     rightIcon={<FontAwesomeIcon icon={faAngleRight} />}
