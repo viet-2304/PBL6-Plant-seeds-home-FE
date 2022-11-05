@@ -24,7 +24,6 @@
         &:focus {
             color: rgba(4, 88, 33, 0.925);
         }
-       
     }
 }
 .navbar-collapse {
@@ -138,8 +137,6 @@
 .icon-cart {
     width: 30px;
     position: relative;
-    background-color: transparent !important;
-    border: none;
     svg {
         height: 1.5em;
         color: #3f7652;

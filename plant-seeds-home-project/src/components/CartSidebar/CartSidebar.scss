@@ -1,0 +1,26 @@
+.icon-cart {
+    background-color: transparent;
+    border: none;
+}
+.btn.btn-outline-success {
+    background-color: transparent;
+    a {
+        color: #198754;
+        font-size: 20px;
+    }
+    &:hover {
+        a {
+            color: #fff;
+        }
+    }
+}
+.offcanvas-title {
+    font-size: large !important;
+    color: #198754 !important;
+    font-weight: 600 !important;
+}
+.offcanvas-body {
+    .fa-xmark {
+        color: red;
+    }
+}
