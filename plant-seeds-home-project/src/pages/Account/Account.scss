@@ -1,0 +1,45 @@
+.account-container {
+    margin-top: 100px;
+    svg {
+        padding-right: 5px;
+    }
+}
+.menu-col {
+    border-right: 2px solid #efefef;
+}
+.nav-pills .nav-link {
+    color: black;
+    background-color: transparent;
+    margin: 5px;
+    &:hover {
+        color: rgba(4, 88, 33, 0.925);
+        background-color: transparent;
+    }
+}
+.nav-pills .nav-link.active {
+    color: rgba(4, 88, 33, 0.925);
+    background-color: transparent;
+}
+.user-image {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    clip-path: circle(25px at 50% 50%);
+}
+.user {
+    border-bottom: 2px solid #efefef;
+    padding-bottom: 20px;
+}
+.user-info {
+    margin-left: 20px;
+}
+.user-name {
+    color: black;
+    font-weight: bold;
+}
+.top-info {
+    font-size: 20px;
+    color: black;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #efefef;
+}

@@ -1,39 +1,37 @@
-.wrapper {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+.header-container {
+    width: 100%;
+    height: 100px;
+}
+.navbar {
     height: 100%;
+    margin-top: 0;
+    background-color: white;
+}
 
-    @media (max-width: 1023px) {
-        justify-content: left;
-    }
-}
-.image {
-    max-height: 70px;
-    @media (max-width: 1023px) {
-        display: none;
-    }
-}
 .menu {
-    :global {
-        .ant-menu-horizontal,
-        .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active,
-        .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover::after,
-        .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected::after {
-            border-bottom: none;
-            font-weight: 550;
-            color: transparent;
+    max-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a {
+        font-size: 17px;
+        font-weight: bold;
+        padding-right: 20px;
+        color: rgba(169, 169, 169, 0.938);
+        &:hover {
+            color: rgba(4, 88, 33, 0.925);
         }
-        .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item a:hover {
-            color: #12bc12;
-        }
-        .ant-menu-horizontal > .ant-menu-item-selected a {
-            color: #12bc12;
-        }
-        .ant-menu {
-            background-color: transparent;
+        &:focus {
+            color: rgba(4, 88, 33, 0.925);
         }
     }
+}
+.navbar-collapse {
+    flex-basis: 100%;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
 }
 .search {
     position: relative;
@@ -43,6 +41,7 @@
     background-color: rgba(255, 255, 255, 0);
     border-radius: 50px;
     border: 1.5px solid rgba(63, 118, 82, 0.67);
+    margin: 20px;
     input {
         flex: 1;
         height: 100%;
