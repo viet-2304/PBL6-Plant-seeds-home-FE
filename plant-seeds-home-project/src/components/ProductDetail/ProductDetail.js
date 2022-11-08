@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { ButtonGroup, Col, Container, Image, Row } from 'react-bootstrap';
 import { Dash, Plus } from 'react-bootstrap-icons';

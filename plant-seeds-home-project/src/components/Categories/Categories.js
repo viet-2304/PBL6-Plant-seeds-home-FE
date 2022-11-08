@@ -60,13 +60,10 @@ function Categories() {
     }, []);
 
     return (
-        <Container
-            fluid
-            className="category-container d-flex flex-column justify-content-between align-items-center px-0 py-5"
-        >
+        <Container fluid className="category-container px-0 py-5">
             <div className="container-xl px-0 pb-2 d-flex flex-row justify-content-between align-items-center">
                 <h1 className="ps-4 fw-bold mb-3 mt-3">Shop plants by categories</h1>
-                
+
                 <Button
                     onClick={() => navigate('/products')}
                     rightIcon={<FontAwesomeIcon icon={faAngleRight} />}
@@ -74,13 +71,15 @@ function Categories() {
                     <span>Show All Plants</span>
                 </Button>
             </div>
-            <Row className="container-xl px-0">
-                {categories.map((item) => (
-                    <Col md={3} sm={6} key={item.productTypeId}>
-                        <CategoryItem item={item} />
-                    </Col>
-                ))}
-            </Row>
+            <div className="container-xl px-4 pb-2 d-flex flex-row justify-content-center align-items-center">
+                <Row>
+                    {categories.map((item) => (
+                        <Col md={3} sm={6} key={item.productTypeId}>
+                            <CategoryItem item={item} />
+                        </Col>
+                    ))}
+                </Row>
+            </div>
         </Container>
     );
 }

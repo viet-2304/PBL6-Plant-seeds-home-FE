@@ -5,7 +5,6 @@ import { useLocation } from 'react-router-dom';
 import styles from './Products.module.scss';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import Panigation from '../../components/Pagination/Pagination';
-import products1 from '../../assets/items.json';
 import { useState, useEffect } from 'react';
 import ProductDetail from '../../components/ProductDetail/ProductDetail';
 import axios from 'axios';
@@ -22,14 +21,6 @@ function Products() {
     const API = axios.create({
         baseURL: BASE_API_URL,
     });
-
-    // setProductById({
-    //     productId: 1,
-    //     productName: 'Cây 1111111111111111111111111111111111111111111111111 ss sss ssssss',
-    //     price: 1000,
-    //     image: 'https://jacks-garden-server.herokuapp.com/images/spider_plant.jpg',
-    //     category: 'indoor',
-    // });
 
     const pages = location.pathname.split('/').splice(1);
     console.log('pages', pages);
@@ -65,22 +56,7 @@ function Products() {
             fetchProdutList();
         }
         console.log(pages[pages.length - 1]);
-    }, []);
-
-    // useEffect(() => {
-    //     if (Number(pages[pages.length - 1])) {
-    //         setProductById({
-    //             productId: 1,
-    //             productName: 'Cây 1111111111111111111111111111111111111111111111111 ss sss ssssss',
-    //             price: 1000,
-    //             image: 'https://jacks-garden-server.herokuapp.com/images/spider_plant.jpg',
-    //             category: 'indoor',
-    //         });
-    //     } else {
-    //         setProductsByCategory(products1);
-    //     }
-    //     console.log(pages[pages.length - 1]);
-    // }, []);
+    }, [API, pages, productById, productsByCategory]);
 
     return (
         <Container className={cx('container')}>

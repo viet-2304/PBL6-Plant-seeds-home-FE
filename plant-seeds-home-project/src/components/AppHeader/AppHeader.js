@@ -1,14 +1,10 @@
 import React from 'react';
-import classNames from 'classnames/bind';
-import { Image, Menu } from 'antd';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faMagnifyingGlass,
     faCircleXmark,
     faBell,
     faShop,
-    faCartShopping,
 } from '@fortawesome/free-solid-svg-icons';
 import { faCircleUser } from '@fortawesome/free-regular-svg-icons';
 import { useState } from 'react';
@@ -19,11 +15,7 @@ import logo from '../../assets/images/logo.png';
 import './Header.scss';
 import routes from '../../config/routes';
 import Button from '../Button/Button';
-import { useEffect } from 'react';
 import CartSidebar from '../CartSidebar/CartSidebar';
-
-
-
 
 function AppHeader() {
     const user = {
@@ -39,10 +31,10 @@ function AppHeader() {
         <Container className="header-container">
             <Navbar expand="lg" collapseOnSelect>
                 <Container
-                    fluid="xl"
-                    className=" d-flex align-items-lg-center justify-content-lg-between"
+                    fluid
+                    className="container d-flex align-items-center justify-content-between"
                 >
-                    <Navbar.Brand href={routes.home}>
+                    <Navbar.Brand href={routes.home} className="logo ">
                         <img src={logo} alt="logo" preview={false} />
                     </Navbar.Brand>
                     <div className="action d-flex align-items-center ms-2 order-lg-last">
@@ -57,8 +49,8 @@ function AppHeader() {
                                 </div>
                             </button>
                         </div>
-                        <Button
-                            className="sale"
+                        {/* <Button
+                            className="sell"
                             rounded
                             small
                             to="/login"
@@ -66,9 +58,9 @@ function AppHeader() {
                         >
                             Đăng ký bán
                         </Button>
-                        <Button className="icon-sale">
+                        <Button className="icon-sell">
                             <FontAwesomeIcon icon={faShop} />
-                        </Button>
+                        </Button> */}
                         <Button>
                             <div className="icon-bell">
                                 <FontAwesomeIcon icon={faBell} />
@@ -76,7 +68,7 @@ function AppHeader() {
                             </div>
                         </Button>
                         <Button>
-                            <CartSidebar/>
+                            <CartSidebar />
                         </Button>
 
                         {!currentUser ? (
@@ -108,10 +100,10 @@ function AppHeader() {
                                 </div>
                             </div>
                         )}
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" className="toggle" />
                     </div>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse className="menu" id="basic-navbar-nav">
-                        <Nav className="ms-lg-2 my-2 my-lg-0" navbarScroll>
+                        <Nav className="" navbarScroll>
                             <NavLink to={routes.home}>Home</NavLink>
                             <NavLink to={routes.shop}>Shop</NavLink>
                             <NavLink to={routes.history}>Order History</NavLink>
@@ -119,7 +111,6 @@ function AppHeader() {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            <Container className="w-100 d-block"></Container>
         </Container>
 
         // <Container className={cx('wrapper')}>
