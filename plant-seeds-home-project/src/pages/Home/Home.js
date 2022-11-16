@@ -18,7 +18,7 @@ function Home() {
     const [products, setProducts] = useState([]);
     useEffect(() => {
         const fetchProdutList = () => {
-            API.get('/v1/product/getAllProduct')
+            API.get('/v1/product/getAllProducts')
                 .then((res) => {
                     console.log('res: ', res.data);
                     setProducts(res.data);

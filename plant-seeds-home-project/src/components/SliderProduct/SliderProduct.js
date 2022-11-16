@@ -13,9 +13,10 @@ function SliderProduct({ items, title }) {
             </div>
             <div className="container-xl px-0 pb-2 pt-2">
                 <Carousel
-                    cols={6}
+                    className="px-5"
+                    cols={4}
                     rows={1}
-                    autoplay={5000}
+                    // autoplay={5000}
                     loop={true}
                     responsiveLayout={[
                         {
@@ -23,21 +24,93 @@ function SliderProduct({ items, title }) {
                             cols: 3,
                         },
                         {
-                            breakpoint: 739,
+                            breakpoint: 650,
                             cols: 2,
                         },
                     ]}
-                    mobileBreakpoint={670}
+                    mobileBreakpoint={400}
                 >
+                    <Carousel.Item key="1">
+                        <ProductCard
+                            title="Cây cảnh"
+                            image="https://bau.vn/wp-content/uploads/2021/10/meo-trong-cay-canh-xanh-tot-loc-la-luc-nao-cung-quanh-nam-1.jpg"
+                            price="1"
+                            to="product/1"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item key="1">
+                        <ProductCard
+                            title="Cây cảnh"
+                            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBmmcInsMQS4anB9hq60JIOsTGiPQx8y-w9w&usqp=CAU"
+                            price="1"
+                            to="product/1"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item key="1">
+                        <ProductCard
+                            title="Cây cảnh"
+                            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBmmcInsMQS4anB9hq60JIOsTGiPQx8y-w9w&usqp=CAU"
+                            price="1"
+                            to="product/1"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item key="1">
+                        <ProductCard
+                            title="Cây cảnh"
+                            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBmmcInsMQS4anB9hq60JIOsTGiPQx8y-w9w&usqp=CAU"
+                            price="1"
+                            to="product/1"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item key="1">
+                        <ProductCard
+                            title="Cây cảnh"
+                            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBmmcInsMQS4anB9hq60JIOsTGiPQx8y-w9w&usqp=CAU"
+                            price="1"
+                            to="product/1"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item key="1">
+                        <ProductCard
+                            title="Cây cảnh"
+                            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBmmcInsMQS4anB9hq60JIOsTGiPQx8y-w9w&usqp=CAU"
+                            price="1"
+                            to="product/1"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item key="1">
+                        <ProductCard
+                            title="Cây cảnh"
+                            image="https://bau.vn/wp-content/uploads/2021/10/meo-trong-cay-canh-xanh-tot-loc-la-luc-nao-cung-quanh-nam-1.jpg"
+                            price="1"
+                            to="product/1"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item key="1">
+                        <ProductCard
+                            title="Cây cảnh"
+                            image="https:jacks-garden-server.herokuapp.com/images/spider_plant.jpg"
+                            price="1"
+                            to="product/1"
+                        />
+                    </Carousel.Item>
+
+                    <Carousel.Item key="1">
+                        <ProductCard
+                            title="Cây cảnh"
+                            image="https:jacks-garden-server.herokuapp.com/images/spider_plant.jpg"
+                            price="1"
+                            to="product/1"
+                        />
+                    </Carousel.Item>
                     {items?.map((item) => {
                         return (
-                            <Carousel.Item key={item.productId} className="container">
+                            <Carousel.Item key={item.productId}>
                                 <ProductCard
                                     title={item.productName}
                                     image="https:jacks-garden-server.herokuapp.com/images/spider_plant.jpg"
                                     price={item.price}
                                     to={`/products/${item.productType}/${item.productId}`}
-                                    button
                                 />
                             </Carousel.Item>
                         );
@@ -69,7 +142,7 @@ function SliderProduct({ items, title }) {
         //         >
         //             {items?.map((item) => {
         //                 return (
-        //                     <Carousel.Item key={item.productId} className="container">
+        //                     <Carousel.Item key={item.productId} >
         //                         <ProductCard
         //                             title={item.productName}
         //                             image="https://jacks-garden-server.herokuapp.com/images/spider_plant.jpg"

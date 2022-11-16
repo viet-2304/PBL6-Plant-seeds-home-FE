@@ -56,7 +56,7 @@ function Products() {
             fetchProdutList();
         }
         console.log(pages[pages.length - 1]);
-    }, [API, pages, productById, productsByCategory]);
+    }, [API, pages]);
 
     return (
         <Container className={cx('container')}>
@@ -67,7 +67,7 @@ function Products() {
                 <Panigation
                     title={pages.length === 1 ? 'All PLants' : pages[pages.length - 1]}
                     data={productsByCategory}
-                    numberPerPage={12}
+                    numberPerPage={8}
                 ></Panigation>
             )}
         </Container>

@@ -27,7 +27,7 @@ function Pagination({ title, data, numberPerPage }) {
     return (
         <Container className={cx('container')}>
             <h1 className="fw-bold mb-0">{title.toUpperCase()}</h1>
-            <div className="row row-cols-lg-6 row-cols-md-2 g-4">
+            <div className="row row-cols-lg-4 row-cols-md-2 g-4">
                 {displayProducts?.map((product) => {
                     return (
                         <div className="col">
