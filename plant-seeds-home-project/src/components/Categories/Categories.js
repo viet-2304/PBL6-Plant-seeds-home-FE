@@ -11,36 +11,8 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 
-const category = [
-    {
-        id: 1,
-        img: 'https://cdn.pixabay.com/photo/2021/01/22/06/04/snake-plant-5939187_1280.jpg',
-        title: 'INDOOR PLANT',
-        name: 'indoor',
-    },
-    {
-        id: 2,
-        img: 'https://cdn.pixabay.com/photo/2022/02/16/14/55/flower-7016948_1280.jpg',
-        title: 'OUTDOOR PLANT',
-        name: 'outdoor',
-    },
-    {
-        id: 3,
-        img: 'https://cdn.pixabay.com/photo/2016/01/02/02/03/orange-1117645_1280.jpg',
-        title: 'FRUIT TREES',
-        name: 'fruittree',
-    },
-    {
-        id: 4,
-        img: 'https://cdn.pixabay.com/photo/2016/01/02/02/03/orange-1117645_1280.jpg',
-        title: 'AGRICULTURAL CROPS',
-        name: 'agriculturalcrop',
-    },
-];
-
 function Categories() {
     const navigate = useNavigate();
-    // const [categories, setCategories] = useState(category);
     const [categories, setCategories] = useState([]);
 
     const API = axios.create({

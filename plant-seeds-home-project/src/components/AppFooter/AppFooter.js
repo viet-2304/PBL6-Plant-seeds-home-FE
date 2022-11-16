@@ -19,14 +19,14 @@ const cx = classNames.bind(styles);
 
 const Footer = () => {
     return (
-        
-        
         <Container fluid className="px-0 footer bg-light">
             {/* <Newsletter /> */}
             <div className={cx('wrapper')}>
                 <Form>
                     <Form.Group className={cx('mb-3')} controlId="formBasicEmail">
-                        <Form.Label className={cx('form-label')}>Enter your email here *</Form.Label>
+                        <Form.Label className={cx('form-label')}>
+                            Enter your email here *
+                        </Form.Label>
                         <Form.Control
                             className={cx('form-control')}
                             type="email"
@@ -38,12 +38,12 @@ const Footer = () => {
                     </Form.Group>
                 </Form>
             </div>
-            
-            <Container className={cx("center py-5 bg-light")} fluid="xl">
-                <Row className='py-3'>
+
+            <Container className={cx('center py-5 bg-light')} fluid="xl">
+                <Row className="py-3">
                     <Col sm className="pb-4">
                         <h3 className="fw-bolder">PLANT SEEDS HOME</h3>
-                        <p className='fs-4'>A small but lovely garden located in south Brisbane</p>
+                        <p className="fs-4">A small but lovely garden located in south Brisbane</p>
                         <div className="social-container">
                             <Facebook color="#3B5999" size={25} />
                             <Youtube color="#E4405F" size={25} className="mx-2" />
@@ -54,22 +54,32 @@ const Footer = () => {
                         <h4 className="fw-bolder fs-2 mb-2">Useful Links</h4>
                         <ul className="row row-cols-2 px-0 my-0">
                             <li className="col list-unstyled mb-2">
-                                <Link to="/" className='text-dark fs-3'>Home</Link>
+                                <Link to="/" className="text-dark fs-3">
+                                    Home
+                                </Link>
                             </li>
                             <li className="col list-unstyled mb-2">
-                                <Link to="/account" className='text-dark fs-3'>My Account</Link>
+                                <Link to="/account" className="text-dark fs-3">
+                                    My Account
+                                </Link>
                             </li>
                             <li className="col list-unstyled mb-2">
-                                <Link to="/cart" className='text-dark fs-3'>Cart</Link>
+                                <Link to="/cart" className="text-dark fs-3">
+                                    Cart
+                                </Link>
                             </li>
                             <li className="col list-unstyled mb-2">
-                                <Link to="/" className='text-dark fs-3'>Shipping</Link>
+                                <Link to="/" className="text-dark fs-3">
+                                    Shipping
+                                </Link>
                             </li>
                             <li className="col list-unstyled mb-2">
-                                <Link to="/" className='text-dark fs-3'>Terms</Link>
+                                <Link to="/" className="text-dark fs-3">
+                                    Terms
+                                </Link>
                             </li>
                             <li className="col list-unstyled mb-2">
-                                <Link to="/help" className='text-dark fs-3'>
+                                <Link to="/help" className="text-dark fs-3">
                                     <Question size="20px" alt="link to the cart page" />
                                     help
                                 </Link>
@@ -86,7 +96,7 @@ const Footer = () => {
                             <EnvelopeFill className="me-2 text-dark fs-3" />
                             jack@jacksgarden.com
                         </a>
-                        <a href="tel:+0449260373" className='text-dark'>
+                        <a href="tel:+0449260373" className="text-dark">
                             <TelephoneFill className="me-2 text-dark fs-3" />
                             +84 0397 132 163
                         </a>

@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { ButtonGroup, Col, Container, Image, Row } from 'react-bootstrap';
 import { Dash, Plus } from 'react-bootstrap-icons';
-import products1 from '../../assets/items.json';
 import Button from '../Button/Button';
 import './ProductDetail.scss';
 
