@@ -1,8 +1,8 @@
-.header-container {
+.container {
     width: 100%;
-    height: 100px;
+    height: 100%;
     .container {
-        @media (maxwidth: 1023px) {
+        @media (max-width: 1023px) {
             display: flex;
             justify-content: end;
             align-items: center;
@@ -32,8 +32,12 @@
 // }
 .logo {
     width: 100%;
+    img{
+        width: 320px;
+    }
     @media (max-width: 1023px) {
-        display: none;
+        display: flex;
+        justify-content: start;
     }
 }
 .menu {
@@ -61,30 +65,110 @@
     align-items: center;
     justify-content: center;
     background-color: #fff;
+    overflow: hidden;
 }
-.search {
-    position: relative;
-    width: var(--default-search-width);
-    height: var(--default-search-height);
+
+.searchbar {
+    max-width: 200px;
     display: flex;
-    background-color: rgba(255, 255, 255, 0);
-    border-radius: 50px;
+    margin-right: 10px;
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 40px;
+    background: #fff;
+}
+
+.fadeInWidth {
+    margin-right: 30px;
+    animation: 0.2s linear fadeInWidth;
+}
+
+.fadeOutWidth {
+    animation: 0.2s linear fadeOutWidth;
+}
+
+.fadeIn {
+    animation: 0.8s linear fadeIn;
+}
+.fadeOut {
+    animation: 1s linear fadeOut;
+}
+
+.search-input {
+    color: #000;
+    border: 0;
+    outline: 0;
+    background: none;
+    padding: 0px 15px;
+    transition: width 0.4s linear;
+    caret-color: rgba(63, 118, 82, 0.67) red;
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
     border: 1.5px solid rgba(63, 118, 82, 0.67);
-    margin: 20px;
-    input {
-        flex: 1;
-        height: 100%;
-        font-size: 1.6rem;
-        padding: 0px 15px;
-        caret-color: rgba(63, 118, 82, 0.67) red;
-        background-color: rgba(255, 255, 255, 0);
-        border-color: transparent;
+    border-radius: 50px 50px;
+}
+
+.search-icon {
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 13px;
+    color: rgba(63, 118, 82, 0.67);
+    font-size: large;
+}
+
+.icon-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    border-radius: 20px;
+}
+.icon-bg:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+@keyframes fadeInWidth {
+    0% {
+        width: 30px;
     }
-    &:focus-within {
-        border: 2px solid rgba(4, 88, 33, 0.925);
-        background-color: rgba(255, 255, 255, 0);
+    100% {
+        width: 200px;
     }
 }
+@keyframes fadeOutWidth {
+    0% {
+        width: 200px;
+    }
+    100% {
+        width: 30px;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+    }
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
 .clear {
     width: 16px;
     position: absolute;
@@ -119,6 +203,7 @@
         }
     }
 }
+
 .action {
     display: flex;
     align-items: center;
@@ -126,27 +211,33 @@
     svg {
         height: 1em;
     }
-    // .sell {
-    //     @media (max-width: 1023px) {
-    //         display: none;
-    //     }
-    // }
-    // .icon-sell {
-    //     width: 30px;
-    //     svg {
-    //         height: 1.5em;
-    //         color: #3f7652;
-    //     }
-    //     &:hover {
-    //         svg {
-    //             cursor: pointer;
-    //             color: black;
-    //         }
-    //     }
-    //     @media (min-width: 1024px) {
-    //         display: none;
-    //     }
-    // }
+    .sell {
+        color: #fff;
+        background-color: #406a52;
+        width: 150px;
+        p {
+            margin-top: 9px;
+        }
+        @media (max-width: 1023px) {
+            display: none;
+        }
+    }
+    .icon-sell {
+        width: 30px;
+        svg {
+            height: 1.5em;
+            color: #3f7652;
+        }
+        &:hover {
+            svg {
+                cursor: pointer;
+                color: black;
+            }
+        }
+        @media (min-width: 1024px) {
+            display: none;
+        }
+    }
 }
 
 .icon-bell {
@@ -241,6 +332,45 @@
     justify-content: center;
     position: absolute;
 }
+@media screen and (max-width: 960px) {
+    .icon-bell,
+    .icon-sale,
+    .icon-user {
+        display: none;
+    }
+    .profile-link-mb,
+    .seller-link-mb {
+        display: block;
+    }
+    .header-container {
+        height: 150px;
+    }
+}
+@media screen and (min-width: 960px) {
+    .profile-link-mb,
+    .seller-link-mb {
+        display: none;
+    }
+}
 .toggle {
     margin-bottom: 8px;
+}
+@media screen and (max-width: 1000px) {
+    .logo {
+        width: 80px;
+        max-width: 100%;
+    }
+    .search-icon {
+        margin-top: 0;
+    }
+    .searchbar{
+        margin-right: 0px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .logo {
+        img {
+            width: 200px;
+        }
+    }
 }
