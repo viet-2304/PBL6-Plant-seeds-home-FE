@@ -32,7 +32,7 @@
 // }
 .logo {
     width: 100%;
-    img{
+    img {
         width: 320px;
     }
     @media (max-width: 1023px) {
@@ -313,6 +313,7 @@
     background-color: #f4f6f8 !important;
     color: #000;
     &:hover {
+        background-color: #eceded !important;
         color: rgba(4, 88, 33, 0.925);
     }
 }
@@ -363,7 +364,7 @@
     .search-icon {
         margin-top: 0;
     }
-    .searchbar{
+    .searchbar {
         margin-right: 0px;
     }
 }
