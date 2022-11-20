@@ -7,8 +7,8 @@ import './ProductCard.scss';
 
 function ProductCard({ key, to, title, price, image }) {
     return (
-        <div className="card-container" id={key}>
-            <div className="card text-left mt-5 d-flex ">
+        <div className="card-container text-left d-flex align-items-center" id={key}>
+            <div className="card text-left d-flex ">
                 <div className="card-img-top">
                     <img src={image} alt="imageproduct" />
                     <div className="product-action d-flex align-items-center justify-content-center">

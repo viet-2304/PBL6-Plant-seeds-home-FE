@@ -15,15 +15,20 @@ function App() {
                     } else {
                         Layout = Fragment;
                     }
-
                     return (
                         <Route
                             key={index}
                             path={route.path}
                             element={
-                                <Layout>
-                                    <Page />
-                                </Layout>
+                                route.prop ? (
+                                    <Layout>
+                                        <Page prop={route.prop} />
+                                    </Layout>
+                                ) : (
+                                    <Layout>
+                                        <Page />
+                                    </Layout>
+                                )
                             }
                         />
                     );

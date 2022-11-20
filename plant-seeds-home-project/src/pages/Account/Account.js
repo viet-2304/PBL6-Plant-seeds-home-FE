@@ -1,15 +1,25 @@
 import { faFileLines, faStore, faUser, faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { Container, Col, Row, Tab, Nav, Image, Tabs } from 'react-bootstrap';
+
 import Button from '../../components/Button/Button';
 import PurchaseItem from '../../components/PurchaseItem/PurchaseItem';
 
 import './Account.scss';
 
-function Account() {
+function Account({ prop }) {
+    console.log(prop);
+    const [key, setKey] = useState(prop);
     return (
         <Container fluid className="account-container py-5 ">
-            <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+            <Tab.Container
+                id="left-tabs-example"
+                defaultActiveKey={key}
+                // activeKey={key}
+                // onSelect={(k) => setKey(k)}
+            >
                 <div className="container-xl px-5 py-5">
                     <Row>
                         <Col md={4} className="menu-col justify-content-center py-4">
@@ -30,19 +40,19 @@ function Account() {
                                 </div>
 
                                 <Nav.Item>
-                                    <Nav.Link eventKey="first">
+                                    <Nav.Link eventKey="account">
                                         <FontAwesomeIcon icon={faUser} />
                                         My Account
                                     </Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item>
-                                    <Nav.Link eventKey="second">
+                                    <Nav.Link eventKey="purchase">
                                         <FontAwesomeIcon icon={faFileLines} />
                                         My Purchase
                                     </Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item>
-                                    <Nav.Link eventKey="third">
+                                    <Nav.Link eventKey="shop">
                                         <FontAwesomeIcon icon={faStore} />
                                         My Shop
                                     </Nav.Link>
@@ -51,7 +61,7 @@ function Account() {
                         </Col>
                         <Col md={8} className="content-col">
                             <Tab.Content className="p-4 h-100">
-                                <Tab.Pane eventKey="first">
+                                <Tab.Pane eventKey="account">
                                     <Container className="col px-4">
                                         <div className="top-info">My Account</div>
                                         <div className="info">
@@ -198,7 +208,7 @@ function Account() {
                                         </div>
                                     </Container>
                                 </Tab.Pane>
-                                <Tab.Pane eventKey="second">
+                                <Tab.Pane eventKey="purchase">
                                     <Container className="col">
                                         <Tabs
                                             defaultActiveKey="all"
@@ -226,7 +236,7 @@ function Account() {
                                         </Tabs>
                                     </Container>
                                 </Tab.Pane>
-                                <Tab.Pane eventKey="third">
+                                <Tab.Pane eventKey="shop">
                                     <Container className="col">
                                         <div className="top-info">My Account</div>
                                     </Container>

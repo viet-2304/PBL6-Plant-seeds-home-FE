@@ -7,15 +7,16 @@ import './SliderProduct.scss';
 
 function SliderProduct({ items, title }) {
     return (
-        <Container fluid className="sliderItem-container  px-0 py-5">
+        <Container fluid className="sliderItem-container px-0 py-5">
             <div className="container-xl px-0 pb-2 d-flex flex-row justify-content-between align-items-center">
                 <h1 className="ps-4 fw-bold mb-3 mt-3 ">{title}</h1>
             </div>
-            <div className="container-xl px-0 pb-2 pt-2">
+            <div className="container-xl px-0">
                 <Carousel
-                    className="px-5"
+                    className="slide-space"
                     cols={4}
                     rows={1}
+                    gap={20}
                     // autoplay={5000}
                     loop={true}
                     responsiveLayout={[
@@ -27,13 +28,21 @@ function SliderProduct({ items, title }) {
                             breakpoint: 650,
                             cols: 2,
                         },
+                        // {
+                        //     breakpoint: 768,
+                        //     cols: 2,
+                        // },
+                        // {
+                        //     breakpoint: 500,
+                        //     cols: 1,
+                        // },
                     ]}
                     mobileBreakpoint={400}
                 >
                     <Carousel.Item key="1">
                         <ProductCard
                             title="Cây cảnh"
-                            image="https://bau.vn/wp-content/uploads/2021/10/meo-trong-cay-canh-xanh-tot-loc-la-luc-nao-cung-quanh-nam-1.jpg"
+                            image="https://jacks-garden-server.herokuapp.com/images/fiddle_leaf.jpg"
                             price="1"
                             to="product/1"
                         />
@@ -41,7 +50,7 @@ function SliderProduct({ items, title }) {
                     <Carousel.Item key="1">
                         <ProductCard
                             title="Cây cảnh"
-                            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBmmcInsMQS4anB9hq60JIOsTGiPQx8y-w9w&usqp=CAU"
+                            image="https://jacks-garden-server.herokuapp.com/images/cactus.jpg"
                             price="1"
                             to="product/1"
                         />
@@ -49,7 +58,7 @@ function SliderProduct({ items, title }) {
                     <Carousel.Item key="1">
                         <ProductCard
                             title="Cây cảnh"
-                            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBmmcInsMQS4anB9hq60JIOsTGiPQx8y-w9w&usqp=CAU"
+                            image="https://jacks-garden-server.herokuapp.com/images/cactus.jpg"
                             price="1"
                             to="product/1"
                         />
@@ -57,7 +66,7 @@ function SliderProduct({ items, title }) {
                     <Carousel.Item key="1">
                         <ProductCard
                             title="Cây cảnh"
-                            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBmmcInsMQS4anB9hq60JIOsTGiPQx8y-w9w&usqp=CAU"
+                            image="https://jacks-garden-server.herokuapp.com/images/cactus.jpg"
                             price="1"
                             to="product/1"
                         />
@@ -65,7 +74,7 @@ function SliderProduct({ items, title }) {
                     <Carousel.Item key="1">
                         <ProductCard
                             title="Cây cảnh"
-                            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBmmcInsMQS4anB9hq60JIOsTGiPQx8y-w9w&usqp=CAU"
+                            image="https://jacks-garden-server.herokuapp.com/images/cactus.jpg"
                             price="1"
                             to="product/1"
                         />
@@ -73,7 +82,7 @@ function SliderProduct({ items, title }) {
                     <Carousel.Item key="1">
                         <ProductCard
                             title="Cây cảnh"
-                            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBmmcInsMQS4anB9hq60JIOsTGiPQx8y-w9w&usqp=CAU"
+                            image="https://jacks-garden-server.herokuapp.com/images/cactus.jpg"
                             price="1"
                             to="product/1"
                         />
@@ -81,7 +90,7 @@ function SliderProduct({ items, title }) {
                     <Carousel.Item key="1">
                         <ProductCard
                             title="Cây cảnh"
-                            image="https://bau.vn/wp-content/uploads/2021/10/meo-trong-cay-canh-xanh-tot-loc-la-luc-nao-cung-quanh-nam-1.jpg"
+                            image="https://jacks-garden-server.herokuapp.com/images/fiddle_leaf.jpg"
                             price="1"
                             to="product/1"
                         />
@@ -108,7 +117,7 @@ function SliderProduct({ items, title }) {
                             <Carousel.Item key={item.productId}>
                                 <ProductCard
                                     title={item.productName}
-                                    image="https:jacks-garden-server.herokuapp.com/images/spider_plant.jpg"
+                                    image="https://jacks-garden-server.herokuapp.com/images/marbel_queen.jpg"
                                     price={item.price}
                                     to={`/products/${item.productType}/${item.productId}`}
                                 />
