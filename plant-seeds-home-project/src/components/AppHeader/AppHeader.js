@@ -39,7 +39,7 @@ function AppHeader() {
         <Navbar expand="lg" collapseOnSelect className="px-4 py-8">
             <div className="container d-flex align-items-center justify-content-between">
                 <Navbar.Brand href={routes.home} className="logo ">
-                    <img src={logo} alt="logo" preview={false} />
+                    <img src={logo} alt="logo"/>
                 </Navbar.Brand>
 
                 <div className="action d-flex align-items-center ms-2 order-lg-last">
@@ -149,7 +149,7 @@ function AppHeader() {
                     <Nav className="" navbarScroll>
                         <NavLink to={routes.home}>Home</NavLink>
                         <NavLink to={routes.shop}>Shop</NavLink>
-                        <NavLink to={routes.history}>Order History</NavLink>
+                        <NavLink to={routes.purchase}>Order History</NavLink>
                         <NavLink to={routes.account} className="profile-link-mb">
                             Profile
                         </NavLink>

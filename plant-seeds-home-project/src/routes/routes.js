@@ -21,11 +21,13 @@ const publicRoutes = [
     { path: routes.register, component: Register },
     { path: routes.history, component: History },
     { path: routes.cart, component: Cart, layout: DefaultLayout },
-    { path: routes.shop, component: Shop, layout: DefaultLayout },
+    // { path: routes.shop, component: Shop, layout: DefaultLayout },
     { path: routes.products, component: Products, layout: DefaultLayout },
     { path: routes.productsByCategory, component: Products, layout: DefaultLayout },
     { path: routes.productByID, component: Products, layout: DefaultLayout },
-    { path: routes.account, component: Account, layout: AccountLayout },
+    { path: routes.account, component: Account, layout: AccountLayout, prop: 'account' },
+    { path: routes.purchase, component: Account, layout: AccountLayout, prop: 'purchase' },
+    { path: routes.shop, component: Account, layout: AccountLayout, prop: 'shop' },
 ];
 
 const privateRoutes = [];
