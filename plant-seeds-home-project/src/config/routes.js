@@ -4,13 +4,18 @@ const routes = {
     register: '/register',
     history: '/history',
     cart: '/cart',
-    // shop: '/shop',
     products: '/products',
     productsByCategory: '/products/:category',
     productByID: '/products/:category/:id',
-    account: '/account/profile/:userid',
-    purchase: '/account/profile/:userid',
-    shop: '/account/profile/:userid',
+    profile: '/account/:userid/profile',
+    purchase: '/account/:userid/purchase',
+    // shop: '/account/:userid/shop',
+    password: '/account/:userid/password',
+    // Seller
+    dashboard: '/seller/dashboard',
+    order: '/seller/order',
+    product: '/seller/product',
+    delivery: '/seller/delivery',
 };
 
 export default routes;

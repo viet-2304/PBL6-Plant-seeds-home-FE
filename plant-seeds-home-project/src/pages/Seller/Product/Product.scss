@@ -1,0 +1,33 @@
+.shop {
+    display: flex;
+    flex-direction: column;
+
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+        box-shadow: 0 1px 4px 0 #e5f0ea;
+    }
+    .main-container {
+        display: flex;
+        font-size: 3rem;
+        margin-top: 80px;
+        z-index: 1;
+        .widgets {
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+        .sidebar-container {
+            position: fixed;
+            height: calc(100% - 80px);
+            box-shadow: 4px 0 4px -4px #e5f0ea;
+        }
+        .content {
+            margin-left: 200px;
+            height: 900px;
+        }
+    }
+}

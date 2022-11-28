@@ -2,14 +2,11 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import ReactPaginate from 'react-paginate';
-import classNames from 'classnames/bind';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import styles from './Pagination.module.scss';
+import './Pagination.scss';
 import ProductCard from '../ProductCard/ProductCard';
-
-const cx = classNames.bind(styles);
 
 function Pagination({ title, data, numberPerPage }) {
     const [pageNumber, setPageNumber] = useState(0);
@@ -25,9 +22,90 @@ function Pagination({ title, data, numberPerPage }) {
     }, [data, numberPerPage, visitedPage]);
 
     return (
-        <Container className={cx('container')}>
-            <h1 className="fw-bold mb-0">{title.toUpperCase()}</h1>
+        <Container className="container">
+            <h1 className="fw-bold mb-5">{title.toUpperCase()}</h1>
             <div className="row row-cols-lg-4 row-cols-md-2 g-4">
+                <div className="col">
+                    <ProductCard
+                        title="Sen Đá Móng Rồng- Cây Để Bàn"
+                        image="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
+                        price="30.000"
+                        to="product/1"
+                    />
+                </div>
+
+                <div className="col">
+                    <ProductCard
+                        title="Xương rồng trứng chim - chậu mini để bàn trang trí"
+                        image="https://cf.shopee.vn/file/f9c63650a60d63ef369884ceefa0cbcd"
+                        price="20.000"
+                        to="product/1"
+                    />
+                </div>
+
+                <div className="col">
+                    <ProductCard
+                        title="Xương rồng Thiên Nga"
+                        image="https://cf.shopee.vn/file/cf20bd143ea2c957f501974848aa2c09"
+                        price="40.000"
+                        to="product/1"
+                    />
+                </div>
+
+                <div className="col">
+                    <ProductCard
+                        title="Cây cẩm nhung xanh bụi to kèm chậu sứ trắng mang lai may mắn"
+                        image="https://cf.shopee.vn/file/sg-11134201-22100-yp80s3xlefivb4"
+                        price="80.000"
+                        to="product/1"
+                    />
+                </div>
+
+                <div className="col">
+                    <ProductCard
+                        title="Cây lưỡi hổ Thái mini để bàn, cây lưỡi hổ hoàng kim, lưỡi hổ viền vàng "
+                        image="https://cf.shopee.vn/file/382aa1f20399c7c428ad47365b99ae06"
+                        price="100.000"
+                        to="product/1"
+                    />
+                </div>
+
+                <div className="col">
+                    <ProductCard
+                        title="Cây cảnh"
+                        image="https://jacks-garden-server.herokuapp.com/images/cactus.jpg"
+                        price="1"
+                        to="product/1"
+                    />
+                </div>
+
+                <div className="col">
+                    <ProductCard
+                        title="Cây cảnh"
+                        image="https://jacks-garden-server.herokuapp.com/images/fiddle_leaf.jpg"
+                        price="1"
+                        to="product/1"
+                    />
+                </div>
+
+                <div className="col">
+                    <ProductCard
+                        title="Cây cảnh"
+                        image="https:jacks-garden-server.herokuapp.com/images/spider_plant.jpg"
+                        price="1"
+                        to="product/1"
+                    />
+                </div>
+
+                <div className="col">
+                    <ProductCard
+                        title="Cây cảnh"
+                        image="https:jacks-garden-server.herokuapp.com/images/spider_plant.jpg"
+                        price="1"
+                        to="product/1"
+                    />
+                </div>
+
                 {displayProducts?.map((product) => {
                     return (
                         <div className="col">
@@ -49,11 +127,11 @@ function Pagination({ title, data, numberPerPage }) {
                 nextLabel={<FontAwesomeIcon icon={faAngleRight} />}
                 pageCount={pageCount}
                 onPageChange={handlePageChange}
-                containerClassName={cx('paginationContainer')}
-                previousLinkClassName={cx('icon')}
-                nextLinkClassName={cx('icon')}
-                disabledClassName={cx('paginationDisabled')}
-                activeClassName={cx('paginationActive')}
+                containerClassName="paginationContainer"
+                previousLinkClassName="icon"
+                nextLinkClassName="icon"
+                disabledClassName="paginationDisabled"
+                activeClassName="paginationActive"
             />
         </Container>
     );
