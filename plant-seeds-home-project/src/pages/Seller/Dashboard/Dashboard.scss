@@ -1,6 +1,14 @@
 .widgets,
 .charts {
+    height: fit-content;
     display: flex;
+    justify-content: center;
     padding: 20px;
     gap: 20px;
+}
+.dashboard {
+    width: 100%;
+
+    // margin-left: 200px;
+    // background-color: antiquewhite;
 }

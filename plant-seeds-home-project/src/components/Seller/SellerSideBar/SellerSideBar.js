@@ -7,7 +7,6 @@ import { useState } from 'react';
 
 function SellerSideBar() {
     const location = useLocation();
-    // const navigate = useNavigate();
 
     const pages = location.pathname.split('/').splice(1);
 

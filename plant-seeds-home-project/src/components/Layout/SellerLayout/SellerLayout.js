@@ -1,3 +1,4 @@
+import { Container } from 'react-bootstrap';
 import SellerHeader from '../../Seller/SellerHeader/SellerHeader';
 import SellerSideBar from '../../Seller/SellerSideBar/SellerSideBar';
 import './SellerLayout.scss';

@@ -1,7 +1,12 @@
 import { faUser } from '@fortawesome/free-regular-svg-icons';
-import { faCartShopping, faChevronUp, faDollar, faWallet } from '@fortawesome/free-solid-svg-icons';
+import {
+    faCartShopping,
+    faChevronUp,
+    faDollar,
+    faSeedling,
+    faWallet,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Container } from 'react-bootstrap';
 
 import './Widget.scss';
 
@@ -18,7 +23,16 @@ const Widget = ({ type }) => {
                 title: 'CUSTOMERS',
                 isMoney: false,
                 link: 'See all customers',
-                icon: <FontAwesomeIcon icon={faUser} className="icon" />,
+                icon: (
+                    <FontAwesomeIcon
+                        icon={faUser}
+                        className="icon"
+                        style={{
+                            color: 'crimson',
+                            backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                        }}
+                    />
+                ),
             };
             break;
         case 'order':
@@ -26,7 +40,16 @@ const Widget = ({ type }) => {
                 title: 'ORDERS',
                 isMoney: false,
                 link: 'View all orders',
-                icon: <FontAwesomeIcon icon={faCartShopping} className="icon" />,
+                icon: (
+                    <FontAwesomeIcon
+                        icon={faCartShopping}
+                        className="icon"
+                        style={{
+                            backgroundColor: 'rgba(218, 165, 32, 0.2)',
+                            color: 'goldenrod',
+                        }}
+                    />
+                ),
             };
             break;
         case 'earning':
@@ -34,7 +57,16 @@ const Widget = ({ type }) => {
                 title: 'EARNINGS',
                 isMoney: true,
                 link: 'View net earnings',
-                icon: <FontAwesomeIcon icon={faDollar} className="icon" />,
+                icon: (
+                    <FontAwesomeIcon
+                        icon={faDollar}
+                        className="icon"
+                        style={{
+                            backgroundColor: 'rgba(0, 43, 128, 0.2)',
+                            color: 'blue',
+                        }}
+                    />
+                ),
             };
             break;
         case 'balance':
@@ -42,7 +74,30 @@ const Widget = ({ type }) => {
                 title: 'BALANCE',
                 isMoney: true,
                 link: 'See details',
-                icon: <FontAwesomeIcon icon={faWallet} className="icon" />,
+                icon: (
+                    <FontAwesomeIcon
+                        icon={faWallet}
+                        className="icon"
+                        style={{
+                            backgroundColor: 'rgba(128, 0, 128, 0.2)',
+                            color: 'purple',
+                        }}
+                    />
+                ),
+            };
+            break;
+        case 'product':
+            data = {
+                title: 'PRODUCTS',
+                isMoney: true,
+                link: 'See all products',
+                icon: (
+                    <FontAwesomeIcon
+                        icon={faSeedling}
+                        className="icon"
+                        style={{ backgroundColor: 'rgba(0, 128, 0, 0.2)', color: 'green' }}
+                    />
+                ),
             };
             break;
         default:
@@ -50,24 +105,22 @@ const Widget = ({ type }) => {
     }
 
     return (
-        <Container fluid className="widget">
-            <div className="px-5">
-                <div className="left">
-                    <span className="title">{data.title}</span>
-                    <span className="counter">
-                        {data.isMoney && '$'} {amount}
-                    </span>
-                    <span className="link">{data.link}</span>
-                </div>
-                <div className="right">
-                    <div className="percentage positive">
-                        <FontAwesomeIcon icon={faChevronUp} className="icon" />
-                        {diff} %
-                    </div>
-                    {data.icon}
-                </div>
+        <div className="widget">
+            <div className="left">
+                <span className="title">{data.title}</span>
+                <span className="counter">
+                    {data.isMoney && '$'} {amount}
+                </span>
+                <span className="link">{data.link}</span>
             </div>
-        </Container>
+            <div className="right">
+                <div className="percentage positive">
+                    <FontAwesomeIcon icon={faChevronUp} className="icon" />
+                    {diff} %
+                </div>
+                {data.icon}
+            </div>
+        </div>
     );
 };
 

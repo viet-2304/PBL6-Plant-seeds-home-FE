@@ -17,7 +17,7 @@ function Account({ prop }) {
     const handleSelect = (k) => {
         navigate(location.pathname.slice(0, location.pathname.indexOf(prop)) + k);
     };
-
+    const [reload, setReload] = useState(false);
     const [currentToken, setCurrentToken] = useState(localStorage.getItem('token'));
     const [currentUser, setCurrentUser] = useState({});
     const API = axios.create({
@@ -35,34 +35,34 @@ function Account({ prop }) {
                     setCurrentUser(res.data);
                     console.log('res1: ', res.data);
                 })
-                .catch((err) => console.log('err', err));
+                .catch((err) => console.log('c', err));
         };
         fetchCurrentUser();
-    }, []);
+    }, [reload]);
     console.log('a', currentUser);
 
     const handleClick = () => {
-        // axios
-        //     .post(BASE_API_URL + 'v1/users/editUser', currentUser, {
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //             'x-access-token': `${currentToken}`,
-        //             // Authorization: `Bearer ${currentToken}`,
-        //         },
-        //     })
-        //     .then((res) => {
-        //         setCurrentUser(res.data);
-        //         console.log('res1: ', res.data);
-        //     })
-        //     .catch((err) => console.log('err', err));
+        axios
+            .post(BASE_API_URL + 'v1/users/editUser', currentUser, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${currentToken}`,
+                },
+            })
+            .then((res) => {
+                setCurrentUser(res.data);
+                setReload(!reload);
+                console.log('res1: ', res.data);
+            })
+            .catch((err) => console.log('err', err));
         // API.post(
-        //     `v1/users/editUser`,
+        //     'v1/users/editUser',
         //     {
-        //         body: currentUser,
+        //         currentUser,
         //     },
         //     {
         //         headers: {
-        //             // 'Content-Type': 'application/json',
+        //             'Content-Type': 'application/json',
         //             Authorization: `Bearer ${currentToken}`,
         //         },
         //     },
@@ -146,7 +146,7 @@ function Account({ prop }) {
                                                         readOnly
                                                         className="form-control "
                                                         id="staticEmail"
-                                                        value={currentUser.email}
+                                                        value={currentUser.email || ''}
                                                         onChange={(e) =>
                                                             setCurrentUser({
                                                                 ...currentUser,
@@ -168,7 +168,7 @@ function Account({ prop }) {
                                                         type="text"
                                                         className="form-control"
                                                         id="inputUsername"
-                                                        value={currentUser.userName}
+                                                        value={currentUser.userName || ''}
                                                         onChange={(e) =>
                                                             setCurrentUser({
                                                                 ...currentUser,
@@ -190,11 +190,7 @@ function Account({ prop }) {
                                                         type="text"
                                                         className="form-control "
                                                         id="inputPhone"
-                                                        value={
-                                                            currentUser.phoneNumber
-                                                                ? currentUser.phoneNumber
-                                                                : undefined
-                                                        }
+                                                        value={currentUser.phoneNumber || ''}
                                                         onChange={(e) =>
                                                             setCurrentUser({
                                                                 ...currentUser,
@@ -216,11 +212,7 @@ function Account({ prop }) {
                                                         type="text"
                                                         className="form-control "
                                                         id="inputAddress"
-                                                        value={
-                                                            currentUser.address
-                                                                ? currentUser.phoneNumber
-                                                                : undefined
-                                                        }
+                                                        value={currentUser.phoneNumber || ''}
                                                         onChange={(e) =>
                                                             setCurrentUser({
                                                                 ...currentUser,
@@ -295,7 +287,7 @@ function Account({ prop }) {
                                                         type="date"
                                                         id="birthday"
                                                         name="birthday"
-                                                        value={''}
+                                                        value={currentUser.date || ''}
                                                         onChange={(e) =>
                                                             setCurrentUser({
                                                                 ...currentUser,
