@@ -14,9 +14,7 @@
         }
     }
 }
-.a {
-    background-color: #3f7652;
-}
+
 .menu-col {
     margin: 0 30px 0 0;
     width: 300px;
@@ -54,10 +52,7 @@
     object-fit: cover;
     clip-path: circle(25px at 50% 50%);
 }
-.user {
-    // margin-top: 10px;
-    // border-bottom: 2px solid #000;
-}
+
 .user-info {
     margin-left: 20px;
 }
@@ -99,4 +94,14 @@
     color: #3f7652;
     border-bottom: 2px solid;
     border-color: #fff #fff #3f7652;
+}
+.form-check-input:checked {
+    background-color: #3f7652;
+    border-color: #3f7652;
+    box-shadow: 0 0 0 0.25rem #e5f0ea;
+}
+.form-check-input:focus {
+    border-color: #3f7652;
+    box-shadow: 0 0 0 0.25rem #e5f0ea;
+    outline: 0;
 }

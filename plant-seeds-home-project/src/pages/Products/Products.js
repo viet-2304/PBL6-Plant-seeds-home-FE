@@ -23,7 +23,6 @@ function Products() {
     });
 
     const pages = location.pathname.split('/').splice(1);
-    console.log('pages', pages);
 
     useEffect(() => {
         if (pages.length === 3) {
@@ -37,7 +36,7 @@ function Products() {
             fetchProdutList();
         } else if (pages.length === 1) {
             const fetchProdutList = () => {
-                API.get('/v1/product/getAllProduct')
+                API.get('v1/product/getAllProduct')
                     .then((res) => {
                         setProductsByCategory(res.data);
                     })
@@ -55,7 +54,6 @@ function Products() {
             };
             fetchProdutList();
         }
-        console.log(pages[pages.length - 1]);
     }, [API, pages]);
 
     return (

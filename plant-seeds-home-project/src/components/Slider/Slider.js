@@ -16,13 +16,16 @@ function Slider() {
                 <Carousel.Item className="slide2 d-flex flex-row justify-content-end align-items-center p-5"></Carousel.Item>
                 <Carousel.Item className="slide3 d-flex flex-row justify-content-end align-items-center p-5"></Carousel.Item>
             </Carousel>
-            <Container fluid="xl" className="info d-flex align-items-center justify-content-end pt-5">
-                <Container className="carouselInfo d-flex flex-column text-left align-items-center align-items-md-start pe-md-4 p-20 pt-5">
+            <Container
+                fluid="xl"
+                className="info d-flex align-items-center justify-content-end pt-5"
+            >
+                <Container className="carouselInfo d-flex flex-column text-left align-items-center align-items-md-start pe-md-4 p-20 pt-5 w-100 h-100">
                     <h1 className="fw-bold text-left pt-5">
                         Make your world <br></br>greener!
                     </h1>
                     <Link to="/products">
-                        <Button variant="outline-light" size="lg" className='py-3 px-5'>
+                        <Button variant="outline-light" size="lg" className="py-3 px-5">
                             SHOP NOW
                         </Button>
                     </Link>

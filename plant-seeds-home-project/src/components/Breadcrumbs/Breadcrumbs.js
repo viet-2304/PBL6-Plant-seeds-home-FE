@@ -36,13 +36,6 @@ function Breadcrumbs() {
                                             )
                                         }
                                     >
-                                        {console.log(
-                                            'qqqqqqqq',
-                                            location.pathname.slice(
-                                                0,
-                                                location.pathname.indexOf(page),
-                                            ) + page,
-                                        )}
                                         {page}
                                     </Button>
                                 </Breadcrumb.Item>

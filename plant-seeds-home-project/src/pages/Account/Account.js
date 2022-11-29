@@ -1,8 +1,10 @@
-import { faFileLines, faStore, faUser, faPen } from '@fortawesome/free-solid-svg-icons';
+import { faFileLines, faUser, faPen, faKey } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { Container, Col, Row, Tab, Nav, Image, Tabs } from 'react-bootstrap';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Container, Col, Row, Tab, Nav, Image, Tabs, Form } from 'react-bootstrap';
+import { useLocation, useNavigate } from 'react-router-dom';
+import BASE_API_URL from '../../api/api';
 
 import Button from '../../components/Button/Button';
 import PurchaseItem from '../../components/PurchaseItem/PurchaseItem';
@@ -10,15 +12,73 @@ import PurchaseItem from '../../components/PurchaseItem/PurchaseItem';
 import './Account.scss';
 
 function Account({ prop }) {
-    console.log(prop);
-    const [key, setKey] = useState(prop);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const handleSelect = (k) => {
+        navigate(location.pathname.slice(0, location.pathname.indexOf(prop)) + k);
+    };
+    const [reload, setReload] = useState(false);
+    const [currentToken, setCurrentToken] = useState(localStorage.getItem('token'));
+    const [currentUser, setCurrentUser] = useState({});
+    const API = axios.create({
+        baseURL: BASE_API_URL,
+    });
+    useEffect(() => {
+        const fetchCurrentUser = () => {
+            API.get('v1/users/getCurrentUser', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + currentToken,
+                },
+            })
+                .then((res) => {
+                    setCurrentUser(res.data);
+                    console.log('res1: ', res.data);
+                })
+                .catch((err) => console.log('c', err));
+        };
+        fetchCurrentUser();
+    }, [reload]);
+    console.log('a', currentUser);
+
+    const handleClick = () => {
+        axios
+            .post(BASE_API_URL + 'v1/users/editUser', currentUser, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${currentToken}`,
+                },
+            })
+            .then((res) => {
+                setCurrentUser(res.data);
+                setReload(!reload);
+                console.log('res1: ', res.data);
+            })
+            .catch((err) => console.log('err', err));
+        // API.post(
+        //     'v1/users/editUser',
+        //     {
+        //         currentUser,
+        //     },
+        //     {
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //             Authorization: `Bearer ${currentToken}`,
+        //         },
+        //     },
+        // )
+        //     .then((res) => {
+        //         setCurrentUser(res.data);
+        //         console.log('res1: ', res.data);
+        //     })
+        //     .catch((err) => console.log('err', err));
+    };
     return (
         <Container fluid className="account-container py-5 ">
             <Tab.Container
                 id="left-tabs-example"
-                defaultActiveKey={key}
-                // activeKey={key}
-                // onSelect={(k) => setKey(k)}
+                activeKey={prop}
+                onSelect={(k) => handleSelect(k)}
             >
                 <div className="container-xl px-5 py-5">
                     <Row>
@@ -26,21 +86,23 @@ function Account({ prop }) {
                             <Nav variant="pills" className="flex-column">
                                 <div className="user my-3 d-flex flex-row align-items-center justify-content-center ">
                                     <Image
-                                        className="user-image me-5"
+                                        className="user-image me-3"
                                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_mNmpqHOTakNgIaKR5bxJFfkUtiLdPBXPMw&usqp=CAU"
                                         alt="imageuser"
                                     />
                                     <div>
-                                        <div className="user-name">Phan Thị Thu Sương</div>
-                                        <div>
+                                        <div className="user-name text-center">
+                                            Phan Thị Thu Sương
+                                        </div>
+                                        <div className="text-center">
                                             <FontAwesomeIcon icon={faPen} />
-                                            Chỉnh sửa
+                                            Change Image
                                         </div>
                                     </div>
                                 </div>
 
                                 <Nav.Item>
-                                    <Nav.Link eventKey="account">
+                                    <Nav.Link eventKey="profile">
                                         <FontAwesomeIcon icon={faUser} />
                                         My Account
                                     </Nav.Link>
@@ -51,17 +113,23 @@ function Account({ prop }) {
                                         My Purchase
                                     </Nav.Link>
                                 </Nav.Item>
-                                <Nav.Item>
+                                {/* <Nav.Item>
                                     <Nav.Link eventKey="shop">
                                         <FontAwesomeIcon icon={faStore} />
                                         My Shop
+                                    </Nav.Link>
+                                </Nav.Item> */}
+                                <Nav.Item>
+                                    <Nav.Link eventKey="password">
+                                        <FontAwesomeIcon icon={faKey} />
+                                        Change Password
                                     </Nav.Link>
                                 </Nav.Item>
                             </Nav>
                         </Col>
                         <Col md={8} className="content-col">
                             <Tab.Content className="p-4 h-100">
-                                <Tab.Pane eventKey="account">
+                                <Tab.Pane eventKey="profile">
                                     <Container className="col px-4">
                                         <div className="top-info">My Account</div>
                                         <div className="info">
@@ -72,13 +140,19 @@ function Account({ prop }) {
                                                 >
                                                     Email
                                                 </label>
-                                                <div className="col-sm-10  mt-3">
+                                                <div className="col-sm-10 mt-3">
                                                     <input
                                                         type="text"
                                                         readOnly
-                                                        className="form-control-plaintext "
+                                                        className="form-control "
                                                         id="staticEmail"
-                                                        value="email@example.com"
+                                                        value={currentUser.email || ''}
+                                                        onChange={(e) =>
+                                                            setCurrentUser({
+                                                                ...currentUser,
+                                                                email: e.target.value,
+                                                            })
+                                                        }
                                                     />
                                                 </div>
                                             </div>
@@ -92,8 +166,15 @@ function Account({ prop }) {
                                                 <div className="col-sm-10">
                                                     <input
                                                         type="text"
-                                                        className="form-control  "
+                                                        className="form-control"
                                                         id="inputUsername"
+                                                        value={currentUser.userName || ''}
+                                                        onChange={(e) =>
+                                                            setCurrentUser({
+                                                                ...currentUser,
+                                                                userName: e.target.value,
+                                                            })
+                                                        }
                                                     />
                                                 </div>
                                             </div>
@@ -109,6 +190,13 @@ function Account({ prop }) {
                                                         type="text"
                                                         className="form-control "
                                                         id="inputPhone"
+                                                        value={currentUser.phoneNumber || ''}
+                                                        onChange={(e) =>
+                                                            setCurrentUser({
+                                                                ...currentUser,
+                                                                phoneNumber: e.target.value,
+                                                            })
+                                                        }
                                                     />
                                                 </div>
                                             </div>
@@ -124,6 +212,13 @@ function Account({ prop }) {
                                                         type="text"
                                                         className="form-control "
                                                         id="inputAddress"
+                                                        value={currentUser.phoneNumber || ''}
+                                                        onChange={(e) =>
+                                                            setCurrentUser({
+                                                                ...currentUser,
+                                                                address: e.target.value,
+                                                            })
+                                                        }
                                                     />
                                                 </div>
                                             </div>
@@ -192,15 +287,19 @@ function Account({ prop }) {
                                                         type="date"
                                                         id="birthday"
                                                         name="birthday"
+                                                        value={currentUser.date || ''}
+                                                        onChange={(e) =>
+                                                            setCurrentUser({
+                                                                ...currentUser,
+                                                                email: e.target.value,
+                                                            })
+                                                        }
                                                     />
                                                 </div>
                                             </div>
                                             <div className="row my-5">
                                                 <div className="d-flex justify-content-center ">
-                                                    <Button
-                                                        cart
-                                                        // onClick={() => navigate(/products/${item.name})}
-                                                    >
+                                                    <Button cart onClick={() => handleClick()}>
                                                         Save
                                                     </Button>
                                                 </div>
@@ -236,9 +335,91 @@ function Account({ prop }) {
                                         </Tabs>
                                     </Container>
                                 </Tab.Pane>
-                                <Tab.Pane eventKey="shop">
+                                {/* <Tab.Pane eventKey="shop">
                                     <Container className="col">
                                         <div className="top-info">My Account</div>
+                                    </Container>
+                                </Tab.Pane> */}
+                                <Tab.Pane eventKey="password">
+                                    <Container className="col px-4">
+                                        <div className="top-info">Change Password</div>
+                                        <div className="info">
+                                            <div className="row my-5">
+                                                <label
+                                                    htmlFor="inputOldPassword"
+                                                    className="col-sm-3 form-label "
+                                                >
+                                                    Old Password
+                                                </label>
+                                                <div className="col-sm-9 ">
+                                                    <input
+                                                        type="password"
+                                                        className="form-control  "
+                                                        id="inputOldPassword"
+                                                        value="aaaaa"
+                                                        readOnly
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="row my-5">
+                                                <label
+                                                    htmlFor="inputNewPassword"
+                                                    className="col-sm-3 form-label "
+                                                >
+                                                    New Password
+                                                </label>
+                                                <div className="col-sm-9">
+                                                    <input
+                                                        type="password"
+                                                        className="form-control "
+                                                        id="inputNewPassword"
+                                                        value="aaaaa"
+                                                        readOnly
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="row my-5">
+                                                <label
+                                                    htmlFor="inputConfirmPassword"
+                                                    className="col-sm-3 form-label "
+                                                >
+                                                    Confirm Password
+                                                </label>
+                                                <div className="col-sm-9">
+                                                    <input
+                                                        type="password"
+                                                        className="form-control"
+                                                        id="inputConfirmPassword"
+                                                        value="aaaaa"
+                                                        readOnly
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="form-check d-flex justify-content-end align-item-center my-5 me-5">
+                                                <input
+                                                    className="form-check-input me-3"
+                                                    type="checkbox"
+                                                    value=""
+                                                    id="flexCheckDefault"
+                                                />
+                                                <label
+                                                    className="form-check-label me-5"
+                                                    htmlFor="flexCheckDefault"
+                                                >
+                                                    Show Password
+                                                </label>
+                                            </div>
+                                            <div className="row my-5">
+                                                <div className="d-flex justify-content-center ">
+                                                    <Button
+                                                        cart
+                                                        // onClick={() => navigate(/products/${item.name})}
+                                                    >
+                                                        Save
+                                                    </Button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </Container>
                                 </Tab.Pane>
                             </Tab.Content>

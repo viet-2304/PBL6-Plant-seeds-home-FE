@@ -11,8 +11,8 @@ import axios from 'axios';
 import './Login.scss';
 
 function Login() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('user10@gmail.com');
+    const [password, setPassword] = useState('user10');
     const navigate = useNavigate();
 
     const handleUserLogin = (e) => {
@@ -22,7 +22,7 @@ function Login() {
             password: password,
         };
         axios
-            .post(BASE_API_URL+'v1/auth/login', body)
+            .post(BASE_API_URL + 'v1/auth/login', body)
             .then((res) => {
                 //    navigate(routes.home);
                 let token = res.data.token;
@@ -44,7 +44,7 @@ function Login() {
         <section className="wrapper-content">
             <div className="d-flex justify-content-start ">
                 <button className="btn-exit">
-                    <FontAwesomeIcon icon={faCircleXmark}></FontAwesomeIcon>{' '}
+                    <FontAwesomeIcon icon={faCircleXmark}></FontAwesomeIcon>
                 </button>
             </div>
             <div className="container">
@@ -65,13 +65,13 @@ function Login() {
                                     <div className="w-100">
                                         <p className="social-media d-flex justify-content-end">
                                             <a
-                                                href="#"
+                                                href="/"
                                                 className="social-icon d-flex align-items-center justify-content-center"
                                             >
                                                 <FontAwesomeIcon icon={faGoogle} />
                                             </a>
                                             <a
-                                                href="#"
+                                                href="/"
                                                 className="social-icon d-flex align-items-center justify-content-center"
                                             >
                                                 <FontAwesomeIcon icon={faFacebook} />
@@ -89,7 +89,7 @@ function Login() {
                                             Email
                                         </label>
                                         <input
-                                            type="text"
+                                            type="email"
                                             className="form-control"
                                             placeholder="Email"
                                             value={email}
@@ -131,7 +131,7 @@ function Login() {
                                             </label>
                                         </div>
                                         <div className="w-50 text-md-right">
-                                            <a href="#">Forgot Password ?</a>
+                                            <a href="/">Forgot Password ?</a>
                                         </div>
                                     </div>
                                 </form>

@@ -23,7 +23,6 @@ function Categories() {
         const fetchCategoryList = () => {
             API.get('/v1/product/getAllProductType')
                 .then((res) => {
-                    console.log('res: ', res.data);
                     setCategories(res.data);
                 })
                 .catch((err) => console.log(err));
