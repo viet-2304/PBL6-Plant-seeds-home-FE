@@ -1,0 +1,52 @@
+.form-floating .form-control,
+.form-floating .form-select {
+    height: 60px;
+    padding-left: 8px;
+    font-size: 16px;
+}
+.form-floating .form-control:not(:placeholder-shown),
+.form-floating .form-select:not(:placeholder-shown) {
+    padding-top: 30px;
+    padding-bottom: 0.625rem;
+}
+.form-floating .form-control:focus {
+    padding-top: 30px;
+    padding-bottom: 0.625rem;
+}
+
+.form-floating label {
+    font-size: 16px;
+    position: absolute;
+    top: 7%;
+    left: 0;
+    width: fit-content;
+    height: fit-content;
+    padding: 1rem 0.75rem;
+    overflow: hidden;
+    text-align: start;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    pointer-events: none;
+    border: 1px solid transparent;
+    transform-origin: 0 0;
+    transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.form-control:focus {
+    color: #212529;
+    border-color: #3f7652;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem #e5f0ea;
+}
+
+.textarea {
+    height: 240px;
+    .form-floating label {
+        top: 0;
+    }
+    .form-floating .form-control:focus {
+        padding-top: 30px;
+        padding-bottom: 0.625rem;
+    }
+}

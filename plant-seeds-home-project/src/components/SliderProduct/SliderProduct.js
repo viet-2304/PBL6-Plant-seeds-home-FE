@@ -28,21 +28,13 @@ function SliderProduct({ items, title }) {
                             breakpoint: 650,
                             cols: 2,
                         },
-                        // {
-                        //     breakpoint: 768,
-                        //     cols: 2,
-                        // },
-                        // {
-                        //     breakpoint: 500,
-                        //     cols: 1,
-                        // },
                     ]}
                     mobileBreakpoint={400}
                 >
                     <Carousel.Item key="1">
                         <ProductCard
                             title="Cây cảnh"
-                            image="https://jacks-garden-server.herokuapp.com/images/fiddle_leaf.jpg"
+                            image="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
                             price="1"
                             to="product/1"
                         />
@@ -50,7 +42,7 @@ function SliderProduct({ items, title }) {
                     <Carousel.Item key="1">
                         <ProductCard
                             title="Cây cảnh"
-                            image="https://jacks-garden-server.herokuapp.com/images/cactus.jpg"
+                            image="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
                             price="1"
                             to="product/1"
                         />
@@ -58,7 +50,7 @@ function SliderProduct({ items, title }) {
                     <Carousel.Item key="1">
                         <ProductCard
                             title="Cây cảnh"
-                            image="https://jacks-garden-server.herokuapp.com/images/cactus.jpg"
+                            image="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
                             price="1"
                             to="product/1"
                         />
@@ -66,7 +58,7 @@ function SliderProduct({ items, title }) {
                     <Carousel.Item key="1">
                         <ProductCard
                             title="Cây cảnh"
-                            image="https://jacks-garden-server.herokuapp.com/images/cactus.jpg"
+                            image="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
                             price="1"
                             to="product/1"
                         />
@@ -74,7 +66,7 @@ function SliderProduct({ items, title }) {
                     <Carousel.Item key="1">
                         <ProductCard
                             title="Cây cảnh"
-                            image="https://jacks-garden-server.herokuapp.com/images/cactus.jpg"
+                            image="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
                             price="1"
                             to="product/1"
                         />
@@ -82,7 +74,7 @@ function SliderProduct({ items, title }) {
                     <Carousel.Item key="1">
                         <ProductCard
                             title="Cây cảnh"
-                            image="https://jacks-garden-server.herokuapp.com/images/cactus.jpg"
+                            image="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
                             price="1"
                             to="product/1"
                         />
@@ -90,7 +82,7 @@ function SliderProduct({ items, title }) {
                     <Carousel.Item key="1">
                         <ProductCard
                             title="Cây cảnh"
-                            image="https://jacks-garden-server.herokuapp.com/images/fiddle_leaf.jpg"
+                            image="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
                             price="1"
                             to="product/1"
                         />
@@ -98,7 +90,7 @@ function SliderProduct({ items, title }) {
                     <Carousel.Item key="1">
                         <ProductCard
                             title="Cây cảnh"
-                            image="https:jacks-garden-server.herokuapp.com/images/spider_plant.jpg"
+                            image="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
                             price="1"
                             to="product/1"
                         />
@@ -107,7 +99,7 @@ function SliderProduct({ items, title }) {
                     <Carousel.Item key="1">
                         <ProductCard
                             title="Cây cảnh"
-                            image="https:jacks-garden-server.herokuapp.com/images/spider_plant.jpg"
+                            image="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
                             price="1"
                             to="product/1"
                         />
@@ -117,7 +109,7 @@ function SliderProduct({ items, title }) {
                             <Carousel.Item key={item.productId}>
                                 <ProductCard
                                     title={item.productName}
-                                    image="https://jacks-garden-server.herokuapp.com/images/marbel_queen.jpg"
+                                    image="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
                                     price={item.price}
                                     to={`/products/${item.productType}/${item.productId}`}
                                 />
@@ -154,7 +146,7 @@ function SliderProduct({ items, title }) {
         //                     <Carousel.Item key={item.productId} >
         //                         <ProductCard
         //                             title={item.productName}
-        //                             image="https://jacks-garden-server.herokuapp.com/images/spider_plant.jpg"
+        //                              image='https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1'
         //                             price={item.price}
         //                             to={`/products/${item.productType}/${item.productId}`}
         //                             button

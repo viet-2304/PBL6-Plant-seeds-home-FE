@@ -1,7 +1,17 @@
+import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import { Table } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import BASE_API_URL from '../../../api/api';
+import Button from '../../Button/Button';
 import './Table.scss';
 
-function List({ title, data }) {
+function List() {
+    const labels = ['#', 'Manufacturer', 'Image', 'Name', 'MFG', 'EXP', 'Price', 'Quantity'];
+    const label = ['Product', 'Image', 'Customer', 'Date', 'Amount', 'Method', 'Status', 'Action'];
     const rows = [
         {
             id: 1143155,
@@ -54,49 +64,67 @@ function List({ title, data }) {
             status: 'Pending',
         },
     ];
+    const [products, setProducts] = useState([]);
+    const API = axios.create({
+        baseURL: BASE_API_URL,
+    });
+
+    useEffect(() => {
+        const fetchProdutList = () => {
+            API.get('v1/product/getAllProduct')
+                .then((res) => {
+                    console.log('all1: ', products);
+                    setProducts(res.data);
+                })
+                .catch((err) => console.log(err));
+        };
+        fetchProdutList();
+    }, []);
+    console.log('all1: ', products);
     return (
-        <div>
-            <div className="d-flex justify-content-between aglin-items-center mb-2">
-                <h1 className="fw-bold ">PRODUCTS</h1>
-                <button type="button" class="btn btn-outline-success">
-                    Add New
-                </button>
-            </div>
-            <Table striped bordered hover size="lg">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Product</th>
-                        <th>Image</th>
-                        <th>Customer</th>
-                        <th>Date</th>
-                        <th>Amount</th>
-                        <th>Method</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {rows?.map((row) => (
-                        <tr>
-                            <td className="tableCell">{row.id}</td>
-                            <td className="tableCell">{row.product}</td>
-                            <td className="">
-                                <div className="cellWrapper">
-                                    <img src={row.img} alt="" className="image" />
-                                </div>
-                            </td>
-                            <td className="tableCell">{row.customer}</td>
-                            <td className="tableCell">{row.date}</td>
-                            <td className="tableCell">{row.amount}</td>
-                            <td className="tableCell">{row.method}</td>
-                            <td className="tableCell">
-                                <span className={`status ${row.status}`}>{row.status}</span>
-                            </td>
-                        </tr>
+        <Table striped bordered hover size="lg">
+            <thead>
+                <tr>
+                    {labels?.map((label) => (
+                        <th key={label}>{label}</th>
                     ))}
-                </tbody>
-            </Table>
-        </div>
+                </tr>
+            </thead>
+            <tbody>
+                {products?.map((row, index) => (
+                    <tr key={row?.id}>
+                        <td className="">{index}</td>
+                        <td className="tableCell">{row?.manufacturer}</td>
+                        <td className="">
+                            <div className="cellWrapper">
+                                <img
+                                    src="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
+                                    /* src={row?.imageURL}*/ alt=""
+                                    className="image"
+                                />
+                            </div>
+                        </td>
+                        <td className="tableCell">{row?.productName}</td>
+                        <td className="tableCell">{row?.mfg.split('T')[0]}</td>
+                        <td className="tableCell">{row?.exp.split('T')[0]}</td>
+                        <td className="">{row?.price}</td>
+                        <td className="text-center align-middle">
+                            <span className={`status ${row?.status}`}>{row?.numberOfProduct}</span>
+                        </td>
+                        <td className="align-middle">
+                            <div className="cellActions">
+                                <Button to={`/seller/product/update/${row?.productId}`}>
+                                    <FontAwesomeIcon icon={faPen} />
+                                </Button>
+                                <Button>
+                                    <FontAwesomeIcon icon={faTrash} />
+                                </Button>
+                            </div>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </Table>
     );
 }
 
