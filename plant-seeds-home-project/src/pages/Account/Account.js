@@ -212,7 +212,7 @@ function Account({ prop }) {
                                                         type="text"
                                                         className="form-control "
                                                         id="inputAddress"
-                                                        value={currentUser.phoneNumber || ''}
+                                                        value={currentUser.address || ''}
                                                         onChange={(e) =>
                                                             setCurrentUser({
                                                                 ...currentUser,
@@ -283,7 +283,7 @@ function Account({ prop }) {
                                                 </label>
                                                 <div className="col-sm-10">
                                                     <input
-                                                        className="form-control "
+                                                        className="form-control"
                                                         type="date"
                                                         id="birthday"
                                                         name="birthday"
@@ -291,7 +291,7 @@ function Account({ prop }) {
                                                         onChange={(e) =>
                                                             setCurrentUser({
                                                                 ...currentUser,
-                                                                email: e.target.value,
+                                                                date: e.target.value,
                                                             })
                                                         }
                                                     />

@@ -33,6 +33,7 @@
         object-fit: cover;
         width: 100%;
         height: 100%;
+        min-height: 250px;
     }
 }
 .card {
@@ -78,72 +79,3 @@
         vertical-align: middle;
     }
 }
-// @media screen and (max-width: 1024px) {
-//     .card-img-top{
-
-//     }
-//     .card-container{
-//         min-height: calc(100% - 10% - 70px);
-//     }
-
-// }
-
-// .container {
-//     position: relative;
-//     .overview {
-//         opacity: 0;
-//         font-size: 20px;
-//         position: absolute;
-//         height: 185px;
-//         width: 100%;
-//         background-color: rgba(235, 248, 240, 0.925);
-//         &:hover {
-//             opacity: 0.67;
-//             cursor: pointer;
-//         }
-//         a {
-//             color: rgba(4, 88, 33, 0.925);
-//             &:hover {
-//                 color: black;
-//             }
-//         }
-//     }
-
-//     .card {
-//         background-color: #fff;
-//         margin-bottom: 5px;
-//         width: 185px;
-//         height: 100%;
-//         max-height: 300px;
-
-//         + .card {
-//             margin-bottom: 5px;
-//         }
-//     }
-//     .card-img-top {
-//         height: 185px;
-//         width: 100%;
-//     }
-
-//     .heart-icon {
-//         background-color: transparent;
-//         position: absolute;
-//         right: 0%;
-//         z-index: 2;
-//         svg {
-//             height: 1.5em;
-//         }
-//         &:hover {
-//             svg {
-//                 cursor: pointer;
-//                 color: red;
-//             }
-//         }
-//     }
-//     .card-title {
-//         font-weight: 700px;
-//         overflow: hidden;
-//         white-space: nowrap;
-//         text-overflow: ellipsis;
-//     }
-// }

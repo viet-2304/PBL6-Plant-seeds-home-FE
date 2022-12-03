@@ -12,7 +12,7 @@ function Pagination({ title, data, numberPerPage }) {
     const [pageNumber, setPageNumber] = useState(0);
     const [displayProducts, setDisplayProducts] = useState([]);
 
-    const pageCount = Math.ceil(data.length / numberPerPage);
+    const pageCount = Math.ceil((data || []).length / numberPerPage);
     const visitedPage = pageNumber * numberPerPage;
     const handlePageChange = ({ selected }) => {
         setPageNumber(selected);
@@ -22,9 +22,17 @@ function Pagination({ title, data, numberPerPage }) {
     }, [data, numberPerPage, visitedPage]);
 
     return (
-        <Container className="container">
+        <Container className="pagination">
             <h1 className="fw-bold mb-5">{title.toUpperCase()}</h1>
             <div className="row row-cols-lg-4 row-cols-md-2 g-4">
+                {/* <div className="col">
+                    <ProductCard
+                        title="Sen Đá Móng Rồng- Cây Để Bàn"
+                        image="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
+                        price="30.000"
+                        to="product/1"
+                    />
+                </div>
                 <div className="col">
                     <ProductCard
                         title="Sen Đá Móng Rồng- Cây Để Bàn"
@@ -104,15 +112,16 @@ function Pagination({ title, data, numberPerPage }) {
                         price="1"
                         to="product/1"
                     />
-                </div>
+                </div> */}
 
+                {/* {displayProducts?.map((product) => { */}
                 {displayProducts?.map((product) => {
                     return (
-                        <div className="col">
+                        <div className="col" key={product.productId}>
                             <ProductCard
                                 key={product.productId}
                                 title={product.productName}
-                                image="https://jacks-garden-server.herokuapp.com/images/spider_plant.jpg"
+                                image="https://product.hstatic.net/1000269461/product/hat-giong-bap-ngot-pn_d20b175577684dcba3c57167006ee34a_medium.png"
                                 // image={product.image}
                                 price={product.price}
                                 to={`/products/${product.productType}/${product.productId}`}

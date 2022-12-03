@@ -1,10 +1,11 @@
+import { Container } from 'react-bootstrap';
 import Widget from '../../../components/Seller/Widget/Widget';
-import Chart from '../../../components/Seller/Chart/Chart';
+import BarChart from '../../../components/Seller/BarChart/BarChart';
 import './Dashboard.scss';
 function Dashboard() {
     return (
-        <div className="dashboard ">
-            <div className="widgets mx-5">
+        <Container className="dashboard">
+            <div className="widgets ">
                 <Widget type="customer" />
                 <Widget type="product" />
                 <Widget type="order" />
@@ -12,9 +13,9 @@ function Dashboard() {
                 <Widget type="balance" />
             </div>
             <div className="charts">
-                <Chart title="Last 6 Months (Revenue)" aspect={3 / 1} />
+                <BarChart title="Last 6 Months (Revenue)" data={''} />
             </div>
-        </div>
+        </Container>
     );
 }
 

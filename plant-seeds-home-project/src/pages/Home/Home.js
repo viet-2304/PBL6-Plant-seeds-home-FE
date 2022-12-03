@@ -17,7 +17,7 @@ function Home() {
     });
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        const fetchProdutList = () => {
+        const fetchProductList = () => {
             API.get('/v1/product/getAllProducts')
                 .then((res) => {
                     console.log('res: ', res.data);
@@ -27,13 +27,13 @@ function Home() {
             // const data = response;
             // console.log(data);
         };
-        fetchProdutList();
+        fetchProductList();
     }, []);
     return (
         <div>
             <div className={cx('wrapper')}>
                 <Categories />
-                <SliderProduct items={products} title={'News products'}></SliderProduct>
+                <SliderProduct items={products} title={'New products'}></SliderProduct>
             </div>
         </div>
     );

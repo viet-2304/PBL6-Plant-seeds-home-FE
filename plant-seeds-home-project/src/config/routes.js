@@ -12,9 +12,12 @@ const routes = {
     // shop: '/account/:userid/shop',
     password: '/account/:userid/password',
     // Seller
+    registerSeller: 'seller/register',
     dashboard: '/seller/dashboard',
     order: '/seller/order',
-    product: '/seller/product',
+    product: '/seller/product/all',
+    createProduct: '/seller/product/create',
+    updateProduct: '/seller/product/update/:id',
     delivery: '/seller/delivery',
 };
 

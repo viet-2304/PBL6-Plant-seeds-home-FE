@@ -19,7 +19,7 @@ function AppHeader() {
     const [currentToken, setCurrentToken] = useState(localStorage.getItem('token'));
     const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState('');
-
+    const [isSeller, setIsSeller] = useState(false);
     const API = axios.create({
         baseURL: BASE_API_URL,
     });
@@ -46,7 +46,12 @@ function AppHeader() {
         setCurrentToken(localStorage.getItem('token'));
         navigate('/');
     };
-
+    const handleOnClickSeller = () => {
+        if (currentUser?.roleId === 'seller') {
+            setIsSeller(true);
+            console.log('isSeller', isSeller);
+        }
+    };
     const [search, setSearch] = useState();
 
     const toggle = () => {
@@ -123,10 +128,12 @@ function AppHeader() {
                             className="seller"
                             rounded
                             small
-                            to="/seller/dashboard"
+                            // to="/seller/dashboard"
+                            to={!isSeller ? routes.dashboard : routes.registerSeller}
                             rightIcon={<FontAwesomeIcon icon={faShop} />}
+                            onClick={() => handleOnClickSeller()}
                         >
-                            <p>Seller Center</p>
+                            <p>Seller Centre</p>
                         </Button>
 
                         <Button>
@@ -187,8 +194,12 @@ function AppHeader() {
                             >
                                 Profile
                             </NavLink>
-                            <NavLink to={routes.dashboard} className="seller-link-mb">
-                                Seller Center
+                            <NavLink
+                                to={!isSeller ? routes.dashboard : routes.registerSeller}
+                                className="seller-link-mb"
+                                onClick={() => handleOnClickSeller()}
+                            >
+                                Seller Centre
                             </NavLink>
                         </Nav>
                     </Navbar.Collapse>

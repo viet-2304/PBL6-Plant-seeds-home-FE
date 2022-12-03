@@ -9,9 +9,11 @@ function SellerSideBar() {
     const location = useLocation();
 
     const pages = location.pathname.split('/').splice(1);
-
-    const [isActive, setIsActive] = useState(pages[pages.length - 1]);
-
+    console.log(pages);
+    const [isActive, setIsActive] = useState(
+        pages.length === 2 ? pages[pages.length - 1] : pages[pages.length - 2],
+    );
+    console.log(isActive);
     const handleClick = (e) => {
         setIsActive(e);
     };
@@ -35,7 +37,7 @@ function SellerSideBar() {
                     <p className="title">LISTS</p>
                     <NavLink
                         onClick={() => handleClick('product')}
-                        to="/seller/product"
+                        to="/seller/product/all"
                         className={isActive === 'product' ? 'activeBtn' : ''}
                     >
                         <li>

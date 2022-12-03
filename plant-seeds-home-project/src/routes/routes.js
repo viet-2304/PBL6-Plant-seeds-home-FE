@@ -17,6 +17,7 @@ import Product from '../pages/Seller/Product/Product';
 import Order from '../pages/Seller/Order/Order';
 import Delivery from '../pages/Seller/Delivery/Delivery';
 import Dashboard from '../pages/Seller/Dashboard/Dashboard';
+import SellerRegister from '../pages/Seller/SellerRegister/SellerRegister';
 
 //Public routes
 const publicRoutes = [
@@ -29,11 +30,14 @@ const publicRoutes = [
 
     { path: routes.dashboard, component: Dashboard, layout: SellerLayout },
     { path: routes.order, component: Order, layout: SellerLayout },
-    { path: routes.product, component: Product, layout: SellerLayout },
+    { path: routes.product, component: Product, layout: SellerLayout, prop: 'all' },
+    { path: routes.createProduct, component: Product, layout: SellerLayout, prop: 'create' },
+    { path: routes.updateProduct, component: Product, layout: SellerLayout, prop: 'update' },
     { path: routes.delivery, component: Delivery, layout: SellerLayout },
 ];
 
 const privateRoutes = [
+    { path: routes.registerSeller, component: Register },
     { path: routes.profile, component: Account, layout: AccountLayout, prop: 'profile' },
     { path: routes.history, component: History },
     { path: routes.cart, component: Cart, layout: DefaultLayout },
