@@ -18,13 +18,10 @@ import Order from '../pages/Seller/Order/Order';
 import Delivery from '../pages/Seller/Delivery/Delivery';
 import Dashboard from '../pages/Seller/Dashboard/Dashboard';
 import SellerRegister from '../pages/Seller/SellerRegister/SellerRegister';
-<<<<<<< Updated upstream
 import Shop from '../pages/Shop/Shop';
-=======
 import AdminLogin from '../pages/Admin/Login/Login';
 import AdminLayout from '../components/Layout/AdminLayout/AdminLayout';
 import AdminDashboard from '../pages/Admin/Dashboard/Dashboard';
->>>>>>> Stashed changes
 
 //Public routes
 const publicRoutes = [
@@ -34,27 +31,11 @@ const publicRoutes = [
     { path: routes.products, component: Products, layout: DefaultLayout },
     { path: routes.productsByCategory, component: Products, layout: DefaultLayout },
     { path: routes.productByID, component: Products, layout: DefaultLayout },
-<<<<<<< Updated upstream
     { path: routes.shop, component: Shop, layout: AccountLayout },
 ];
 
 const privateRoutes = [
-=======
-
-    { path: routes.dashboard, component: Dashboard, layout: SellerLayout },
-    { path: routes.order, component: Order, layout: SellerLayout },
-    { path: routes.product, component: Product, layout: SellerLayout, prop: 'all' },
-    { path: routes.createProduct, component: Product, layout: SellerLayout, prop: 'create' },
-    { path: routes.updateProduct, component: Product, layout: SellerLayout, prop: 'update' },
-    { path: routes.delivery, component: Delivery, layout: SellerLayout },
-    // Admin
-    { path: routes.loginAdmin, component: AdminLogin },
-    { path: routes.dashboardAdmin, component: AdminDashboard, layout: AdminLayout },
-];
-
-const privateRoutes = [
     { path: routes.registerSeller, component: SellerRegister },
->>>>>>> Stashed changes
     { path: routes.profile, component: Account, layout: AccountLayout, prop: 'profile' },
     { path: routes.history, component: History },
     { path: routes.cart, component: Cart, layout: DefaultLayout },
@@ -67,8 +48,10 @@ const privateRoutes = [
     { path: routes.createProduct, component: Product, layout: SellerLayout, prop: 'create' },
     { path: routes.updateProduct, component: Product, layout: SellerLayout, prop: 'update' },
     { path: routes.delivery, component: Delivery, layout: SellerLayout },
-    //seller
     { path: routes.registerSeller, component: SellerRegister },
+    //Admin
+    { path: routes.loginAdmin, component: AdminLogin },
+    { path: routes.dashboardAdmin, component: AdminDashboard, layout: AdminLayout },
 ];
 
 export { publicRoutes, privateRoutes };
