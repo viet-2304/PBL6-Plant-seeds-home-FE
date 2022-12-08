@@ -19,6 +19,15 @@ const routes = {
     createProduct: '/seller/product/create',
     updateProduct: '/seller/product/update/:id',
     delivery: '/seller/delivery',
+
+    //Admin
+    dashboardAdmin: '/admin/dashboard',
+    loginAdmin: '/admin/login',
+    customers: '/admin/customers',
+    ordersAdmin: '/admin/orders',
+    orderDetails: '/admin/orders/:id',
+    productsAdmin: '/admin/products',
+    mailingList: '/admin/mailinglist',
 };
 
 export default routes;
