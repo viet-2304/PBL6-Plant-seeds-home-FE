@@ -1,6 +1,7 @@
 .seller-container {
     display: flex;
     flex-direction: column;
+    background-color: #fff;
     .header {
         position: fixed;
         top: 0;
@@ -20,7 +21,7 @@
             width: 200px;
             position: fixed;
             height: calc(100% - 80px);
-            box-shadow: 4px 0 4px -4px #e5f0ea;
+            box-shadow: 8px 0 8px -8px #e5f0ea;
         }
         .content {
             flex: 1;
