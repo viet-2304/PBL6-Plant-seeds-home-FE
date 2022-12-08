@@ -23,7 +23,7 @@ function PurchaseItem() {
                     <div className="col-md-2">
                         <Image
                             className="item-img"
-                            src="https://jacks-garden-server.herokuapp.com/images/marbel_queen.jpg"
+                            src="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
                             alt="anh"
                             width={110}
                             height={110}
@@ -44,7 +44,7 @@ function PurchaseItem() {
                     <div className="col-md-2">
                         <Image
                             className="item-img"
-                            src="https://jacks-garden-server.herokuapp.com/images/marbel_queen.jpg"
+                            src="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
                             alt="anh"
                             width={110}
                             height={110}

@@ -68,7 +68,7 @@ function Products() {
     //         fetchProdutList();
     //     } else {
     //         const fetchProdutList = () => {
-    //             API.get(`v1/product/getProductWithType?type=${pages[pages.length - 1]}`)
+    //             API.get(v1/product/getProductWithType?type=${pages[pages.length - 1]})
     //                 .then((res) => {
     //                     console.log('res:', res.data);
     //                     setProductsByCategory(res.data);

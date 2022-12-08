@@ -18,7 +18,7 @@ import { useEffect } from 'react';
 function AppHeader() {
     const [currentToken, setCurrentToken] = useState(localStorage.getItem('token'));
     const navigate = useNavigate();
-    const [currentUser, setCurrentUser] = useState('');
+    const [currentUser, setCurrentUser] = useState({});
     const [isSeller, setIsSeller] = useState(false);
     const API = axios.create({
         baseURL: BASE_API_URL,
@@ -33,11 +33,14 @@ function AppHeader() {
             })
                 .then((res) => {
                     setCurrentUser(res.data);
+                    if (res.data.roleId === 'seller') {
+                        setIsSeller(true);
+                    }
                 })
                 .catch((err) => console.log('err', err));
         };
         fetchCurrentUser();
-    }, [currentToken]);
+    }, []);
 
     const handleLogout = (e) => {
         e.preventDefault();
@@ -46,12 +49,7 @@ function AppHeader() {
         setCurrentToken(localStorage.getItem('token'));
         navigate('/');
     };
-    const handleOnClickSeller = () => {
-        if (currentUser?.roleId === 'seller') {
-            setIsSeller(true);
-            console.log('isSeller', isSeller);
-        }
-    };
+
     const [search, setSearch] = useState();
 
     const toggle = () => {
@@ -128,10 +126,8 @@ function AppHeader() {
                             className="seller"
                             rounded
                             small
-                            // to="/seller/dashboard"
-                            to={!isSeller ? routes.dashboard : routes.registerSeller}
+                            to={!isSeller === true ? routes.dashboard : routes.registerSeller}
                             rightIcon={<FontAwesomeIcon icon={faShop} />}
-                            onClick={() => handleOnClickSeller()}
                         >
                             <p>Seller Centre</p>
                         </Button>
@@ -143,7 +139,7 @@ function AppHeader() {
                             </div>
                         </Button>
                         <Button>
-                            <CartSidebar />
+                            <CartSidebar currentUser={currentUser} />
                         </Button>
 
                         {!currentToken ? (
@@ -195,9 +191,8 @@ function AppHeader() {
                                 Profile
                             </NavLink>
                             <NavLink
-                                to={!isSeller ? routes.dashboard : routes.registerSeller}
+                                to={isSeller === true ? routes.dashboard : routes.registerSeller}
                                 className="seller-link-mb"
-                                onClick={() => handleOnClickSeller()}
                             >
                                 Seller Centre
                             </NavLink>

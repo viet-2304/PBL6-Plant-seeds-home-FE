@@ -21,21 +21,12 @@ function Cart() {
                             </tr>
                         </thead>
                         <tbody>
-                            {/* {cart.products[0]?.quantity > 0 ? (
-                                cart.products.map((item) => (
-                                    <CartItem
-                                        key={item.productId}
-                                        item={item}
-                                        cart={cart}
-                                        dispatch={dispatch}
-                                        updateProductQuantity={updateProductQuantity}
-                                        handleRemoveProduct={handleRemoveProduct}
-                                    />
-                                ))
-                            ) : ( */}
+                            {/* {cartItems?.map((item, index) => {
+                                return <ItemCart index={index} item={item} price/>;
+                            })} */}
                             <tr>
                                 <td colspan={4} className="py-3 h3">
-                                    Your cart is empty{' '}
+                                    Your cart is empty
                                 </td>
                             </tr>
                             {/* // )} */}

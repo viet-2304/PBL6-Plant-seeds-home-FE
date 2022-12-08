@@ -9,10 +9,10 @@ const routes = {
     productByID: '/products/:category/:id',
     profile: '/account/:userid/profile',
     purchase: '/account/:userid/purchase',
-    // shop: '/account/:userid/shop',
+    shop: '/shop',
     password: '/account/:userid/password',
     // Seller
-    registerSeller: 'seller/register',
+    registerSeller: '/seller/register',
     dashboard: '/seller/dashboard',
     order: '/seller/order',
     product: '/seller/product/all',

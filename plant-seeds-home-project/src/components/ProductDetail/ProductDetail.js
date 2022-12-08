@@ -10,9 +10,12 @@ import Button from '../Button/Button';
 import './ProductDetail.scss';
 
 function ProductDetail() {
+    const location = useLocation();
+    const navigate = useNavigate();
     const [quantity, setQuantity] = useState(1);
     const [productById, setProductById] = useState([]);
-    const location = useLocation();
+    const [currentToken, setCurrentToken] = useState(localStorage.getItem('token'));
+    const [currentUser, setCurrentUser] = useState({});
 
     const pages = location.pathname.split('/').splice(1);
     const API = axios.create({
@@ -25,15 +28,51 @@ function ProductDetail() {
             setQuantity((prev) => prev + 1);
         }
     };
+    const handleAddToCart = () => {
+        axios
+            .post(
+                BASE_API_URL + 'v1/cart/addToCart',
+                {
+                    userId: currentUser.id,
+                    numberOfProduct: quantity,
+                    productId: productById.productId,
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: 'Bearer ' + currentToken,
+                    },
+                },
+            )
+            .then((res) => {
+                console.log('OK');
+            })
+            .catch((err) => console.log(err));
+    };
     useEffect(() => {
         const fetchProdutList = () => {
             API.get(`v1/product/getProduct?id=${pages[pages.length - 1]}`)
                 .then((res) => {
                     setProductById(res.data);
+                    console.log('product', productById);
                 })
                 .catch((err) => console.log(err));
         };
         fetchProdutList();
+        const fetchCurrentUser = () => {
+            API.get('v1/users/getCurrentUser', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + currentToken,
+                },
+            })
+                .then((res) => {
+                    setCurrentUser(res.data);
+                    console.log('res1: ', res.data);
+                })
+                .catch((err) => console.log('c', err));
+        };
+        fetchCurrentUser();
     }, []);
     return (
         <Container fluid className="detail-container mb-3 ">
@@ -64,7 +103,13 @@ function ProductDetail() {
                             </div>
                         </div>
                         <div className="quantity-container">
-                            <Button cart small>
+                            <Button
+                                cart
+                                small
+                                onClick={() =>
+                                    currentToken ? handleAddToCart() : navigate('/login')
+                                }
+                            >
                                 ADD TO CART
                             </Button>
                         </div>

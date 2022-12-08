@@ -55,23 +55,6 @@ function Account({ prop }) {
                 console.log('res1: ', res.data);
             })
             .catch((err) => console.log('err', err));
-        // API.post(
-        //     'v1/users/editUser',
-        //     {
-        //         currentUser,
-        //     },
-        //     {
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //             Authorization: `Bearer ${currentToken}`,
-        //         },
-        //     },
-        // )
-        //     .then((res) => {
-        //         setCurrentUser(res.data);
-        //         console.log('res1: ', res.data);
-        //     })
-        //     .catch((err) => console.log('err', err));
     };
     return (
         <Container fluid className="account-container py-5 ">
