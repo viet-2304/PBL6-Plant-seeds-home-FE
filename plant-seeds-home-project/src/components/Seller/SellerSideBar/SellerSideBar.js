@@ -20,7 +20,7 @@ function SellerSideBar() {
     console.log('rerender', isActive);
 
     return (
-        <div className="sidebar ">
+        <div className="sidebar-seller">
             <div className="center">
                 <ul>
                     <p className="title">MAIN</p>

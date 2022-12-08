@@ -69,12 +69,12 @@ function Product({ prop }) {
         },
         {
             name: 'MFG',
-            selector: (row) => <td className="tableCell text-center">{row.mfg.split('T')[0]}</td>,
+            selector: (row) => <div className="tableCell text-center">{row.mfg.split('T')[0]}</div>,
             sortable: true,
         },
         {
             name: 'EXP',
-            selector: (row) => <td className="tableCell text-center">{row.exp.split('T')[0]}</td>,
+            selector: (row) => <div className="tableCell text-center">{row.exp.split('T')[0]}</div>,
             sortable: true,
         },
         {
