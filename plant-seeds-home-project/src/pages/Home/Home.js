@@ -1,7 +1,6 @@
 import classNames from 'classnames/bind';
 import axios from 'axios';
 
-import products1 from '../../assets/items.json';
 import BASE_API_URL from '../../api/api';
 import {
     faFacebook,
@@ -16,7 +15,6 @@ import styles from './Home.module.scss';
 import Categories from '../../components/Categories/Categories';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import bannerAds from '../../assets/images/banner-ads.png';
 
 const cx = classNames.bind(styles);
 
@@ -26,15 +24,25 @@ function Home() {
     });
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        const fetchProductList = () => {
-            API.get('/v1/product/getAllProducts')
+        const fetchCurrentUser = () => {
+            API.get('v1/users/getCurrentUser', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + localStorage.getItem('token'),
+                },
+            })
                 .then((res) => {
-                    console.log('res: ', res.data);
+                    localStorage.setItem('userId', res.data.id);
+                })
+                .catch((err) => console.log('c', err));
+        };
+        fetchCurrentUser();
+        const fetchProductList = () => {
+            API.get('v1/product/getAllProduct')
+                .then((res) => {
                     setProducts(res.data);
                 })
                 .catch((err) => console.log(err));
-            // const data = response;
-            // console.log(data);
         };
         fetchProductList();
     }, []);
@@ -42,7 +50,7 @@ function Home() {
         <div>
             <div className={cx('wrapper')}>
                 <Categories />
-                <SliderProduct items={products} title={'New products'}></SliderProduct>
+                {/* <SliderProduct items={products} title={'New products'}></SliderProduct> */}
             </div>
             {/* floating icon */}
             <div className={cx('icons')}>
@@ -78,10 +86,7 @@ function Home() {
                 <img
                     src="https://www.ruffalonl.com/wp-content/uploads/2020/11/Mizzou_Vertical-Banner.jpg"
                     alt="ads"
-                    // width={120}
-                    // height={110}
                 />
-                {/* quang cao */}
             </div>
         </div>
     );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link } from 'react-router-dom';
@@ -8,25 +8,37 @@ import { Dash, Plus } from 'react-bootstrap-icons';
 import Table from 'react-bootstrap/Table';
 import '../AppHeader/Header.scss';
 import './CartSidebar.scss';
+import axios from 'axios';
+import BASE_API_URL from '../../api/api';
+import ItemCart from './ItemCart';
 
-function CartSidebar() {
+function CartSidebar({ currentUser }) {
     const [show, setShow] = useState(false);
-
+    const [cartItems, setCartItems] = useState([]);
     function handleClose() {
         return setShow(false);
     }
     const handleShow = () => setShow(true);
 
-    const [quantity, setQuantity] = useState(1);
-
-    const handleQuantity = (type) => {
-        if (type === 'down') {
-            quantity > 1 && setQuantity((prev) => prev - 1);
-        } else {
-            setQuantity((prev) => prev + 1);
-        }
-    };
-
+    const API = axios.create({
+        baseURL: BASE_API_URL,
+    });
+    useEffect(() => {
+        const fetchCartItem = () => {
+            API.get(`v1/cart/getCartDetail?userId=${currentUser.id}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + localStorage.getItem('token'),
+                },
+            })
+                .then((res) => {
+                    setCartItems(res.data.listProduct);
+                    console.log('cartItem1', res.data);
+                })
+                .catch((err) => console.log('111', err));
+        };
+        fetchCartItem();
+    }, []);
     return (
         <>
             <div className="icon-cart" onClick={handleShow}>
@@ -43,7 +55,7 @@ function CartSidebar() {
                         <Table striped>
                             <thead>
                                 <tr>
-                                    <th></th>
+                                    <th width="60px" height="60px"></th>
                                     <th>Product Name</th>
                                     <th>Quantity</th>
                                     <th>Total</th>
@@ -51,68 +63,15 @@ function CartSidebar() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <img
-                                            src="https://jacks-garden-server.herokuapp.com/images/marbel_queen.jpg"
-                                            width={'60px'}
-                                            height={'60px'}
-                                        />
-                                    </td>
-                                    <td>Mark</td>
-                                    <td>
-                                        <div className="amount-container">
-                                            <Dash
-                                                size="30px"
-                                                onClick={() => handleQuantity('down')}
-                                            />
-                                            <p className="quantity d-inline-flex justify-content-center align-items-center border border-success rounded-3 mx-1">
-                                                {quantity}
-                                            </p>
-                                            <Plus
-                                                size="30px"
-                                                onClick={() => handleQuantity('up')}
-                                            />
-                                        </div>
-                                    </td>
-                                    <td>$2</td>
-                                    <td>
-                                        <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img
-                                            src="https://jacks-garden-server.herokuapp.com/images/cactus.jpg"
-                                            width="60px"
-                                            height="60px"
-                                        />
-                                    </td>
-                                    <td>Jacob</td>
-                                    <td>
-                                        <div className="amount-container">
-                                            <Dash
-                                                size="30px"
-                                                onClick={() => handleQuantity('down')}
-                                            />
-                                            <p className="quantity d-inline-flex justify-content-center align-items-center border border-success rounded-3 mx-1">
-                                                {quantity}
-                                            </p>
-                                            <Plus
-                                                size="30px"
-                                                onClick={() => handleQuantity('up')}
-                                            />
-                                        </div>
-                                    </td>
-                                    <td>$3</td>
-                                    <td>
-                                        <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>
-                                    </td>
-                                </tr>
-                                <tr>
+                                {cartItems?.map((item, index) => {
+                                    return <ItemCart index={index} item={item} />;
+                                })}
+
+                                {/* <tr>
                                     <td>
                                         <img
                                             src="https://jacks-garden-server.herokuapp.com/images/fiddle_leaf.jpg"
+                                            alt=""
                                             width="60px"
                                             height="60px"
                                         />
@@ -137,7 +96,14 @@ function CartSidebar() {
                                     <td>
                                         <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>
                                     </td>
-                                </tr>
+                                </tr> */}
+                                {!cartItems && (
+                                    <tr>
+                                        <td colspan={4} className="py-3 h3 text-center">
+                                            Your cart is empty
+                                        </td>
+                                    </tr>
+                                )}
                             </tbody>
                         </Table>
                     </div>

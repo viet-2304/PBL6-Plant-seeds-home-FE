@@ -116,10 +116,11 @@ function Pagination({ title, data, numberPerPage }) {
 
                 {/* {displayProducts?.map((product) => { */}
                 {displayProducts?.map((product) => {
+                    console.log(product.productId);
                     return (
                         <div className="col" key={product.productId}>
                             <ProductCard
-                                key={product.productId}
+                                id={product.productId}
                                 title={product.productName}
                                 image="https://product.hstatic.net/1000269461/product/hat-giong-bap-ngot-pn_d20b175577684dcba3c57167006ee34a_medium.png"
                                 // image={product.image}

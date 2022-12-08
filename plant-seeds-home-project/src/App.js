@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { BrowserRouter as Router, Routes, Route, Pri } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { publicRoutes, privateRoutes } from './routes/routes';
 import PrivateRoutes from './utils/PrivateRoutes';
 

@@ -1,39 +1,63 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './SellerRegister.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import BASE_API_URL from '../../../api/api';
-function Register() {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+function SellerRegister() {
+    console.log('re-render');
+    const [shop, setShop] = useState({
+        shopName: '',
+        address: '',
+        phoneNumber: '',
+        email: '',
+        userId: '',
+    });
+    const [currentUser, setCurrentUser] = useState({});
     const navigate = useNavigate();
-
-    const handleUserSignUp = (e) => {
+    const API = axios.create({
+        baseURL: BASE_API_URL,
+    });
+    useEffect(() => {
+        const fetchCurrentUser = () => {
+            API.get('v1/users/getCurrentUser', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + localStorage.getItem('token'),
+                },
+            })
+                .then((res) => {
+                    console.log('data', currentUser);
+                    setCurrentUser(res.data);
+                    setShop({ ...shop, userId: currentUser.id });
+                    console.log('userId', currentUser.id);
+                })
+                .catch((err) => console.log('err', err));
+        };
+        fetchCurrentUser();
+    }, []);
+    const handleSellerRegister = (e) => {
         e.preventDefault();
         axios
-            .post(BASE_API_URL + 'v1/users/createUser', {
-                userName: username,
-                email: email,
-                password: password,
+            .post(BASE_API_URL + 'v1/shop/addNewShop', shop, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + localStorage.getItem('token'),
+                },
             })
             .then((res) => {
-                navigate('/login');
-                console.log(res.data);
+                console.log('shop', res.data);
+                localStorage.setItem('shopId', res.data.shopId);
+                navigate('/seller/dashboard');
             })
             .catch((err) => {
                 console.log(err);
             });
     };
-    useEffect(() => {
-        if (localStorage.getItem('token')) {
-            navigate('/');
-        }
-    }, []);
+
     return (
         <section className="signup-wrapper">
             <div className="d-flex justify-content-start ">
@@ -49,17 +73,29 @@ function Register() {
                             <div className="login-wrap p-4 p-md-5">
                                 <div className="d-flex">
                                     <div className="w-100">
-                                        <h3 className="mb-4">Sign Up</h3>
+                                        <h3 className="mb-4">Register</h3>
                                         <p className="py-2">
-                                            Create your account to get full access
+                                            Register your shop to get full access
                                         </p>
                                     </div>
                                 </div>
                                 <form
                                     action=""
                                     className="signup-form"
-                                    onSubmit={(e) => handleUserSignUp(e)}
+                                    onSubmit={(e) => handleSellerRegister(e)}
                                 >
+                                    {/* <div className="form-group mb-3">
+                                        <label className="label" htmlFor="id">
+                                            UserID
+                                        </label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="UserID"
+                                            readOnly
+                                            value={currentUser ? shop?.userId : ''}
+                                        />
+                                    </div> */}
                                     <div className="form-group mb-3">
                                         <label className="label" htmlFor="shopname">
                                             Shop Name
@@ -67,63 +103,80 @@ function Register() {
                                         <input
                                             type="text"
                                             className="form-control"
-                                            placeholder="Username"
+                                            placeholder="Shop Name"
                                             required
-                                            value={username}
-                                            onChange={(e) => setUsername(e.currentTarget.value)}
+                                            value={shop?.shopName}
+                                            onChange={(e) =>
+                                                setShop({
+                                                    ...shop,
+                                                    shopName: e.target.value,
+                                                })
+                                            }
                                         />
                                     </div>
                                     <div className="form-group mb-3">
-                                        <label className="label" htmlFor="password">
+                                        <label className="label" htmlFor="email">
                                             Email Address
+                                        </label>
+                                        <input
+                                            type="email"
+                                            className="form-control"
+                                            placeholder="Email"
+                                            required
+                                            value={shop?.email}
+                                            onChange={(e) =>
+                                                setShop({
+                                                    ...shop,
+                                                    email: e.target.value,
+                                                })
+                                            }
+                                        />
+                                    </div>
+                                    <div className="form-group mb-3">
+                                        <label className="label" htmlFor="phonenumber">
+                                            Phone Number
+                                        </label>
+                                        <input
+                                            type="tel"
+                                            className="form-control"
+                                            placeholder="Phone Number"
+                                            value={shop?.phoneNumber}
+                                            onChange={(e) =>
+                                                setShop({
+                                                    ...shop,
+                                                    phoneNumber: e.target.value,
+                                                })
+                                            }
+                                            required
+                                        />
+                                    </div>
+                                    <div className="form-group mb-3">
+                                        <label className="label" htmlFor="address">
+                                            Address
                                         </label>
                                         <input
                                             type="text"
                                             className="form-control"
-                                            placeholder="Email"
+                                            placeholder="Address"
+                                            value={shop?.address}
+                                            onChange={(e) =>
+                                                setShop({
+                                                    ...shop,
+                                                    address: e.target.value,
+                                                })
+                                            }
                                             required
-                                            value={email}
-                                            onChange={(e) => setEmail(e.currentTarget.value)}
-                                        />
-                                    </div>
-                                    <div className="form-group mb-3">
-                                        <label className="label" htmlFor="password">
-                                            Phone Number
-                                        </label>
-                                        <input
-                                            type="password"
-                                            className="form-control"
-                                            placeholder="Password"
-                                            value={password}
-                                            onChange={(e) => setPassword(e.currentTarget.value)}
-                                            required
-                                        />
-                                    </div>
-                                    <div className="form-group mb-3">
-                                        <label className="label" htmlFor="password">
-                                            Confirm password
-                                        </label>
-                                        <input
-                                            type="password"
-                                            className="form-control"
-                                            placeholder="Password"
                                         />
                                     </div>
                                     <div className="form-group">
                                         <button
                                             type="submit"
-                                            className="form-control btn btn-primary rounded submit px-3"
+                                            className="form-control btn btn-primary submit rounded  px-3"
                                         >
-                                            Sign Up
+                                            Register
                                         </button>
                                     </div>
                                 </form>
-                                <p className="text-center">
-                                    Already have an account?{' '}
-                                    <Link to="/login">
-                                        <b>Login Here</b>
-                                    </Link>
-                                </p>
                             </div>
                         </div>
                     </div>
@@ -133,4 +186,4 @@ function Register() {
     );
 }
 
-export default Register;
+export default SellerRegister;

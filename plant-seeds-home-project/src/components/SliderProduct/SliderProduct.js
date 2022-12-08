@@ -17,7 +17,7 @@ function SliderProduct({ items, title }) {
                     cols={4}
                     rows={1}
                     gap={20}
-                    // autoplay={5000}
+                    autoplay={5000}
                     loop={true}
                     responsiveLayout={[
                         {
@@ -31,7 +31,7 @@ function SliderProduct({ items, title }) {
                     ]}
                     mobileBreakpoint={400}
                 >
-                    <Carousel.Item key="1">
+                    {/* <Carousel.Item key="1">
                         <ProductCard
                             title="Cây cảnh"
                             image="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
@@ -103,7 +103,7 @@ function SliderProduct({ items, title }) {
                             price="1"
                             to="product/1"
                         />
-                    </Carousel.Item>
+                    </Carousel.Item> */}
                     {items?.map((item) => {
                         return (
                             <Carousel.Item key={item.productId}>
@@ -119,44 +119,6 @@ function SliderProduct({ items, title }) {
                 </Carousel>
             </div>
         </Container>
-
-        // <Container fluid className="sliderItem-container px-0 py-5">
-        //     <div className="container-xl px-0 pb-2 ">
-        //         <h1 className="ps-5 fw-bold mb-3 mt-3 ">{title}</h1>
-        //         {/* <hr className='border-round'/> */}
-        //         <Carousel
-        //             cols={6}
-        //             rows={1}
-        //             autoplay={5000}
-        //             loop={true}
-        //             responsiveLayout={[
-        //                 {
-        //                     breakpoint: 1023,
-        //                     cols: 3,
-        //                 },
-        //                 {
-        //                     breakpoint: 739,
-        //                     cols: 2,
-        //                 },
-        //             ]}
-        //             mobileBreakpoint={670}
-        //         >
-        //             {items?.map((item) => {
-        //                 return (
-        //                     <Carousel.Item key={item.productId} >
-        //                         <ProductCard
-        //                             title={item.productName}
-        //                              image='https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1'
-        //                             price={item.price}
-        //                             to={`/products/${item.productType}/${item.productId}`}
-        //                             button
-        //                         />
-        //                     </Carousel.Item>
-        //                 );
-        //             })}
-        //         </Carousel>
-        //     </div>
-        // </Container>
     );
 }
 
