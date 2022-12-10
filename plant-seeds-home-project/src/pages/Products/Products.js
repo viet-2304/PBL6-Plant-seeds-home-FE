@@ -22,8 +22,10 @@ function Products() {
         baseURL: BASE_API_URL,
     });
 
-    const pages = location.pathname.split('/').splice(1);
-
+    const [pages, setPages] = useState(location.pathname.split('/').splice(1));
+    useEffect(() => {
+        setPages(location.pathname.split('/').splice(1));
+    }, [location]);
     useEffect(() => {
         if (pages.length === 3) {
             const fetchProdutList = () => {
@@ -57,7 +59,17 @@ function Products() {
     }, []);
 
     // useEffect(() => {
-    //     if (pages.length === 1) {
+    // if (pages.length === 3) {
+    //     const fetchProdutList = () => {
+    //         API.get(`v1/product/getProduct?id=${pages[pages.length - 1]}`)
+    //             .then((res) => {
+    //                 setProductById(res.data);
+    //             })
+    //             .catch((err) => console.log(err));
+    //     };
+    //     fetchProdutList();
+    // }
+    //    else if (pages.length === 1) {
     //         const fetchProdutList = () => {
     //             API.get('v1/product/getAllProduct')
     //                 .then((res) => {
@@ -78,7 +90,7 @@ function Products() {
     //         fetchProdutList();
     //     }
     // }, [pages]);
-    console.log(productsByCategory);
+    // else console.log(productsByCategory);
 
     return (
         <Container className={cx('container')}>

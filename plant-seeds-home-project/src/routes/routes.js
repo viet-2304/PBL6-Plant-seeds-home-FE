@@ -22,6 +22,7 @@ import Shop from '../pages/Shop/Shop';
 import AdminLogin from '../pages/Admin/Login/Login';
 import AdminLayout from '../components/Layout/AdminLayout/AdminLayout';
 import AdminDashboard from '../pages/Admin/Dashboard/Dashboard';
+import Profile from '../pages/Seller/Profile/Profile';
 
 //Public routes
 const publicRoutes = [
@@ -49,6 +50,8 @@ const privateRoutes = [
     { path: routes.updateProduct, component: Product, layout: SellerLayout, prop: 'update' },
     { path: routes.delivery, component: Delivery, layout: SellerLayout },
     { path: routes.registerSeller, component: SellerRegister },
+    { path: routes.profileSeller, component: Profile, layout: SellerLayout, prop: 'profile' },
+
     //Admin
     { path: routes.loginAdmin, component: AdminLogin },
     { path: routes.dashboardAdmin, component: AdminDashboard, layout: AdminLayout },

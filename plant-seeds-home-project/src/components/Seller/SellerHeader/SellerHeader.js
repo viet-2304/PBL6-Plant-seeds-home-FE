@@ -4,9 +4,41 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import logo from '../../../assets/images/logo-brand.png';
 import './SellerHeader.scss';
 import { Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import axios from 'axios';
+import BASE_API_URL from '../../../api/api';
 
 function SellerHeader() {
+    const navigate = useNavigate();
+    const [shop, setShop] = useState({});
+    console.log(localStorage.getItem('userId'), localStorage.getItem('token'));
+    useEffect(() => {
+        if (localStorage.getItem('shopId')) {
+            const fetchShop = () => {
+                axios
+                    .get(
+                        BASE_API_URL +
+                            `v1/shop/getShopByUser?userId=${localStorage.getItem('userId')}`,
+                        {
+                            headers: {
+                                'Content-Type': 'application/json',
+                                Authorization: 'Bearer ' + localStorage.getItem('token'),
+                            },
+                        },
+                    )
+                    .then((res) => {
+                        setShop(res.data);
+                        console.log(res.data);
+                        localStorage.setItem('shopId', res.data.shopId);
+                    })
+                    .catch((err) => console.log('err', err));
+            };
+            fetchShop();
+        } else navigate('/seller/register');
+    }, []);
+    console.log('shop', shop);
     return (
         <Container fluid className="seller-navbar">
             <div className="wrapper px-5">
@@ -25,12 +57,13 @@ function SellerHeader() {
                 <div className="items">
                     <div className="item">
                         <img
+                            // src={shop?.image}
                             src="https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
                             alt=""
                             className="avatar"
                         />
                     </div>
-                    <div className="name-shop">suongphan1704</div>
+                    <div className="name-shop">{shop?.shopName}</div>
                 </div>
             </div>
         </Container>

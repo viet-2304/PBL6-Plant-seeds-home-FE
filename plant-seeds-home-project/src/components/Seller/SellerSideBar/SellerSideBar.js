@@ -66,10 +66,16 @@ function SellerSideBar() {
                         </li>
                     </NavLink>
                     <p className="title">USER</p>
-                    <li>
-                        <FontAwesomeIcon icon={faSearch} className="icon" />
-                        <span>Profile</span>
-                    </li>
+                    <NavLink
+                        onClick={() => handleClick('profile')}
+                        to="/seller/profile"
+                        className={isActive === 'profile' ? 'activeBtn' : ''}
+                    >
+                        <li>
+                            <FontAwesomeIcon icon={faSearch} className="icon" />
+                            <span>Profile</span>
+                        </li>
+                    </NavLink>
                     <li>
                         <FontAwesomeIcon icon={faSearch} className="icon" />
                         <span>Logout</span>

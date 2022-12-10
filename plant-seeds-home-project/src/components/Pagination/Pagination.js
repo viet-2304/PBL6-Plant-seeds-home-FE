@@ -12,7 +12,7 @@ function Pagination({ title, data, numberPerPage }) {
     const [pageNumber, setPageNumber] = useState(0);
     const [displayProducts, setDisplayProducts] = useState([]);
 
-    const pageCount = Math.ceil((data || []).length / numberPerPage);
+    const pageCount = Math.ceil(data?.length / numberPerPage);
     const visitedPage = pageNumber * numberPerPage;
     const handlePageChange = ({ selected }) => {
         setPageNumber(selected);
@@ -20,7 +20,6 @@ function Pagination({ title, data, numberPerPage }) {
     useEffect(() => {
         setDisplayProducts(data?.slice(visitedPage, visitedPage + numberPerPage));
     }, [data, numberPerPage, visitedPage]);
-
     return (
         <Container className="pagination">
             <h1 className="fw-bold mb-5">{title.toUpperCase()}</h1>
@@ -116,7 +115,6 @@ function Pagination({ title, data, numberPerPage }) {
 
                 {/* {displayProducts?.map((product) => { */}
                 {displayProducts?.map((product) => {
-                    console.log(product.productId);
                     return (
                         <div className="col" key={product.productId}>
                             <ProductCard

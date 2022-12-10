@@ -126,7 +126,7 @@ function AppHeader() {
                             className="seller"
                             rounded
                             small
-                            to={!isSeller === true ? routes.dashboard : routes.registerSeller}
+                            to={isSeller === true ? routes.dashboard : routes.registerSeller}
                             rightIcon={<FontAwesomeIcon icon={faShop} />}
                         >
                             <p>Seller Centre</p>
@@ -139,7 +139,7 @@ function AppHeader() {
                             </div>
                         </Button>
                         <Button>
-                            <CartSidebar currentUser={currentUser} />
+                            <CartSidebar />
                         </Button>
 
                         {!currentToken ? (

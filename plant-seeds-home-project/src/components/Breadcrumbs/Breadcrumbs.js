@@ -12,36 +12,32 @@ import { useEffect } from 'react';
 function Breadcrumbs() {
     const location = useLocation();
     const navigate = useNavigate();
-    const [isReload, setIsReload] = useState(false);
     const pages = location.pathname.split('/').splice(1);
-    useEffect(() => {}, [isReload]);
-    const handelReload = () => {
-        setIsReload(!isReload);
-    };
+
     return (
         <Container fluid className="breadcrumb-container mt-5">
             <Breadcrumb>
-                <Breadcrumb.Item>
-                    <Button onClick={() => navigate('/')}>
-                        <FontAwesomeIcon icon={faHome} />
-                    </Button>
+                <Breadcrumb.Item onClick={() => navigate('/')}>
+                    {/* <Button> */}
+                    <FontAwesomeIcon icon={faHome} />
+                    {/* </Button> */}
                 </Breadcrumb.Item>
                 {pages &&
                     pages.map(
                         (page, index) =>
                             index < 2 && (
-                                <Breadcrumb.Item key={index}>
-                                    <Button
-                                        to={
+                                <Breadcrumb.Item
+                                    key={index}
+                                    onClick={() =>
+                                        navigate(
                                             location.pathname.slice(
                                                 0,
                                                 location.pathname.indexOf(page),
-                                            ) + page
-                                        }
-                                        onClick={() => handelReload()}
-                                    >
-                                        {page}
-                                    </Button>
+                                            ) + page,
+                                        )
+                                    }
+                                >
+                                    {page}
                                 </Breadcrumb.Item>
                             ),
                     )}

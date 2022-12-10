@@ -37,14 +37,14 @@ function Home() {
                 .catch((err) => console.log('c', err));
         };
         fetchCurrentUser();
-        const fetchProductList = () => {
-            API.get('v1/product/getAllProduct')
-                .then((res) => {
-                    setProducts(res.data);
-                })
-                .catch((err) => console.log(err));
-        };
-        fetchProductList();
+        // const fetchProductList = () => {
+        //     API.get('v1/product/getAllProduct')
+        //         .then((res) => {
+        //             setProducts(res.data);
+        //         })
+        //         .catch((err) => console.log(err));
+        // };
+        // fetchProductList();
     }, []);
     return (
         <div>

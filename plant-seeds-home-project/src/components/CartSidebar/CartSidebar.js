@@ -12,9 +12,9 @@ import axios from 'axios';
 import BASE_API_URL from '../../api/api';
 import ItemCart from './ItemCart';
 
-function CartSidebar({ currentUser }) {
+function CartSidebar() {
     const [show, setShow] = useState(false);
-    const [cartItems, setCartItems] = useState([]);
+    const [cartItems, setCartItems] = useState();
     function handleClose() {
         return setShow(false);
     }
@@ -25,7 +25,7 @@ function CartSidebar({ currentUser }) {
     });
     useEffect(() => {
         const fetchCartItem = () => {
-            API.get(`v1/cart/getCartDetail?userId=${currentUser.id}`, {
+            API.get(`v1/cart/getCartDetail?userId=${localStorage.getItem('userId')}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -33,7 +33,7 @@ function CartSidebar({ currentUser }) {
             })
                 .then((res) => {
                     setCartItems(res.data.listProduct);
-                    console.log('cartItem1', res.data);
+                    console.log('cartItem1', res.data.listProduct);
                 })
                 .catch((err) => console.log('111', err));
         };
@@ -52,7 +52,7 @@ function CartSidebar({ currentUser }) {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <div className="py-3 d-flex justify-content-center">
-                        <Table striped>
+                        <Table striped className="table">
                             <thead>
                                 <tr>
                                     <th width="60px" height="60px"></th>
@@ -63,40 +63,16 @@ function CartSidebar({ currentUser }) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {cartItems?.map((item, index) => {
-                                    return <ItemCart index={index} item={item} />;
+                                {cartItems?.map((item) => {
+                                    return (
+                                        <>
+                                            {item.listProductAndNumberDto.map((product, index) => {
+                                                return <ItemCart key={index} product={product} />;
+                                            })}
+                                        </>
+                                    );
                                 })}
 
-                                {/* <tr>
-                                    <td>
-                                        <img
-                                            src="https://jacks-garden-server.herokuapp.com/images/fiddle_leaf.jpg"
-                                            alt=""
-                                            width="60px"
-                                            height="60px"
-                                        />
-                                    </td>
-                                    <td>Larry the Bird</td>
-                                    <td>
-                                        <div className="amount-container">
-                                            <Dash
-                                                size="30px"
-                                                onClick={() => handleQuantity('down')}
-                                            />
-                                            <p className="quantity d-inline-flex justify-content-center align-items-center border border-success rounded-3 mx-1">
-                                                {quantity}
-                                            </p>
-                                            <Plus
-                                                size="30px"
-                                                onClick={() => handleQuantity('up')}
-                                            />
-                                        </div>
-                                    </td>
-                                    <td>$3</td>
-                                    <td>
-                                        <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>
-                                    </td>
-                                </tr> */}
                                 {!cartItems && (
                                     <tr>
                                         <td colspan={4} className="py-3 h3 text-center">
