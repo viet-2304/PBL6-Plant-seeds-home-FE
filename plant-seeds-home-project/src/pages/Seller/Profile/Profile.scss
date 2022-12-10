@@ -1,0 +1,31 @@
+.profile-container {
+    max-width: 900px;
+    font-size: 14px;
+    border: 1px solid #e5f0ea;
+    box-shadow: -2px 2px 2px -2px #e5f0ea;
+    .top-info {
+        font-size: 20px;
+        color: black;
+        padding: 10px;
+        border-bottom: 1px solid #000;
+    }
+    .col-form-label {
+        width: 100px;
+    }
+    .info {
+        width: 100%;
+    }
+    .form-control {
+        font-size: 1.5rem;
+        &:focus {
+            border-color: #3f7652;
+            box-shadow: 0 0 0 0.25rem #e5f0ea;
+        }
+    }
+}
+.shop-logo {
+    height: 80px;
+    width: 80px;
+    object-fit: cover;
+    clip-path: circle(40px at 50% 50%);
+}

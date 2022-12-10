@@ -6,9 +6,10 @@ import { Dash, Plus } from 'react-bootstrap-icons';
 import BASE_API_URL from '../../api/api';
 import './CartSidebar.scss';
 
-function ItemCart({ index, item, price }) {
+function ItemCart({ key, product, price }) {
+    console.log('item', product);
     const [quantity, setQuantity] = useState(
-        item?.numberOfProductInCart ? item?.numberOfProductInCart : 1,
+        product?.numberOfProductInCart ? product?.numberOfProductInCart : 1,
     );
 
     const handleQuantity = (type) => {
@@ -17,14 +18,15 @@ function ItemCart({ index, item, price }) {
         } else {
             setQuantity((prev) => prev + 1);
         }
+        console.log('SL', quantity);
         axios
             .post(
                 BASE_API_URL + 'v1/cart/editCart',
                 {
-                    cartId: item.cartId,
+                    cartId: product.cartId,
                     userId: localStorage.getItem('userId'),
-                    numberOfProduct: quantity,
-                    productId: item.productDto.productId,
+                    number: quantity,
+                    productId: product.productId,
                 },
                 {
                     headers: {
@@ -39,7 +41,7 @@ function ItemCart({ index, item, price }) {
             .catch((err) => console.log('111', err));
     };
     return (
-        <tr key={index}>
+        <tr key={key}>
             <td>
                 <img
                     src="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
@@ -48,8 +50,8 @@ function ItemCart({ index, item, price }) {
                     height="60px"
                 />
             </td>
-            <td className="item-title">{item?.productDto.productName}</td>
-            {price && <td>{item?.productDto.price}</td>}
+            <td className="item-title">{product?.productName}</td>
+            {price && <td>{product?.productDto.price}</td>}
             <td>
                 <div className="amount-container">
                     <Dash size="30px" onClick={() => handleQuantity('down')} />
@@ -59,7 +61,7 @@ function ItemCart({ index, item, price }) {
                     <Plus size="30px" onClick={() => handleQuantity('up')} />
                 </div>
             </td>
-            <td>${quantity * item?.productDto.price}</td>
+            <td>${quantity * product?.price}</td>
             <td>
                 <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>
             </td>

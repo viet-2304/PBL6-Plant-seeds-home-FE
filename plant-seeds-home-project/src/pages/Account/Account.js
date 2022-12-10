@@ -299,6 +299,7 @@ function Account({ prop }) {
                                         >
                                             <Tab eventKey="all" title="All">
                                                 <PurchaseItem />
+                                                <PurchaseItem />
                                             </Tab>
                                             <Tab eventKey="topay" title="To Pay">
                                                 ssdf

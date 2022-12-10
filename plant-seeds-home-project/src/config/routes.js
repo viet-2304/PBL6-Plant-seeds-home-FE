@@ -19,6 +19,7 @@ const routes = {
     createProduct: '/seller/product/create',
     updateProduct: '/seller/product/update/:id',
     delivery: '/seller/delivery',
+    profileSeller: '/seller/profile',
 
     //Admin
     dashboardAdmin: '/admin/dashboard',

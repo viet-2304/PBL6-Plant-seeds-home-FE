@@ -24,8 +24,11 @@
         color: red;
     }
 }
+.table {
+    font-size: small;
+}
 .item-title {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    // overflow: hidden;
+    // white-space: nowrap;
+    // text-overflow: ellipsis;
 }

@@ -2,19 +2,20 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faCartShopping, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import BASE_API_URL from '../../api/api.js';
 import Button from '../Button/Button.js';
 import './ProductCard.scss';
 
 function ProductCard({ id, to, title, price, image }) {
+    const [isShowToast, setIsShowToast] = useState(false);
     const handleAddToCart = () => {
         axios
             .post(
                 BASE_API_URL + 'v1/cart/addToCart',
                 {
                     userId: localStorage.getItem('userId'),
-                    numberOfProduct: 1,
+                    number: 1,
                     productId: id,
                 },
                 {
