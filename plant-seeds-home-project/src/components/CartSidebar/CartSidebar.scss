@@ -9,6 +9,8 @@
         font-size: 20px;
     }
     &:hover {
+        background-color: #198754;
+
         a {
             color: #fff;
         }
@@ -18,17 +20,4 @@
     font-size: large !important;
     color: #198754 !important;
     font-weight: 600 !important;
-}
-.offcanvas-body {
-    .fa-xmark {
-        color: red;
-    }
-}
-.table {
-    font-size: small;
-}
-.item-title {
-    // overflow: hidden;
-    // white-space: nowrap;
-    // text-overflow: ellipsis;
 }
