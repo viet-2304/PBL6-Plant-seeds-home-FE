@@ -1,37 +1,87 @@
-import React from 'react';
-import { Button, Container, Row, Col, Modal, Table, h2 } from 'react-bootstrap';
-// import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
-import CartSummary from '../../components/CartSummary/CartSummary';
+import React, { useEffect, useState } from 'react';
+import { Button, Container, Row, Col, Table, Card } from 'react-bootstrap';
 import StripeCheckout from 'react-stripe-checkout';
 import './Cart.scss';
+import axios from 'axios';
+import BASE_API_URL from '../../api/api';
+import CartItem from '../../components/Cart/CartItem';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShop, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 function Cart() {
+    const [cartItems, setCartItems] = useState();
+    const [reload, setReload] = useState(false);
+    const API = axios.create({
+        baseURL: BASE_API_URL,
+    });
+    const handleChangeQuantity = () => {
+        setReload(!reload);
+    };
+    useEffect(() => {
+        API.get(`v1/cart/getCartDetail?userId=${localStorage.getItem('userId')}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+        })
+            .then((res) => {
+                setCartItems(res.data.listProduct);
+            })
+            .catch((err) => console.log('err', err));
+    }, [reload]);
     return (
         <Container fluid="xl" className="cart position-relative p-2 p-md-4">
             <Row className="py-3">
                 <Col md={8} className="cart-details py-3 mb-4">
                     <h2>YOUR CART</h2>
-                    <Table className="text-center text-gray">
-                        <thead>
-                            <tr>
-                                <th colSpan={2}>Product Name</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th className="d-none d-md-table-cell">Subtotal</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {/* {cartItems?.map((item, index) => {
-                                return <ItemCart index={index} item={item} price/>;
-                            })} */}
-                            <tr>
-                                <td colspan={4} className="py-3 h3">
-                                    Your cart is empty
-                                </td>
-                            </tr>
-                            {/* // )} */}
-                        </tbody>
-                    </Table>
+                    {!cartItems && (
+                        <div className="fw-bold text-black d-flex align-items-center">
+                            Your Cart Is Empty
+                        </div>
+                    )}
+                    {cartItems?.map((item) => {
+                        let subTotal = 0;
+                        return (
+                            <Card className="carditem-container" key={item?.shopId}>
+                                <Card.Body>
+                                    <div className="card-header d-flex justify-content-between">
+                                        <div className="fw-bold text-black d-flex align-items-center">
+                                            {item?.shopName}
+                                            <Button className="ms-5 btn-outline-success px-4 py-2">
+                                                <FontAwesomeIcon icon={faShop}></FontAwesomeIcon>
+                                                View Shop
+                                            </Button>
+                                        </div>
+                                    </div>
+                                    {item?.listProductAndNumberDto.map((product) => {
+                                        console.log(
+                                            subTotal,
+                                            product?.price *
+                                                parseInt(product?.numberOfProductInCart),
+                                        );
+                                        subTotal +=
+                                            product?.price *
+                                            parseInt(product?.numberOfProductInCart);
+                                        return (
+                                            <CartItem
+                                                itemKey={product?.productId}
+                                                item={product}
+                                                handleChangeQuantity={handleChangeQuantity}
+                                            />
+                                        );
+                                    })}
+                                    <div className="card-footer d-flex justify-content-between py-2 px-4">
+                                        <div className="btn-delete">
+                                            <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
+                                        </div>
+                                        <div className="text-white display-7 ">
+                                            Total: {subTotal}
+                                        </div>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        );
+                    })}
                     <div className="d-flex justify-content-between">
                         <Button href="/products" variant="outline-success">
                             Continue Shopping
@@ -45,9 +95,9 @@ function Cart() {
                 >
                     {/* {isSuccess ? (
                         <SuccessDiv message="Your order has been placed, redirecting you to homepage now." />
-                    ) : ( */}
-                    {/* <> */}
-                    {/* <CartSummary /> */}
+                    ) : ( 
+                     <> 
+                     <CartSummary /> */}
                     <div className="d-flex flex-column justify-content-between p-3">
                         <h1 className="py-2 fw-bolder">ORDER SUMMARY</h1>
                         <div className="d-flex justify-content-between py-2">
@@ -73,7 +123,7 @@ function Cart() {
                         billingAddress
                         shippingAddress
                         description={`The total is $`}
-                        amount=""
+                        // amount=""
                         // token={}
                         // stripeKey={KEY}
                     ></StripeCheckout>

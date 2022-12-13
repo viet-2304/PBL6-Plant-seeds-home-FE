@@ -26,6 +26,8 @@ import Profile from '../pages/Seller/Profile/Profile';
 
 //Public routes
 const publicRoutes = [
+    { path: routes.cart, component: Cart, layout: DefaultLayout },
+
     { path: routes.home, component: Home, layout: DefaultLayout },
     { path: routes.login, component: Login },
     { path: routes.register, component: Register },
@@ -33,16 +35,7 @@ const publicRoutes = [
     { path: routes.productsByCategory, component: Products, layout: DefaultLayout },
     { path: routes.productByID, component: Products, layout: DefaultLayout },
     { path: routes.shop, component: Shop, layout: AccountLayout },
-];
 
-const privateRoutes = [
-    { path: routes.registerSeller, component: SellerRegister },
-    { path: routes.profile, component: Account, layout: AccountLayout, prop: 'profile' },
-    { path: routes.history, component: History },
-    { path: routes.cart, component: Cart, layout: DefaultLayout },
-    { path: routes.purchase, component: Account, layout: AccountLayout, prop: 'purchase' },
-    { path: routes.password, component: Account, layout: AccountLayout, prop: 'password' },
-    // Seller
     { path: routes.dashboard, component: Dashboard, layout: SellerLayout },
     { path: routes.order, component: Order, layout: SellerLayout },
     { path: routes.product, component: Product, layout: SellerLayout, prop: 'all' },
@@ -51,6 +44,24 @@ const privateRoutes = [
     { path: routes.delivery, component: Delivery, layout: SellerLayout },
     { path: routes.registerSeller, component: SellerRegister },
     { path: routes.profileSeller, component: Profile, layout: SellerLayout, prop: 'profile' },
+];
+
+const privateRoutes = [
+    { path: routes.registerSeller, component: SellerRegister },
+    { path: routes.profile, component: Account, layout: AccountLayout, prop: 'profile' },
+    { path: routes.history, component: History },
+    // { path: routes.cart, component: Cart, layout: DefaultLayout },
+    { path: routes.purchase, component: Account, layout: AccountLayout, prop: 'purchase' },
+    { path: routes.password, component: Account, layout: AccountLayout, prop: 'password' },
+    // Seller
+    // { path: routes.dashboard, component: Dashboard, layout: SellerLayout },
+    // { path: routes.order, component: Order, layout: SellerLayout },
+    // { path: routes.product, component: Product, layout: SellerLayout, prop: 'all' },
+    // { path: routes.createProduct, component: Product, layout: SellerLayout, prop: 'create' },
+    // { path: routes.updateProduct, component: Product, layout: SellerLayout, prop: 'update' },
+    // { path: routes.delivery, component: Delivery, layout: SellerLayout },
+    // { path: routes.registerSeller, component: SellerRegister },
+    // { path: routes.profileSeller, component: Profile, layout: SellerLayout, prop: 'profile' },
 
     //Admin
     { path: routes.loginAdmin, component: AdminLogin },

@@ -135,7 +135,7 @@ function Product({ prop }) {
                 </div>
             )}
             <div>
-                <button type="button" class="btn btn-primary" id="liveToastBtn">
+                <button type="button" className="btn btn-primary" id="liveToastBtn">
                     Show live toast
                 </button>
 

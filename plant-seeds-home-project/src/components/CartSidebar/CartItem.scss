@@ -1,0 +1,20 @@
+.item-cart {
+    font-size: 13px;
+    td {
+        max-width: 90px;
+        vertical-align: middle;
+        max-height: 70px;
+    }
+    .item-title {
+        // overflow: hidden;
+        // white-space: nowrap;
+        // text-overflow: ellipsis;
+    }
+    .amount-container {
+        display: flex;
+        justify-content: center;
+    }
+    .fa-xmark {
+        color: red;
+    }
+}

@@ -1,31 +1,32 @@
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Dash, Plus } from 'react-bootstrap-icons';
 import BASE_API_URL from '../../api/api';
-import './CartSidebar.scss';
+import './CartItem.scss';
 
-function ItemCart({ key, product, price }) {
-    console.log('item', product);
+function CartItem({ itemKey, product }) {
     const [quantity, setQuantity] = useState(
-        product?.numberOfProductInCart ? product?.numberOfProductInCart : 1,
+        parseInt(product?.numberOfProductInCart) ? parseInt(product?.numberOfProductInCart) : 1,
     );
 
     const handleQuantity = (type) => {
         if (type === 'down') {
             quantity > 1 && setQuantity((pre) => pre - 1);
         } else {
+            // kiểm tra còn hàng không
             setQuantity((prev) => prev + 1);
         }
-        console.log('SL', quantity);
+    };
+    useEffect(() => {
         axios
             .post(
                 BASE_API_URL + 'v1/cart/editCart',
                 {
-                    cartId: product.cartId,
-                    userId: localStorage.getItem('userId'),
+                    id: product.cartId,
                     number: quantity,
+                    userId: localStorage.getItem('userId'),
                     productId: product.productId,
                 },
                 {
@@ -35,13 +36,13 @@ function ItemCart({ key, product, price }) {
                     },
                 },
             )
-            .then((res) => {
+            .then(() => {
                 console.log('updated');
             })
             .catch((err) => console.log('111', err));
-    };
+    }, [quantity]);
     return (
-        <tr key={key}>
+        <tr key={itemKey} className="item-cart">
             <td>
                 <img
                     src="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
@@ -51,7 +52,7 @@ function ItemCart({ key, product, price }) {
                 />
             </td>
             <td className="item-title">{product?.productName}</td>
-            {price && <td>{product?.productDto.price}</td>}
+            {/* {price && <td>{product?.productDto.price}</td>} */}
             <td>
                 <div className="amount-container">
                     <Dash size="30px" onClick={() => handleQuantity('down')} />
@@ -69,4 +70,4 @@ function ItemCart({ key, product, price }) {
     );
 }
 
-export default ItemCart;
+export default CartItem;

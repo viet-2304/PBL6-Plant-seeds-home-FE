@@ -3,14 +3,13 @@ import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { Dash, Plus } from 'react-bootstrap-icons';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import Table from 'react-bootstrap/Table';
 import '../AppHeader/Header.scss';
 import './CartSidebar.scss';
 import axios from 'axios';
 import BASE_API_URL from '../../api/api';
-import ItemCart from './ItemCart';
+import CartItem from './CartItem';
 
 function CartSidebar() {
     const [show, setShow] = useState(false);
@@ -23,22 +22,22 @@ function CartSidebar() {
     const API = axios.create({
         baseURL: BASE_API_URL,
     });
-    useEffect(() => {
-        const fetchCartItem = () => {
-            API.get(`v1/cart/getCartDetail?userId=${localStorage.getItem('userId')}`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: 'Bearer ' + localStorage.getItem('token'),
-                },
-            })
-                .then((res) => {
-                    setCartItems(res.data.listProduct);
-                    console.log('cartItem1', res.data.listProduct);
-                })
-                .catch((err) => console.log('111', err));
-        };
-        fetchCartItem();
-    }, []);
+    // useEffect(() => {
+    //     const fetchCartItem = () => {
+    //         API.get(`v1/cart/getCartDetail?userId=${localStorage.getItem('userId')}`, {
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 Authorization: 'Bearer ' + localStorage.getItem('token'),
+    //             },
+    //         })
+    //             .then((res) => {
+    //                 setCartItems(res.data.listProduct);
+    //                 console.log('cartItem1', res.data.listProduct);
+    //             })
+    //             .catch((err) => console.log('111', err));
+    //     };
+    //     fetchCartItem();
+    // }, []);
     return (
         <>
             <div className="icon-cart" onClick={handleShow}>
@@ -52,13 +51,13 @@ function CartSidebar() {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <div className="py-3 d-flex justify-content-center">
-                        <Table striped className="table">
+                        <Table striped className="">
                             <thead>
                                 <tr>
                                     <th width="60px" height="60px"></th>
                                     <th>Product Name</th>
                                     <th>Quantity</th>
-                                    <th>Total</th>
+                                    <th width="60px">Total</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -66,16 +65,20 @@ function CartSidebar() {
                                 {cartItems?.map((item) => {
                                     return (
                                         <>
-                                            {item.listProductAndNumberDto.map((product, index) => {
-                                                return <ItemCart key={index} product={product} />;
+                                            {item?.listProductAndNumberDto.map((product) => {
+                                                return (
+                                                    <CartItem
+                                                        itemKey={product?.cartId.toString()}
+                                                        product={product}
+                                                    />
+                                                );
                                             })}
                                         </>
                                     );
                                 })}
-
                                 {!cartItems && (
                                     <tr>
-                                        <td colspan={4} className="py-3 h3 text-center">
+                                        <td colSpan={4} className="py-3 h3 text-center">
                                             Your cart is empty
                                         </td>
                                     </tr>
@@ -83,7 +86,7 @@ function CartSidebar() {
                             </tbody>
                         </Table>
                     </div>
-                    <div className="d-flex justify-content-center">
+                    <div className="d-flex justify-content-center ">
                         <Button className="btn btn-outline-success py-3 px-5">
                             <Link to={'/cart'}>Xem giỏ hàng</Link>
                         </Button>

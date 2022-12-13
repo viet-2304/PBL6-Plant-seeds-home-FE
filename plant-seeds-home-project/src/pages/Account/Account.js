@@ -96,12 +96,6 @@ function Account({ prop }) {
                                         My Purchase
                                     </Nav.Link>
                                 </Nav.Item>
-                                {/* <Nav.Item>
-                                    <Nav.Link eventKey="shop">
-                                        <FontAwesomeIcon icon={faStore} />
-                                        My Shop
-                                    </Nav.Link>
-                                </Nav.Item> */}
                                 <Nav.Item>
                                     <Nav.Link eventKey="password">
                                         <FontAwesomeIcon icon={faKey} />

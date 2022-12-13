@@ -14,31 +14,10 @@ function SellerRegister() {
         address: '',
         phoneNumber: '',
         email: '',
-        userId: '',
+        userId: localStorage.getItem('userId'),
     });
-    const [currentUser, setCurrentUser] = useState({});
     const navigate = useNavigate();
-    const API = axios.create({
-        baseURL: BASE_API_URL,
-    });
-    useEffect(() => {
-        const fetchCurrentUser = () => {
-            API.get('v1/users/getCurrentUser', {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: 'Bearer ' + localStorage.getItem('token'),
-                },
-            })
-                .then((res) => {
-                    console.log('data', currentUser);
-                    setCurrentUser(res.data);
-                    setShop({ ...shop, userId: currentUser.id });
-                    console.log('userId', currentUser.id);
-                })
-                .catch((err) => console.log('err', err));
-        };
-        fetchCurrentUser();
-    }, []);
+
     const handleSellerRegister = (e) => {
         e.preventDefault();
         axios
@@ -49,7 +28,6 @@ function SellerRegister() {
                 },
             })
             .then((res) => {
-                console.log('shop', res.data);
                 localStorage.setItem('shopId', res.data.shopId);
                 navigate('/seller/dashboard');
             })
@@ -84,18 +62,6 @@ function SellerRegister() {
                                     className="signup-form"
                                     onSubmit={(e) => handleSellerRegister(e)}
                                 >
-                                    {/* <div className="form-group mb-3">
-                                        <label className="label" htmlFor="id">
-                                            UserID
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="UserID"
-                                            readOnly
-                                            value={currentUser ? shop?.userId : ''}
-                                        />
-                                    </div> */}
                                     <div className="form-group mb-3">
                                         <label className="label" htmlFor="shopname">
                                             Shop Name
