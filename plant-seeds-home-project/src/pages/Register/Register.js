@@ -1,6 +1,9 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
 import BASE_API_URL from '../../api/api';
 import './Register.scss';
@@ -34,6 +37,19 @@ function Register() {
             navigate('/');
         }
     }, []);
+
+    const formSchema = Yup.object().shape({
+        password: Yup.string()
+            .required('Password is mendatory')
+            .min(3, 'Password must be at 3 char long'),
+        confirmPwd: Yup.string()
+            .required('Password is mendatory')
+            .oneOf([Yup.ref('password')], 'Passwords does not match'),
+    });
+    const formOptions = { resolver: yupResolver(formSchema) };
+    const { register, handleSubmit, reset, formState } = useForm(formOptions);
+    const { errors } = formState;
+
     return (
         <section className="signup-wrapper">
             <div className="d-flex justify-content-start ">
@@ -58,7 +74,7 @@ function Register() {
                                 <form
                                     action=""
                                     className="signup-form"
-                                    onSubmit={(e) => handleUserSignUp(e)}
+                                    onSubmit={handleSubmit((e) => handleUserSignUp(e))}
                                 >
                                     <div className="form-group mb-3">
                                         <label className="label" htmlFor="name">
@@ -87,28 +103,36 @@ function Register() {
                                         />
                                     </div>
                                     <div className="form-group mb-3">
-                                        <label className="label" htmlFor="password">
-                                            Password
-                                        </label>
+                                        <label>Password</label>
                                         <input
-                                            type="password"
-                                            className="form-control"
-                                            placeholder="Password"
+                                            name="password"
                                             value={password}
+                                            type="password"
+                                            {...register('password')}
+                                            className={`form-control ${
+                                                errors.password ? 'is-invalid' : ''
+                                            }`}
                                             onChange={(e) => setPassword(e.currentTarget.value)}
-                                            required
                                         />
+                                        <div className="invalid-feedback">
+                                            {errors.password?.message}
+                                        </div>
                                     </div>
                                     <div className="form-group mb-3">
-                                        <label className="label" htmlFor="password">
-                                            Confirm password
-                                        </label>
+                                        <label>Confirm Password</label>
                                         <input
+                                            name="confirmPwd"
                                             type="password"
-                                            className="form-control"
-                                            placeholder="Password"
+                                            {...register('confirmPwd')}
+                                            className={`form-control ${
+                                                errors.confirmPwd ? 'is-invalid' : ''
+                                            }`}
                                         />
+                                        <div className="invalid-feedback">
+                                            {errors.confirmPwd?.message}
+                                        </div>
                                     </div>
+
                                     <div className="form-group">
                                         <button
                                             type="submit"

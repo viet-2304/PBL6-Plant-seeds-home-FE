@@ -81,14 +81,21 @@ function SideBar() {
                         </li>
                     </NavLink>
                     <p className="title">USER</p>
-                    <li>
-                        <PeopleFill />
-                        <span>Customers</span>
-                    </li>
+
+                    <NavLink
+                        onClick={() => handleClick('customer')}
+                        to="/admin/customers"
+                        className={isActive === 'customer' ? 'activeBtn' : ''}
+                    >
+                        <li>
+                            <PeopleFill />
+                            <span>Customers</span>
+                        </li>
+                    </NavLink>
                     <p className="title">STORE</p>
                     <NavLink
                         onClick={() => handleClick('store')}
-                        to="/"
+                        to="/admin/store"
                         className={isActive === 'store' ? 'activeBtn' : ''}
                     >
                         <li>

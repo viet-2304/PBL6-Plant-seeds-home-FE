@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 // import { Widget } from '../../../components/Seller/Widget/Widget';
+import Chart from '../../../components/Admin/Chart/Chart';
+import Featured from '../../../components/Admin/Featured/Featured';
 
-import { SalesChart } from '../../../components/Admin/SalesChart/SalesChart';
 import StatCard from '../../../components/Admin/StatCard/StatCard';
 import './Dashboard.scss';
 
@@ -17,9 +18,12 @@ const Dashboard = () => {
                 <StatCard type="store" bg="bg-secondary" />
                 <StatCard type="delivery" bg="bg-light" />
             </div>
-            <Row className="bottom-container">
-                <SalesChart salesData={salesData} />
-            </Row>
+            {/* <Row className="bottom-container"> */}
+            <div className="charts">
+                <Featured />
+                <Chart title="Last 6 Months (Revenue)" aspect={2 / 1} />
+            </div>
+            {/* </Row> */}
         </Container>
     );
 };
