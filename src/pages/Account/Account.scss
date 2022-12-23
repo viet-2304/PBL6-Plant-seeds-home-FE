@@ -1,0 +1,107 @@
+.account-container {
+    #left-tabs-example {
+        margin-top: 100px !important;
+    }
+    margin-top: 100px;
+    svg {
+        padding-right: 5px;
+    }
+    .form-control {
+        font-size: 1.5rem;
+        &:focus {
+            border-color: #3f7652;
+            box-shadow: 0 0 0 0.25rem #e5f0ea;
+        }
+    }
+}
+
+.menu-col {
+    margin: 0 30px 0 0;
+    width: 300px;
+    display: block;
+    background-color: #fff;
+    box-shadow: 10px 10px 10px #e5f0ea, -10px -10px 10px #e5f0ea;
+}
+.content-col {
+    overflow: hidden !important;
+    padding: 0;
+    width: 945px;
+    max-width: 100%;
+    background-color: #fff;
+    box-shadow: 10px 10px 10px #e5f0ea, -10px -10px 10px #e5f0ea, -10px 10px 10px #e5f0ea,
+        10px -10px 10px #e5f0ea;
+}
+
+.nav-pills .nav-link {
+    color: black;
+    background-color: transparent;
+    padding: 10px;
+    &:hover {
+        color: #fff;
+        background-color: #3f7652;
+    }
+}
+
+.nav-pills .nav-link.active {
+    color: #fff;
+    background-color: #3f7652;
+}
+.user-image {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    clip-path: circle(25px at 50% 50%);
+}
+
+.user-info {
+    margin-left: 20px;
+}
+.user-name {
+    color: black;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.top-info {
+    font-size: 20px;
+    color: black;
+    padding: 10px;
+    border-bottom: 1px solid #000;
+}
+.col-form-label {
+    width: 100px;
+}
+.info {
+    width: 100%;
+}
+@media screen and (max-width: 1400px) {
+    .menu-col,
+    .content-col {
+        width: 100% !important;
+        overflow: hidden;
+    }
+    .menu-col {
+        margin-bottom: 20px;
+    }
+}
+
+.nav-tabs .nav-link {
+    padding: 5px 40px;
+    color: rgba(0, 0, 0, 0.8);
+}
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link:focus {
+    color: #3f7652;
+    border-bottom: 2px solid;
+    border-color: #fff #fff #3f7652;
+}
+.form-check-input:checked {
+    background-color: #3f7652;
+    border-color: #3f7652;
+    box-shadow: 0 0 0 0.25rem #e5f0ea;
+}
+.form-check-input:focus {
+    border-color: #3f7652;
+    box-shadow: 0 0 0 0.25rem #e5f0ea;
+    outline: 0;
+}

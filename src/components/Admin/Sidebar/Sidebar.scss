@@ -1,0 +1,74 @@
+.sidebar {
+    flex: 1;
+    width: 220px;
+    height: 100%;
+    min-height: 100vh;
+    background-color: white;
+    .center {
+        padding-left: 10px;
+        img {
+            background-size: cover;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            .end-class {
+                font-size: 16px;
+                padding: 16px;
+            }
+            svg {
+                color: #3f7652;
+            }
+
+            .title {
+                font-size: 15px;
+                font-weight: bold;
+                color: #999;
+                margin-top: 15px;
+                margin-bottom: 5px;
+            }
+            .activeBtn {
+                li {
+                    background-color: #3f7652;
+                    span {
+                        color: #fff;
+                    }
+                    svg {
+                        color: #fff;
+                    }
+                }
+            }
+            li {
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                margin-right: 10px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #3f7652;
+                    span {
+                        color: #fff;
+                    }
+                    svg {
+                        color: #fff;
+                    }
+                }
+
+                .icon {
+                    font-size: 20px;
+                    color: #3f7652;
+                }
+
+                span {
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: #888;
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+}

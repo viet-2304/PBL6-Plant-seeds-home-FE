@@ -1,0 +1,38 @@
+.cart {
+    .btn.btn-outline-success,
+    .btn.btn-outline-secondary {
+        font-size: medium;
+    }
+    .carditem-container {
+        background-color: #fff;
+        height: max-content;
+        margin-bottom: 10px;
+        .card-header {
+            background-color: #fff;
+        }
+        .card-body {
+            height: 100%;
+            border-bottom: none;
+            .item-img {
+                object-fit: cover;
+            }
+            .card-footer {
+                background-color: #fff;
+                color: #000;
+
+                // background-color: #3f7652;
+                // border-top: 2px solid #3f7652;
+            }
+        }
+        .btn-delete {
+            svg {
+                color: #000;
+            }
+        }
+    }
+}
+.btn-checkout a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}

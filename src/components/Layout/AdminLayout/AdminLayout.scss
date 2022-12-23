@@ -1,0 +1,21 @@
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    .main-container {
+        width: 100%;
+        display: flex;
+        font-size: 3rem;
+        z-index: 2;
+        .sidebar-container {
+            width: 200px;
+            position: fixed;
+            height: calc(100% - 80px);
+            // box-shadow: 4px 0 4px -4px #e5f0ea;
+        }
+        .content {
+            flex: 1;
+            max-width: calc(100% - 200px);
+            margin-left: 200px;
+        }
+    }
+}

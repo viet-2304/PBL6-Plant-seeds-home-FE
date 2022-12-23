@@ -1,0 +1,33 @@
+.seller-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+        box-shadow: 0 1px 4px 0 #e5f0ea;
+    }
+    .main-container {
+        width: 100%;
+        display: flex;
+        font-size: 3rem;
+        margin-top: 80px;
+        z-index: 2;
+
+        .sidebar-container {
+            width: 200px;
+            position: fixed;
+            height: calc(100% - 80px);
+            box-shadow: 8px 0 8px -8px #e5f0ea;
+        }
+        .content {
+            flex: 1;
+            max-width: calc(100% - 200px);
+            margin-left: 200px;
+            padding-top: 50px;
+        }
+    }
+}

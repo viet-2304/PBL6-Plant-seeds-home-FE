@@ -1,0 +1,23 @@
+.btn-delete {
+    svg {
+        height: 20px;
+        color: #fff;
+        &:hover {
+            color: #000;
+        }
+    }
+}
+.card-purchase {
+    background-color: #f8f9fa;
+    height: max-content;
+    .card-body {
+        height: 100%;
+        border-bottom: none;
+        .item-img {
+            object-fit: cover;
+        }
+        .card-footer {
+            background-color: #3f7652;
+        }
+    }
+}

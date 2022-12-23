@@ -1,0 +1,14 @@
+.widgets,
+.charts {
+    min-width: 1080px;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    padding: 20px 10px;
+    gap: 20px;
+}
+.dashboard {
+    min-width: 1080px;
+    width: 100%;
+}

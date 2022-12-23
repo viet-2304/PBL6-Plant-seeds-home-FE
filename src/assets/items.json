@@ -1,0 +1,156 @@
+[
+    {
+        "productId": 1,
+        "productName": "Cây 1111111111111111111111111111111111111111111111111",
+        "price": 1000,
+        "image": "https://jacks-garden-server.herokuapp.com/images/spider_plant.jpg",
+        "category": "indoor"
+    },
+    {
+        "productId": 2,
+        "productName": "Cây 2",
+        "price": 1000,
+        "image": "https://jacks-garden-server.herokuapp.com/images/spider_plant.jpg",
+        "category": "indoor"
+    },
+    {
+        "productId": 3,
+        "productName": "Cây 3",
+        "price": 1000,
+        "image": "https://jacks-garden-server.herokuapp.com/images/spider_plant.jpg",
+        "category": "indoor"
+    },
+    {
+        "productId": 4,
+        "productName": "Cây 4",
+        "price": 1000,
+        "image": "https://jacks-garden-server.herokuapp.com/images/spider_plant.jpg",
+        "category": "indoor"
+    },
+    {
+        "productId": 5,
+        "productName": "Cây 5",
+        "price": 1000,
+        "image": "https://jacks-garden-server.herokuapp.com/images/spider_plant.jpg",
+        "category": "outdoor"
+    },
+    {
+        "productId": 6,
+        "productName": "Cây 6",
+        "price": 1000,
+        "image": "https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg",
+        "category": "outdoor"
+    },
+    {
+        "productId": 7,
+        "productName": "Cây 7",
+        "price": 1000,
+        "image": "https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg",
+        "category": "outdoor"
+    },
+    {
+        "productId": 8,
+        "productName": "Cây 8",
+        "price": 1000,
+        "image": "https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg",
+        "category": "outdoor"
+    },
+    {
+        "productId": 9,
+        "productName": "Cây 9",
+        "price": 1000,
+        "image": "https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg",
+        "category": "outdoor"
+    },
+    {
+        "productId": 10,
+        "productName": "Cây 10",
+        "price": 1000,
+        "image": "https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg",
+        "category": "outdoor"
+    },
+    {
+        "productId": 11,
+        "productName": "Cây 11",
+        "price": 1000,
+        "image": "https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg",
+        "category": "outdoor"
+    },
+    {
+        "productId": 12,
+        "productName": "Cây 12",
+        "price": 1000,
+        "image": "https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg",
+        "category": "outdoor"
+    },
+    {
+        "productId": 13,
+        "productName": "Cây 13",
+        "price": 1000,
+        "image": "https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg",
+        "category": "fruittree"
+    },
+    {
+        "productId": 14,
+        "productName": "Cây 14",
+        "price": 1000,
+        "image": "https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg",
+        "category": "fruittree"
+    },
+    {
+        "productId": 15,
+        "productName": "Cây 15",
+        "price": 1000,
+        "image": "https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg",
+        "category": "fruittree"
+    },
+    {
+        "productId": 16,
+        "productName": "Cây 16",
+        "price": 1000,
+        "image": "https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg",
+        "category": "fruittree"
+    },
+    {
+        "productId": 17,
+        "productName": "Cây 17",
+        "price": 1000,
+        "image": "https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg",
+        "category": "fruittree"
+    },
+    {
+        "productId": 18,
+        "productName": "Cây 18",
+        "price": 1000,
+        "image": "https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg",
+        "category": "fruittree"
+    },
+    {
+        "productId": 19,
+        "productName": "Cây 19",
+        "price": 1000,
+        "image": "https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg",
+        "category": "fruittree"
+    },
+    {
+        "productId": 20,
+        "productName": "Cây 20",
+        "price": 1000,
+        "image": "https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg",
+        "category": "agriculturalcrop"
+    },
+    {
+        "productId": 21,
+        "productName": "Cây 21",
+        "price": 1000,
+        "image": "https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg",
+        "category": "agriculturalcrop"
+    },
+    {
+        "productId": 22,
+        "productName": "Cây 22",
+        "price": 1000,
+        "image": "https://static.wixstatic.com/media/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d6070d_dc18468c7fb94def8d4efd7789bea60e~mv2.jpg",
+        "category": "agriculturalcrop"
+    }
+]
