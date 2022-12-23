@@ -7,10 +7,10 @@ import Button from '../../../components/Button/Button';
 import './Profile.scss';
 
 function Profile() {
+    const [url, setURL] = useState('');
     const [shop, setShop] = useState({});
-    const [image, setImage] = useState('');
+    const [image, setImage] = useState(document.querySelector('#file'));
     const onFileChange = (e) => {
-        console.log(e.target.files[0]);
         if (e.target && e.target.files[0]) {
             setImage(e.target.files[0]);
         }
@@ -29,22 +29,17 @@ function Profile() {
         //     .catch((err) => console.log('err', err));
         let formData = new FormData();
         formData.append('image', image);
-        console.log(formData);
-        console.log('iamge', image);
 
         axios
-            .post(
-                BASE_API_URL + 'v1/product/addProductImage',
-                { image: formData },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: 'Bearer ' + localStorage.getItem('token'),
-                    },
+            .post(BASE_API_URL + 'v1/product/addProductImage', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    Authorization: 'Bearer ' + localStorage.getItem('token'),
                 },
-            )
+            })
             .then((res) => {
                 console.log(res.data, 'OK');
+                setURL(res.data);
             })
             .catch((err) => console.log('err', err));
     };
@@ -70,12 +65,18 @@ function Profile() {
                     <div className="col image">
                         <Image
                             className="shop-logo me-3"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_mNmpqHOTakNgIaKR5bxJFfkUtiLdPBXPMw&usqp=CAU"
+                            src={
+                                url ||
+                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_mNmpqHOTakNgIaKR5bxJFfkUtiLdPBXPMw&usqp=CAU'
+                            }
+                            // src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_mNmpqHOTakNgIaKR5bxJFfkUtiLdPBXPMw&usqp=CAU"
                             alt="imageuser"
                         />
-                        <Form.Group controlId="formFile" className="mt-3">
+                        <Form.Group id="formFile" className="mt-3">
                             <Form.Control
                                 type="file"
+                                id="file"
+                                name="file"
                                 size="lg"
                                 multiple={false}
                                 onChange={onFileChange}
