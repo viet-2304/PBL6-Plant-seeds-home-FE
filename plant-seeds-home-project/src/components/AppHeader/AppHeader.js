@@ -127,7 +127,7 @@ function AppHeader() {
                             className="seller"
                             rounded
                             small
-                            to={isSeller === false ? routes.dashboard : routes.registerSeller}
+                            to={isSeller === true ? routes.dashboard : routes.registerSeller}
                             rightIcon={<FontAwesomeIcon icon={faShop} />}
                         >
                             <p>Seller Centre</p>
