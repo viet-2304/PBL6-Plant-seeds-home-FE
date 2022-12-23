@@ -4,9 +4,10 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Dash, Plus } from 'react-bootstrap-icons';
 import BASE_API_URL from '../../api/api';
+import Button from '../Button/Button';
 import './CartItem.scss';
 
-function CartItem({ itemKey, product }) {
+function CartItem({ itemKey, product, handleDelete }) {
     const [quantity, setQuantity] = useState(
         parseInt(product?.numberOfProductInCart) ? parseInt(product?.numberOfProductInCart) : 1,
     );
@@ -19,6 +20,7 @@ function CartItem({ itemKey, product }) {
             setQuantity((prev) => prev + 1);
         }
     };
+
     useEffect(() => {
         axios
             .post(
@@ -64,7 +66,9 @@ function CartItem({ itemKey, product }) {
             </td>
             <td>${quantity * product?.price}</td>
             <td>
-                <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>
+                <Button onClick={() => handleDelete(product?.cartId)}>
+                    <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>
+                </Button>
             </td>
         </tr>
     );

@@ -14,30 +14,23 @@ function SellerHeader() {
     const navigate = useNavigate();
     const [shop, setShop] = useState({});
     console.log(localStorage.getItem('userId'), localStorage.getItem('token'));
-    // useEffect(() => {
-    //     if (localStorage.getItem('shopId')) {
-    //         const fetchShop = () => {
-    //             axios
-    //                 .get(
-    //                     BASE_API_URL +
-    //                         `v1/shop/getShopByUser?userId=${localStorage.getItem('userId')}`,
-    //                     {
-    //                         headers: {
-    //                             'Content-Type': 'application/json',
-    //                             Authorization: 'Bearer ' + localStorage.getItem('token'),
-    //                         },
-    //                     },
-    //                 )
-    //                 .then((res) => {
-    //                     setShop(res.data);
-    //                     console.log(res.data);
-    //                     localStorage.setItem('shopId', res.data.shopId);
-    //                 })
-    //                 .catch((err) => console.log('err', err));
-    //         };
-    //         fetchShop();
-    //     } else navigate('/seller/register');
-    // }, []);
+    useEffect(() => {
+        // if (localStorage.getItem('shopId')) {
+        axios
+            .get(BASE_API_URL + `v1/shop/getShopByUser?userId=${localStorage.getItem('userId')}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + localStorage.getItem('token'),
+                },
+            })
+            .then((res) => {
+                setShop(res.data);
+                console.log(res.data);
+                localStorage.setItem('shopId', res.data.shopId);
+            })
+            .catch(() => navigate('/seller/register'));
+        // } else navigate('/seller/register');
+    }, []);
     return (
         <Container fluid className="seller-navbar">
             <div className="wrapper px-5">

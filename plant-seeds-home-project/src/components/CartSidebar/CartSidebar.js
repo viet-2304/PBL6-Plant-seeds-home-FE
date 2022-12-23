@@ -14,30 +14,48 @@ import CartItem from './CartItem';
 function CartSidebar() {
     const [show, setShow] = useState(false);
     const [cartItems, setCartItems] = useState();
+    const [reload, setReload] = useState(false);
+
     function handleClose() {
-        return setShow(false);
+        setShow(false);
     }
     const handleShow = () => setShow(true);
-
+    const handleReload = () => {
+        setReload(!reload);
+    };
     const API = axios.create({
         baseURL: BASE_API_URL,
     });
-    // useEffect(() => {
-    //     const fetchCartItem = () => {
-    //         API.get(`v1/cart/getCartDetail?userId=${localStorage.getItem('userId')}`, {
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 Authorization: 'Bearer ' + localStorage.getItem('token'),
-    //             },
-    //         })
-    //             .then((res) => {
-    //                 setCartItems(res.data.listProduct);
-    //                 console.log('cartItem1', res.data.listProduct);
-    //             })
-    //             .catch((err) => console.log('111', err));
-    //     };
-    //     fetchCartItem();
-    // }, []);
+    const handleDelete = (cartId) => {
+        axios
+            .post(
+                BASE_API_URL + `v1/cart/deleteProductInCart?id=${cartId}`,
+                {},
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: 'Bearer ' + localStorage.getItem('token'),
+                    },
+                },
+            )
+            .then(() => {
+                handleReload();
+            })
+            .catch((err) => console.log('222', err));
+    };
+    useEffect(() => {
+        API.get(`v1/cart/getCartDetail?userId=${localStorage.getItem('userId')}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+        })
+            .then((res) => {
+                setCartItems(res.data.listProduct);
+                console.log('cartItem1', res.data.listProduct);
+            })
+            .catch((err) => console.log('111', err));
+    }, [reload, show]);
     return (
         <>
             <div className="icon-cart" onClick={handleShow}>
@@ -70,6 +88,7 @@ function CartSidebar() {
                                                     <CartItem
                                                         itemKey={product?.cartId.toString()}
                                                         product={product}
+                                                        handleDelete={handleDelete}
                                                     />
                                                 );
                                             })}
@@ -87,8 +106,12 @@ function CartSidebar() {
                         </Table>
                     </div>
                     <div className="d-flex justify-content-center ">
-                        <Button className="btn btn-outline-success py-3 px-5">
-                            <Link to={'/cart'}>Xem giỏ hàng</Link>
+                        <Button
+                            className="btn btn-outline-success py-3 px-5"
+                            onClick={() => handleClose()}
+                        >
+                            {/* onClick={() => window.location.reload()} */}
+                            <Link to="/cart">Xem giỏ hàng</Link>
                         </Button>
                     </div>
                 </Offcanvas.Body>

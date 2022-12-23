@@ -16,6 +16,7 @@ import BASE_API_URL from '../../api/api';
 import { useEffect } from 'react';
 
 function AppHeader() {
+    console.log('header');
     const [currentToken, setCurrentToken] = useState(localStorage.getItem('token'));
     const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState({});
