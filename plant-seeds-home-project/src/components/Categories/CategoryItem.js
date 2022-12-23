@@ -4,10 +4,10 @@ import './CategoryItem.scss';
 
 const CategoryItem = ({ item, index }) => {
     const images = [
-        'https://cdn.pixabay.com/photo/2022/02/16/14/55/flower-7016948_1280.jpg',
+        'https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/1/18/20190425063710470758rauxanhmax-800x8001-164247973908380094864.jpg',
         'https://suckhoehangngay.mediacdn.vn/zoom/700_438/2019/9/24/tinh-bot-5-1569343421735735173657-crop-1569343433132320092248.jpg',
-        'https://cdn.pixabay.com/photo/2022/02/16/14/55/flower-7016948_1280.jpg',
-        'https://cdn.pixabay.com/photo/2022/02/16/14/55/flower-7016948_1280.jpg',
+        'http://file.hstatic.net/200000427529/article/y-nghia-hoa-cuc-hoa-mi_8a0b4007caf240f4a6f32d45e6a414d7.jpg',
+        'https://kienthuctieuduong.vn/wp-content/uploads/2018/11/cach-chon-hoa-qua-phu-hop-trong-che-do-an-uong-han-che-duong-1.jpg',
     ];
     const navigate = useNavigate();
     return (
