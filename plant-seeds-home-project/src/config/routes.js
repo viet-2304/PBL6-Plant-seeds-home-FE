@@ -11,6 +11,8 @@ const routes = {
     purchase: '/account/:userid/purchase',
     shop: '/shop',
     password: '/account/:userid/password',
+    checkout: '/checkout',
+    thankpage: '/api/v1/paymentsuccess',
     // Seller
     registerSeller: '/seller/register',
     dashboard: '/seller/dashboard',

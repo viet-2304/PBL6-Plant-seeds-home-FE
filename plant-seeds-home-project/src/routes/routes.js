@@ -23,10 +23,16 @@ import AdminLogin from '../pages/Admin/Login/Login';
 import AdminLayout from '../components/Layout/AdminLayout/AdminLayout';
 import AdminDashboard from '../pages/Admin/Dashboard/Dashboard';
 import Profile from '../pages/Seller/Profile/Profile';
+import ProductsAdmin from '../pages/Admin/Products/Products';
+import Customers from '../pages/Admin/Customers/Customers';
+import Checkout from '../pages/Checkout/Checkout';
+import Thankpage from '../components/Thankpage/Thankpage';
 
 //Public routes
 const publicRoutes = [
     { path: routes.cart, component: Cart, layout: DefaultLayout },
+    { path: routes.checkout, component: Checkout, layout: AccountLayout },
+    { path: routes.thankpage, component: Thankpage, layout: DefaultLayout },
 
     { path: routes.home, component: Home, layout: DefaultLayout },
     { path: routes.login, component: Login },
@@ -46,6 +52,7 @@ const publicRoutes = [
     { path: routes.delivery, component: Delivery, layout: SellerLayout },
     { path: routes.registerSeller, component: SellerRegister },
     { path: routes.profileSeller, component: Profile, layout: SellerLayout, prop: 'profile' },
+    { path: routes.loginAdmin, component: AdminLogin },
 ];
 
 const privateRoutes = [
@@ -66,8 +73,9 @@ const privateRoutes = [
     // { path: routes.profileSeller, component: Profile, layout: SellerLayout, prop: 'profile' },
 
     //Admin
-    { path: routes.loginAdmin, component: AdminLogin },
     { path: routes.dashboardAdmin, component: AdminDashboard, layout: AdminLayout },
+    { path: routes.productsAdmin, component: ProductsAdmin, layout: AdminLayout },
+    { path: routes.customers, component: Customers, layout: AdminLayout },
 ];
 
 export { publicRoutes, privateRoutes };

@@ -8,6 +8,7 @@ import CartItem from '../../components/Cart/CartItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShop, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Cart() {
     console.log('render');
@@ -120,32 +121,21 @@ function Cart() {
                     <div className="d-flex flex-column justify-content-between p-3">
                         <h1 className="py-2 fw-bolder">ORDER SUMMARY</h1>
                         <div className="d-flex justify-content-between py-2">
-                            <span>Subtotal</span>
-                            <span>$2</span>
+                            <span>Quantity</span>
+                            <span>2</span>
                         </div>
                         <div className="d-flex justify-content-between py-2">
                             <span>Estimated Shipping</span>
-                            <span>$ 9.95</span>
-                        </div>
-                        <div className="d-flex justify-content-between py-2">
-                            <span>Shipping Discount</span>
-                            <span>$30</span>
+                            <span>30000</span>
                         </div>
                         <div className="total-amount fs-3 fw-bolder">
                             <span className="pe-2">Total</span>
                             <span>$89 </span>
                         </div>
                     </div>
-                    <StripeCheckout
-                        name="Plant seeds home"
-                        image=""
-                        billingAddress
-                        shippingAddress
-                        description={`The total is $`}
-                        // amount=""
-                        // token={}
-                        // stripeKey={KEY}
-                    ></StripeCheckout>
+                    <Button className="py-3 px-2 fs-4 btn-checkout">
+                        <Link to={'/checkout'}>Pay with card</Link>
+                    </Button>
                     {/* ) : ( */}
                     <div className="text-danger py-3">
                         The total amount per order cannot be over $2000, please split your order.
