@@ -44,9 +44,9 @@ function Categories() {
             </div>
             <div className="container-xl px-4 pb-2 d-flex flex-row justify-content-center align-items-center">
                 <Row>
-                    {categories.map((item) => (
+                    {categories.map((item, index) => (
                         <Col md={3} sm={6} key={item.productTypeId}>
-                            <CategoryItem item={item} />
+                            <CategoryItem item={item} index={index} />
                         </Col>
                     ))}
                 </Row>

@@ -37,7 +37,9 @@ const publicRoutes = [
     { path: routes.shop, component: Shop, layout: AccountLayout },
 
     { path: routes.dashboard, component: Dashboard, layout: SellerLayout },
-    { path: routes.order, component: Order, layout: SellerLayout },
+    { path: routes.order, component: Order, layout: SellerLayout, prop: 'all' },
+    { path: routes.orderDetail, component: Order, layout: SellerLayout, prop: 'detail' },
+
     { path: routes.product, component: Product, layout: SellerLayout, prop: 'all' },
     { path: routes.createProduct, component: Product, layout: SellerLayout, prop: 'create' },
     { path: routes.updateProduct, component: Product, layout: SellerLayout, prop: 'update' },

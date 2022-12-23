@@ -49,7 +49,7 @@ function Product({ prop }) {
         {
             name: 'Image',
             selector: (row) => (
-                <div className="cellWrapper">
+                <div className="wrapper">
                     <img
                         src={
                             row.imageURL !== null
@@ -134,34 +134,6 @@ function Product({ prop }) {
                     <ProductForm prop={'update'} />
                 </div>
             )}
-            <div>
-                <button type="button" className="btn btn-primary" id="liveToastBtn">
-                    Show live toast
-                </button>
-
-                {/* <div className="position-fixed bottom-50 end-50 p-3" style="z-index: 11">
-                    <div
-                        id="liveToast"
-                        class="toast hide"
-                        role="alert"
-                        aria-live="assertive"
-                        aria-atomic="true"
-                    >
-                        <div class="toast-header">
-                            <img src="..." class="rounded me-2" alt="..." />
-                            <strong class="me-auto">Bootstrap</strong>
-                            <small>11 mins ago</small>
-                            <button
-                                type="button"
-                                class="btn-close"
-                                data-bs-dismiss="toast"
-                                aria-label="Close"
-                            ></button>
-                        </div>
-                        <div class="toast-body">Hello, world! This is a toast message.</div>
-                    </div>
-                </div> */}
-            </div>
         </Container>
     );
 }

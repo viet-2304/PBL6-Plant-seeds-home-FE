@@ -20,7 +20,7 @@ const routes = {
     updateProduct: '/seller/product/update/:id',
     delivery: '/seller/delivery',
     profileSeller: '/seller/profile',
-
+    orderDetail: '/seller/order/detail/:id',
     //Admin
     dashboardAdmin: '/admin/dashboard',
     loginAdmin: '/admin/login',

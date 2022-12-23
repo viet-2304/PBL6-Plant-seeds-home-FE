@@ -192,7 +192,7 @@ function AppHeader() {
                                 Profile
                             </NavLink>
                             <NavLink
-                                to={!isSeller === true ? routes.dashboard : routes.registerSeller}
+                                to={isSeller === true ? routes.dashboard : routes.registerSeller}
                                 className="seller-link-mb"
                             >
                                 Seller Centre
