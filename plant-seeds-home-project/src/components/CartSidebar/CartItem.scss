@@ -6,9 +6,9 @@
         max-height: 70px;
     }
     .item-title {
-        // overflow: hidden;
-        // white-space: nowrap;
-        // text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
     .amount-container {
         display: flex;

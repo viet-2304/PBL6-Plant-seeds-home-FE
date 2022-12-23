@@ -7,15 +7,35 @@ import BASE_API_URL from '../../api/api';
 import CartItem from '../../components/Cart/CartItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShop, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 function Cart() {
+    console.log('render');
     const [cartItems, setCartItems] = useState();
     const [reload, setReload] = useState(false);
     const API = axios.create({
         baseURL: BASE_API_URL,
     });
     const handleChangeQuantity = () => {
+        // window.location.reload();
         setReload(!reload);
+    };
+    const handleDelete = (cartId) => {
+        axios
+            .post(
+                BASE_API_URL + `v1/cart/deleteProductInCart?id=${cartId}`,
+                {},
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: 'Bearer ' + localStorage.getItem('token'),
+                    },
+                },
+            )
+            .then(() => {
+                setReload(!reload);
+            })
+            .catch((err) => console.log('222', err));
     };
     useEffect(() => {
         API.get(`v1/cart/getCartDetail?userId=${localStorage.getItem('userId')}`, {
@@ -26,16 +46,18 @@ function Cart() {
         })
             .then((res) => {
                 setCartItems(res.data.listProduct);
+                console.log(res.data.listProduct);
             })
             .catch((err) => console.log('err', err));
     }, [reload]);
+
     return (
         <Container fluid="xl" className="cart position-relative p-2 p-md-4">
             <Row className="py-3">
                 <Col md={8} className="cart-details py-3 mb-4">
                     <h2>YOUR CART</h2>
                     {!cartItems && (
-                        <div className="fw-bold text-black d-flex align-items-center">
+                        <div className="fw-bold text-black d-flex align-items-center justify-content-center">
                             Your Cart Is Empty
                         </div>
                     )}
@@ -48,17 +70,15 @@ function Cart() {
                                         <div className="fw-bold text-black d-flex align-items-center">
                                             {item?.shopName}
                                             <Button className="ms-5 btn-outline-success px-4 py-2">
-                                                <FontAwesomeIcon icon={faShop}></FontAwesomeIcon>
+                                                <FontAwesomeIcon
+                                                    icon={faShop}
+                                                    className="pe-2"
+                                                ></FontAwesomeIcon>
                                                 View Shop
                                             </Button>
                                         </div>
                                     </div>
                                     {item?.listProductAndNumberDto.map((product) => {
-                                        console.log(
-                                            subTotal,
-                                            product?.price *
-                                                parseInt(product?.numberOfProductInCart),
-                                        );
                                         subTotal +=
                                             product?.price *
                                             parseInt(product?.numberOfProductInCart);
@@ -67,6 +87,7 @@ function Cart() {
                                                 itemKey={product?.productId}
                                                 item={product}
                                                 handleChangeQuantity={handleChangeQuantity}
+                                                handleDelete={handleDelete}
                                             />
                                         );
                                     })}
@@ -74,9 +95,7 @@ function Cart() {
                                         <div className="btn-delete">
                                             <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
                                         </div>
-                                        <div className="text-white display-7 ">
-                                            Total: {subTotal}
-                                        </div>
+                                        <div className="display-6 ">Total: {subTotal}</div>
                                     </div>
                                 </Card.Body>
                             </Card>

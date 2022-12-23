@@ -28,7 +28,7 @@ function SellerRegister() {
                 },
             })
             .then((res) => {
-                localStorage.setItem('shopId', res.data.shopId);
+                // localStorage.setItem('shopId', res.data.shopId);
                 navigate('/seller/dashboard');
             })
             .catch((err) => {

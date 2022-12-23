@@ -1,29 +1,27 @@
-import { Button, Card } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShop, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Dash, Plus } from 'react-bootstrap-icons';
 import './CartItem.scss';
 import axios from 'axios';
 import BASE_API_URL from '../../api/api';
 import { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import Button from '../Button/Button';
 
-function CartItem({ itemKey, item, handleChangeQuantity }) {
+function CartItem({ itemKey, item, handleChangeQuantity, handleDelete }) {
     const [quantity, setQuantity] = useState(
         parseInt(item?.numberOfProductInCart) ? parseInt(item?.numberOfProductInCart) : 1,
     );
-
     const handleQuantity = (type) => {
         if (type === 'down') {
             if (quantity > 1) {
                 setQuantity((pre) => pre - 1);
-                handleChangeQuantity();
             }
         } else {
             // kiểm tra còn hàng không
             setQuantity((prev) => prev + 1);
-            handleChangeQuantity();
         }
     };
+
     useEffect(() => {
         axios
             .post(
@@ -42,17 +40,12 @@ function CartItem({ itemKey, item, handleChangeQuantity }) {
                 },
             )
             .then(() => {
-                console.log({
-                    id: item.cartId,
-                    number: quantity,
-                    userId: localStorage.getItem('userId'),
-                    productId: item.productId,
-                });
+                handleChangeQuantity();
             })
             .catch((err) => console.log('111', err));
     }, [quantity]);
     return (
-        <div key={itemKey} className="card-content border-bottom border-secondary d-flex py-3">
+        <div key={itemKey} className=" border-bottom border-secondary d-flex py-3">
             <div className="col d-flex align-items-center justify-content-start">
                 <img
                     src="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
@@ -76,6 +69,11 @@ function CartItem({ itemKey, item, handleChangeQuantity }) {
             </div>
             <div className="d-flex col align-items-center justify-content-center text-danger">
                 {quantity * item?.price}
+            </div>
+            <div className="d-flex align-items-center justify-content-center pe-5">
+                <Button onClick={() => handleDelete(item?.cartId)}>
+                    <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>
+                </Button>
             </div>
         </div>
     );
