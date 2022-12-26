@@ -41,6 +41,7 @@ function Product({ prop }) {
             )
             .then(() => {
                 console.log('OK', items);
+                setIsShow(false);
             })
             .catch((err) => console.log(err));
     };
@@ -82,6 +83,18 @@ function Product({ prop }) {
             setItems(list);
         });
     };
+
+    const label = [
+        'productName',
+        'description',
+        'EXP',
+        'MFG',
+        'manufacturer',
+        'price',
+        'numberOfProduct',
+        'productType',
+    ];
+
     const labels = [
         {
             name: 'Name',
@@ -215,7 +228,10 @@ function Product({ prop }) {
                             <thead>
                                 {items !== null && items !== 'undefined' && (
                                     <tr>
-                                        {Object.keys(items[0]).map((d) => (
+                                        {/* {Object.keys(items[0]).map((d) => (
+                                            <th scope="col">{d}</th>
+                                        ))} */}
+                                        {label.map((d) => (
                                             <th scope="col">{d}</th>
                                         ))}
                                     </tr>

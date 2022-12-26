@@ -197,7 +197,7 @@ const ProductForm = ({ prop }) => {
                                 className="form-control "
                                 type="date"
                                 placeholder="Date of manufacture"
-                                value={moment(products?.MFG).utc().format('YYYY-MM-DD')}
+                                value={moment(products?.MFG).utc().format('YYYY/MM/DD')}
                                 onChange={(e) =>
                                     setProducts({
                                         ...products,

@@ -9,7 +9,9 @@ function Dashboard() {
     const [numberCustomer, setNumberCustomer] = useState([]);
     const [numberProduct, setNumberProduct] = useState(0);
     const [numberOrder, setNumberOrder] = useState(0);
+    // All income
     const [earning, setEarning] = useState(0);
+    // Income only from orders has been implemented
     const [balance, setBalance] = useState(0);
     let customer = [];
     let total = 0;
@@ -30,19 +32,20 @@ function Dashboard() {
                 setNumberOrder(res.data.length);
                 // Get number of customer
                 res.data.forEach((c) => {
+                    total += c.orderResponseDto.total;
                     if (!customer.includes(c.orderResponseDto.userId)) {
                         customer.push(c.orderResponseDto.userId);
                     }
-                    if (c.orderResponseDto.orderStatus === 'Pending') {
-                        total += c.orderResponseDto.total;
-                    }
                     if (c.orderResponseDto.orderStatus === 'Done') {
-                        total += c.orderResponseDto.total;
+                        _balance += c.orderResponseDto.total;
                     }
                 });
                 setNumberCustomer(customer.length);
+                // Set earning
+                console.log('tot', total);
                 setEarning(total);
-                // Get earning
+                // Set balance
+                setBalance(_balance);
             })
             .catch((err) => console.log('111', err));
         // Get number of product
