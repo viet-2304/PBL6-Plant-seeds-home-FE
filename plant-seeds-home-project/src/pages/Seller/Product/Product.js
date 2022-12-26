@@ -15,7 +15,10 @@ import './Product.scss';
 function Product({ prop }) {
     const navigate = useNavigate();
     const [isShow, setIsShow] = useState(false);
-    const [products, setProducts] = useState(movies);
+    const [products, setProducts] = useState([]);
+    const API = axios.create({
+        baseURL: BASE_API_URL,
+    });
 
     const handleAddNew = () => {
         navigate('/seller/product/create');
@@ -23,10 +26,25 @@ function Product({ prop }) {
     const handleImportExcel = (action) => {
         setIsShow(action);
     };
-    const handleSave = () => {};
-    const API = axios.create({
-        baseURL: BASE_API_URL,
-    });
+    const handleSave = () => {
+        axios
+            .post(
+                BASE_API_URL +
+                    `v1/product/addMultiProduct?shopId=${localStorage.getItem('shopId')}`,
+                items,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: 'Bearer ' + localStorage.getItem('token'),
+                    },
+                },
+            )
+            .then(() => {
+                console.log('OK', items);
+            })
+            .catch((err) => console.log(err));
+    };
+
     useEffect(() => {
         const fetchProdutList = () => {
             API.get(`v1/product/getProductByShop?shopId=${localStorage.getItem('shopId')}`)
@@ -56,7 +74,12 @@ function Product({ prop }) {
             };
         });
         promise.then((d) => {
-            setItems(d);
+            let list = [];
+            d.map((item) => {
+                item = { ...item, imagesUrl: [], shops: '' };
+                list.push(item);
+            });
+            setItems(list);
         });
     };
     const labels = [
@@ -76,8 +99,8 @@ function Product({ prop }) {
                 <div className="wrapper">
                     <img
                         src={
-                            row.imageURL !== null
-                                ? row.imageURL
+                            row.imagesUrl !== []
+                                ? row.imagesUrl[0]
                                 : 'https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1'
                         }
                         alt=""
@@ -125,6 +148,7 @@ function Product({ prop }) {
             ),
         },
     ];
+    console.log('items', items);
     return (
         <Container className="d-flex flex-column justify-content-center ">
             {prop === 'all' && (
@@ -158,7 +182,7 @@ function Product({ prop }) {
             )}
             {prop === 'create' && (
                 <div className="mx-5">
-                    <ProductForm />
+                    <ProductForm prop={'create'} />
                 </div>
             )}
             {prop === 'update' && (
@@ -200,14 +224,13 @@ function Product({ prop }) {
                             <tbody>
                                 {items.map((item, index) => (
                                     <tr key={index}>
-                                        <td>{item.ProductName}</td>
+                                        <td>{item.productName}</td>
                                         <td>{item.description}</td>
                                         <td>{item.EXP}</td>
                                         <td>{item.MFG}</td>
                                         <td>{item.manufacturer}</td>
                                         <td>{item.price}</td>
-                                        <td>{item.rating}</td>
-                                        <td>{item.numberofProduct}</td>
+                                        <td>{item.numberOfProduct}</td>
                                         <td>{item.productType}</td>
                                     </tr>
                                 ))}
