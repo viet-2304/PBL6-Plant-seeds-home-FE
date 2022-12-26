@@ -9,10 +9,9 @@ import axios from 'axios';
 import BASE_API_URL from '../../../api/api';
 import DataTable from 'react-data-table-component';
 import { SortDown } from 'react-bootstrap-icons';
-import movies from '../../../assets/movies';
 import Button from '../../../components/Button/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 import OrderDetail from '../../../components/Seller/OrderDetail/OrderDetai';
 
 function Order({ prop }) {
@@ -127,7 +126,7 @@ function Order({ prop }) {
             selector: (row) => (
                 <div className="action-row">
                     <Button className="icon-view" to={`/seller/order/detail/${row?.id}`}>
-                        <FontAwesomeIcon icon={faSearch} />
+                        <FontAwesomeIcon icon={faEye} />
                     </Button>
                 </div>
             ),

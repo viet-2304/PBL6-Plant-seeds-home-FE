@@ -20,7 +20,7 @@ const ProductForm = ({ prop }) => {
         price: 0,
         numberOfProduct: 0,
         shops: localStorage.getItem('shopId'),
-        imageURL: [''],
+        imagesUrl: [''],
         productType: '',
     });
     const [categories, setCategories] = useState([]);
@@ -45,7 +45,7 @@ const ProductForm = ({ prop }) => {
             .catch((err) => console.log(err));
 
         prop === 'update' &&
-            API.get(`/v1/product/getProduct?id=${pages[pages.length - 1]}`)
+            API.get(`v1/product/getProduct?id=${pages[pages.length - 1]}`)
                 .then((res) => {
                     setProducts(res.data);
                 })
@@ -55,26 +55,22 @@ const ProductForm = ({ prop }) => {
         handleUpload(image, setURL);
     };
     useEffect(() => {
-        setProducts({ ...products, imageURL: [URL] });
+        setProducts({ ...products, imagesUrl: [URL] });
     }, [URL]);
     const handleClick = () => {
         if (prop === 'create') {
-            API.post(
-                '/v1/product/addNewProduct',
-                { products },
-                {
+            axios
+                .post(BASE_API_URL + 'v1/product/addNewProduct', products, {
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: 'Bearer ' + localStorage.getItem('token'),
                     },
-                },
-            )
+                })
                 .then((res) => {
-                    setProducts(res.data);
-                    console.log('product', res.data);
+                    console.log('OK', res.data);
                 })
                 .catch((err) => console.log(err));
-        }
+        } else console.log('update');
     };
     console.log('l', products);
     return (
@@ -84,7 +80,7 @@ const ProductForm = ({ prop }) => {
                 // onSubmit={handleSubmit(handleCreateProduct)}
             >
                 <h1 className="text-center mb-3">
-                    {!prop ? 'Create ' : 'Update '}
+                    {prop === 'create' ? 'Create ' : 'Update '}
                     Product
                 </h1>
 
@@ -134,9 +130,10 @@ const ProductForm = ({ prop }) => {
                                     Choose this file
                                 </Button>
                             </div>
+                            {console.log(products, products?.imagesUrl)}
                             <img
-                                src={products?.imageURL[0]}
-                                // src="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
+                                // src={products?.imagesUrl !== [''] ? products?.imagesUrl[0] : ''}
+                                src="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
                                 alt=""
                                 className="image-product mt-3"
                             />
@@ -144,29 +141,26 @@ const ProductForm = ({ prop }) => {
                     </Col>
                     <Col md className="pt-3 pt-md-0">
                         <FloatingLabel className="mb-3" label="Category">
-                            <Form
-                                as="select"
+                            <Form.Select
                                 onChange={(e) => {
-                                    console.log('e.target.value', e.target.key);
-                                    setProducts({ ...products, productType: e.target.key });
+                                    console.log('e.target.valueaaa', e.target.value);
+                                    setProducts({
+                                        ...products,
+                                        productType: e.target.value,
+                                    });
                                 }}
-                                // onSelect={(e) => {}}
                             >
                                 <option value="all" key={-1}>
                                     Choose the category
                                 </option>
                                 {categories?.map((category) => {
-                                    console.log(category?.name);
                                     return (
-                                        <option
-                                            value={category?.name}
-                                            key={category?.productTypeID}
-                                        >
+                                        <option value={category?.productTypeId}>
                                             {category?.name.toUpperCase()}
                                         </option>
                                     );
                                 })}
-                            </Form>
+                            </Form.Select>
                         </FloatingLabel>
                         <FloatingLabel className="mb-3" label="Quantity In Stock">
                             <Form.Control
@@ -233,6 +227,7 @@ const ProductForm = ({ prop }) => {
                                     className="h-100"
                                     placeholder="Product Description"
                                     value={products?.description}
+                                    maxLength={255}
                                     onChange={(e) =>
                                         setProducts({
                                             ...products,
@@ -246,7 +241,7 @@ const ProductForm = ({ prop }) => {
                 </Row>
                 <div className="d-flex justify-content-center ">
                     <Button cart onClick={() => handleClick()}>
-                        {!prop ? 'Create ' : 'Update '}
+                        {prop === 'create' ? 'Create ' : 'Update '}
                     </Button>
                 </div>
             </div>

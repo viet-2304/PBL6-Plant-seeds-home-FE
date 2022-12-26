@@ -16,7 +16,7 @@ function OrderDetail() {
     const location = useLocation();
 
     const pages = location.pathname.split('/').splice(1);
-    const status = 'Done';
+    const status = 'Shipping';
     let total = 0;
     const handleConfirm = () => {
         axios
@@ -68,9 +68,9 @@ function OrderDetail() {
                     <div className="detail d-flex justify-content-between">
                         {/* {order?.orderResponseDto?.orderStatus === 'Pending' &&
                             'Vui lòng chờ xác nhận từ quản trị viên và chuẩn bị kiện hàng sẵn sàn nhé.'}
-                        {order?.orderResponseDto?.orderStatus === 'Shipping' &&
+                        {order?.orderResponseDto?.orderStatus === 'To Shipping' &&
                             'Vui lòng bấm xác nhận khi đã chuẩn bị xong kiện hàng.'}
-                        {order?.orderResponseDto?.orderStatus === 'Receive' &&
+                        {order?.orderResponseDto?.orderStatus === 'To Receive' &&
                             'Vui lòng chờ người nhận xác nhận đã nhận hàng thành công.'}
                         {order?.orderResponseDto?.orderStatus === 'Done' &&
                             'Xin chúc mừng bạn, kiện hàng đã được giao thành công. Vui lòng chờ trong vài ngày để nhận thanh toán.'} */}
