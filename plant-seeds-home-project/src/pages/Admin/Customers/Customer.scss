@@ -1,28 +1,22 @@
-.table {
-    .cellWrapper {
-        display: flex;
-        align-items: center;
-
-        .image {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            margin-right: 10px;
-            object-fit: cover;
-        }
+.customer {
+    margin-left: 33px;
+    .form-control {
+        padding: 8px;
+        font-size: 16px;
     }
-
-    .status {
-        padding: 5px;
-        border-radius: 5px;
-
-        &.Approved {
-            color: green;
-            background-color: rgba(0, 128, 0, 0.151);
+}
+.pagination {
+    flex-direction: row;
+    .page-item {
+        .page-link {
+            color: #198754 !important;
+            font-size: 20px;
         }
-        &.Pending {
-            color: goldenrod;
-            background-color: rgba(189, 189, 3, 0.103);
+        &.active {
+            .page-link {
+                color: white !important;
+                background-color: #198754 !important;
+            }
         }
     }
 }
