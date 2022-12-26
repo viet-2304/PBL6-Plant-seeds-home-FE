@@ -25,6 +25,7 @@ import AdminDashboard from '../pages/Admin/Dashboard/Dashboard';
 import Profile from '../pages/Seller/Profile/Profile';
 import ProductsAdmin from '../pages/Admin/Products/Products';
 import Customers from '../pages/Admin/Customers/Customers';
+import OrderAdmin from '../pages/Admin/Orders/Orders';
 import Checkout from '../pages/Checkout/Checkout';
 import Thankpage from '../components/Thankpage/Thankpage';
 
@@ -74,8 +75,9 @@ const privateRoutes = [
 
     //Admin
     { path: routes.dashboardAdmin, component: AdminDashboard, layout: AdminLayout },
-    { path: routes.productsAdmin, component: ProductsAdmin, layout: AdminLayout },
+    { path: routes.productsAdmin, component: ProductsAdmin, layout: AdminLayout, prop: 'all' },
     { path: routes.customers, component: Customers, layout: AdminLayout },
+    { path: routes.ordersAdmin, component: OrderAdmin, layout: AdminLayout, prop: 'all' },
 ];
 
 export { publicRoutes, privateRoutes };

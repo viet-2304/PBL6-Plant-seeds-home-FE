@@ -7,11 +7,11 @@ import './SliderProduct.scss';
 
 function SliderProduct({ items, title }) {
     return (
-        <Container fluid className="sliderItem-container px-0 py-5">
+        <Container fluid className="sliderItem-container px-0 py-5 mt-3">
             <div className="container-xl px-0 pb-2 d-flex flex-row justify-content-between align-items-center">
                 <h1 className="ps-4 fw-bold mb-3 mt-3 ">{title}</h1>
             </div>
-            <div className="container-xl px-0">
+            <div className="container-xl px-0 mb-5">
                 <Carousel
                     className="slide-space"
                     cols={4}
@@ -31,7 +31,7 @@ function SliderProduct({ items, title }) {
                     ]}
                     mobileBreakpoint={400}
                 >
-                    {/* <Carousel.Item key="1">
+                    <Carousel.Item key="1">
                         <ProductCard
                             title="Cây cảnh"
                             image="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
@@ -103,7 +103,7 @@ function SliderProduct({ items, title }) {
                             price="1"
                             to="product/1"
                         />
-                    </Carousel.Item> */}
+                    </Carousel.Item>
                     {items?.map((item) => {
                         return (
                             <Carousel.Item key={item.productId}>
