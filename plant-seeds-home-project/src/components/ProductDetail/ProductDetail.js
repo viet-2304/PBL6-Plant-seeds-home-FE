@@ -33,8 +33,9 @@ function ProductDetail() {
             .post(
                 BASE_API_URL + 'v1/cart/addToCart',
                 {
+                    id: '',
                     userId: currentUser.id,
-                    numberOfProduct: quantity,
+                    number: quantity,
                     productId: productById.productId,
                 },
                 {
