@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Form, Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import * as XLSX from 'xlsx';
 import BASE_API_URL from '../../../api/api';
 import ProductForm from '../../../components/Seller/ProductForm/ProductForm';
 import Button from '../../../components/Button/Button';
@@ -14,27 +14,51 @@ import './Product.scss';
 
 function Product({ prop }) {
     const navigate = useNavigate();
+    const [isShow, setIsShow] = useState(false);
     const [products, setProducts] = useState(movies);
 
     const handleAddNew = () => {
         navigate('/seller/product/create');
     };
-
+    const handleImportExcel = (action) => {
+        setIsShow(action);
+    };
+    const handleSave = () => {};
     const API = axios.create({
         baseURL: BASE_API_URL,
     });
-    // useEffect(() => {
-    //     const fetchProdutList = () => {
-    //         API.get('v1/product/getAllProduct')
-    //             .then((res) => {
-    //                 setProducts(res.data);
-    //                 console.log(res.data);
-    //             })
-    //             .catch((err) => console.log(err));
-    //     };
-    //     fetchProdutList();
-    // }, []);
-
+    useEffect(() => {
+        const fetchProdutList = () => {
+            API.get(`v1/product/getProductByShop?shopId=${localStorage.getItem('shopId')}`)
+                .then((res) => {
+                    setProducts(res.data);
+                    console.log(res.data);
+                })
+                .catch((err) => console.log(err));
+        };
+        fetchProdutList();
+    }, []);
+    const [items, setItems] = useState(['']);
+    const readExcel = (file) => {
+        const promise = new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsArrayBuffer(file);
+            fileReader.onload = (e) => {
+                const bufferArray = e.target.result;
+                const wb = XLSX.read(bufferArray, { type: 'buffer' });
+                const wsname = wb.SheetNames[0];
+                const ws = wb.Sheets[wsname];
+                const data = XLSX.utils.sheet_to_json(ws);
+                resolve(data);
+            };
+            fileReader.onerror = (error) => {
+                reject(error);
+            };
+        });
+        promise.then((d) => {
+            setItems(d);
+        });
+    };
     const labels = [
         {
             name: 'Name',
@@ -113,7 +137,15 @@ function Product({ prop }) {
                         >
                             Add New
                         </button>
+                        <button
+                            type="button"
+                            className="btn btn-outline-success "
+                            onClick={() => handleImportExcel(true)}
+                        >
+                            Import Excel
+                        </button>
                     </div>
+
                     <div className="mx-5">
                         <List
                             title="Products"
@@ -134,6 +166,65 @@ function Product({ prop }) {
                     <ProductForm prop={'update'} />
                 </div>
             )}
+            <Modal show={isShow} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+                <Modal.Header closeButton onHide={() => setIsShow(false)}>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        <h3 className="fw-bolder">Choose a file </h3>
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group
+                            controlId="formFile"
+                            className="mb-3 d-flex  justify-content-center"
+                        >
+                            <Form.Control
+                                type="file"
+                                className="fs-3"
+                                onChange={(e) => {
+                                    const file = e.target.files[0];
+                                    readExcel(file);
+                                }}
+                            />
+                        </Form.Group>
+                        <table className="table container">
+                            <thead>
+                                {items !== null && items !== 'undefined' && (
+                                    <tr>
+                                        {Object.keys(items[0]).map((d) => (
+                                            <th scope="col">{d}</th>
+                                        ))}
+                                    </tr>
+                                )}
+                            </thead>
+                            <tbody>
+                                {items.map((item, index) => (
+                                    <tr key={index}>
+                                        <td>{item.ProductName}</td>
+                                        <td>{item.description}</td>
+                                        <td>{item.EXP}</td>
+                                        <td>{item.MFG}</td>
+                                        <td>{item.manufacturer}</td>
+                                        <td>{item.price}</td>
+                                        <td>{item.rating}</td>
+                                        <td>{item.numberofProduct}</td>
+                                        <td>{item.productType}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary py-2 px-4 fs-3" onClick={() => setIsShow(false)}>
+                        Close
+                    </Button>
+                    <Button variant="primary py-2 px-4 fs-3" onClick={() => handleSave(false)}>
+                        Save
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+            {/* )} */}
         </Container>
     );
 }

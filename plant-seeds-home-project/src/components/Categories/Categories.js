@@ -49,6 +49,12 @@ function Categories() {
                             <CategoryItem item={item} index={index} />
                         </Col>
                     ))}
+                    {/* <Col md={2} sm={6} key={5}>
+                        <CategoryItem item={{ name: 'Cây Cảnh' }} index={3} />
+                    </Col>
+                    <Col md={2} sm={6} key={5}>
+                        <CategoryItem item={{ name: 'Cây Cảnh' }} index={3} />
+                    </Col> */}
                 </Row>
             </div>
         </Container>

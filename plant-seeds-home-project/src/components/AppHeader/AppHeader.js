@@ -1,7 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faShop, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { faCircleUser } from '@fortawesome/free-regular-svg-icons';
 import { useState } from 'react';
 import { Nav, Navbar, Form, Container } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -16,7 +15,6 @@ import BASE_API_URL from '../../api/api';
 import { useEffect } from 'react';
 
 function AppHeader() {
-    console.log('header');
     const [currentToken, setCurrentToken] = useState(localStorage.getItem('token'));
     const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState({});
@@ -34,11 +32,12 @@ function AppHeader() {
             })
                 .then((res) => {
                     setCurrentUser(res.data);
+                    console.log('user', res.data);
                     if (res.data.roleId === 'seller') {
                         setIsSeller(true);
                     }
                 })
-                .catch((err) => console.log('err', err));
+                .catch((err) => console.log('user', err));
         };
         fetchCurrentUser();
     }, []);
@@ -127,7 +126,7 @@ function AppHeader() {
                             className="seller"
                             rounded
                             small
-                            to={isSeller === false ? routes.dashboard : routes.registerSeller}
+                            to={isSeller === true ? routes.dashboard : routes.registerSeller}
                             rightIcon={<FontAwesomeIcon icon={faShop} />}
                         >
                             <p>Seller Centre</p>

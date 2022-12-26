@@ -7,29 +7,79 @@ import moment from 'moment';
 import BASE_API_URL from '../../../api/api';
 import Button from '../../Button/Button';
 import './ProductForm.scss';
+import handleUpload from '../../../api/firebase';
 const ProductForm = ({ prop }) => {
-    const [products, setProducts] = useState([]);
+    const [URL, setURL] = useState('');
+    const [image, setImage] = useState(document.querySelector('#file'));
+    const [products, setProducts] = useState({
+        productName: '',
+        description: '',
+        EXP: '',
+        MFG: '',
+        manufacturer: '',
+        price: 0,
+        numberOfProduct: 0,
+        shops: localStorage.getItem('shopId'),
+        imageURL: [''],
+        productType: '',
+    });
+    const [categories, setCategories] = useState([]);
     const location = useLocation();
     const pages = location.pathname.split('/').splice(1);
-
     const API = axios.create({
         baseURL: BASE_API_URL,
     });
 
+    const onFileChange = (e) => {
+        if (e.target && e.target.files[0]) {
+            setImage(e.target.files[0]);
+        }
+    };
+
     useEffect(() => {
-        const fetchProductList = () => {
+        API.get('/v1/product/getAllProductType')
+            .then((res) => {
+                setCategories(res.data);
+                console.log('r: ', res.data);
+            })
+            .catch((err) => console.log(err));
+
+        prop === 'update' &&
             API.get(`/v1/product/getProduct?id=${pages[pages.length - 1]}`)
                 .then((res) => {
-                    console.log('r: ', res.data);
                     setProducts(res.data);
                 })
                 .catch((err) => console.log(err));
-        };
-        fetchProductList();
     }, []);
+    const handleUpdateImage = () => {
+        handleUpload(image, setURL);
+    };
+    useEffect(() => {
+        setProducts({ ...products, imageURL: [URL] });
+    }, [URL]);
+    const handleClick = () => {
+        if (prop === 'create') {
+            API.post(
+                '/v1/product/addNewProduct',
+                { products },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: 'Bearer ' + localStorage.getItem('token'),
+                    },
+                },
+            )
+                .then((res) => {
+                    setProducts(res.data);
+                    console.log('product', res.data);
+                })
+                .catch((err) => console.log(err));
+        }
+    };
+    console.log('l', products);
     return (
         <Container fluid="xl" className="d-flex justify-content-center px-0 py-md-3">
-            <Form
+            <div
                 className="bg-white shadow p-4 rounded w-100 fs-20"
                 // onSubmit={handleSubmit(handleCreateProduct)}
             >
@@ -40,11 +90,7 @@ const ProductForm = ({ prop }) => {
 
                 <Row className="mb-3">
                     <Col md>
-                        <FloatingLabel
-                            controlId="floatingInput"
-                            label="Product Name"
-                            className="mb-3"
-                        >
+                        <FloatingLabel id="floatingInput" label="Product Name" className="mb-3">
                             <Form.Control
                                 type="text"
                                 placeholder="Product Name"
@@ -57,11 +103,7 @@ const ProductForm = ({ prop }) => {
                                 }
                             />
                         </FloatingLabel>
-                        <FloatingLabel
-                            controlId="floatingInput"
-                            label="Manufacturer"
-                            className="mb-3"
-                        >
+                        <FloatingLabel id="floatingInput" label="Manufacturer" className="mb-3">
                             <Form.Control
                                 type="text"
                                 placeholder="Manufacturer"
@@ -74,14 +116,57 @@ const ProductForm = ({ prop }) => {
                                 }
                             />
                         </FloatingLabel>
-
+                        <Form.Group
+                            id="formFile"
+                            className="mt-3 d-flex flex-column justify-content-center "
+                        >
+                            <div className="d-flex ">
+                                <Form.Control
+                                    type="file"
+                                    id="file"
+                                    name="file"
+                                    size="lg"
+                                    multiple={false}
+                                    onChange={onFileChange}
+                                    className="me-5"
+                                />
+                                <Button cart onClick={() => handleUpdateImage()}>
+                                    Choose this file
+                                </Button>
+                            </div>
+                            <img
+                                src={products?.imageURL[0]}
+                                // src="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
+                                alt=""
+                                className="image-product mt-3"
+                            />
+                        </Form.Group>
+                    </Col>
+                    <Col md className="pt-3 pt-md-0">
                         <FloatingLabel className="mb-3" label="Category">
-                            <Form.Select>
-                                <option>Choose the category</option>
-                                <option value="indoor">indoor</option>
-                                <option value="outdoor">outdoor</option>
-                                <option value="fruittree">fruittree</option>
-                            </Form.Select>
+                            <Form
+                                as="select"
+                                onChange={(e) => {
+                                    console.log('e.target.value', e.target.key);
+                                    setProducts({ ...products, productType: e.target.key });
+                                }}
+                                // onSelect={(e) => {}}
+                            >
+                                <option value="all" key={-1}>
+                                    Choose the category
+                                </option>
+                                {categories?.map((category) => {
+                                    console.log(category?.name);
+                                    return (
+                                        <option
+                                            value={category?.name}
+                                            key={category?.productTypeID}
+                                        >
+                                            {category?.name.toUpperCase()}
+                                        </option>
+                                    );
+                                })}
+                            </Form>
                         </FloatingLabel>
                         <FloatingLabel className="mb-3" label="Quantity In Stock">
                             <Form.Control
@@ -99,7 +184,7 @@ const ProductForm = ({ prop }) => {
                             />
                         </FloatingLabel>
 
-                        <FloatingLabel label="Price">
+                        <FloatingLabel label="Price" className="mb-3">
                             <Form.Control
                                 type="number"
                                 step="10000"
@@ -113,26 +198,17 @@ const ProductForm = ({ prop }) => {
                                 }
                             />
                         </FloatingLabel>
-
-                        <Form.Group controlId="formFile" className="mt-3">
-                            <Form.Control type="file" size="lg" multiple={false} />
-                        </Form.Group>
-                    </Col>
-                    <Col md className="pt-3 pt-md-0">
                         <FloatingLabel className="mb-3" label="Date of manufacture">
                             <Form.Control
                                 className="form-control "
                                 type="date"
                                 placeholder="Date of manufacture"
-                                value={moment(products?.mfg).utc().format('YYYY-MM-DD')}
+                                value={moment(products?.MFG).utc().format('YYYY-MM-DD')}
                                 onChange={(e) =>
-                                    setProducts(
-                                        {
-                                            ...products,
-                                            mfg: e.target.value + 'T00:00:00.000+00:00',
-                                        },
-                                        console.log(e.target.value),
-                                    )
+                                    setProducts({
+                                        ...products,
+                                        MFG: e.target.value + 'T00:00:00.000+00:00',
+                                    })
                                 }
                             />
                         </FloatingLabel>
@@ -141,15 +217,12 @@ const ProductForm = ({ prop }) => {
                                 type="date"
                                 className="form-control"
                                 placeholder="Expiration date"
-                                value={moment(products?.exp).utc().format('YYYY-MM-DD')}
+                                value={moment(products?.EXP).utc().format('YYYY-MM-DD')}
                                 onChange={(e) =>
-                                    setProducts(
-                                        {
-                                            ...products,
-                                            exp: e.target.value + 'T00:00:00.000+00:00',
-                                        },
-                                        console.log(products.exp),
-                                    )
+                                    setProducts({
+                                        ...products,
+                                        EXP: e.target.value + 'T00:00:00.000+00:00',
+                                    })
                                 }
                             />
                         </FloatingLabel>
@@ -172,11 +245,11 @@ const ProductForm = ({ prop }) => {
                     </Col>
                 </Row>
                 <div className="d-flex justify-content-center ">
-                    <Button cart className="" to={'/seller/product/all'}>
+                    <Button cart onClick={() => handleClick()}>
                         {!prop ? 'Create ' : 'Update '}
                     </Button>
                 </div>
-            </Form>
+            </div>
         </Container>
     );
 };

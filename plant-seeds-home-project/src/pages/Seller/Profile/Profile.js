@@ -1,13 +1,16 @@
 import axios from 'axios';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Container, Form, Image } from 'react-bootstrap';
+
 import BASE_API_URL from '../../../api/api';
 import Button from '../../../components/Button/Button';
 import './Profile.scss';
+import handleUpload from '../../../api/firebase';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 function Profile() {
-    const [url, setURL] = useState('');
+    const [URL, setURL] = useState('');
     const [shop, setShop] = useState({});
     const [image, setImage] = useState(document.querySelector('#file'));
     const onFileChange = (e) => {
@@ -16,6 +19,10 @@ function Profile() {
         }
     };
     const handleClick = () => {
+        handleUpload(image, setURL);
+        console.log('u', URL);
+    };
+    const handleClick1 = () => {
         // axios
         //     .post(BASE_API_URL + 'v1/shop/updateShop', shop, {
         //         headers: {
@@ -57,22 +64,42 @@ function Profile() {
     //         })
     //         .catch((err) => console.log('err', err));
     // }, []);
+    console.log('URL', URL);
+    useEffect(() => {
+        console.log('URL', URL);
+    }, [URL]);
     return (
         <Container className="profile-container col px-4">
             <div className="top-info">Profile</div>
             <div className="info">
                 <div className="row my-5 ">
                     <div className="col image">
-                        <Image
-                            className="shop-logo me-3"
-                            src={
-                                url ||
-                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_mNmpqHOTakNgIaKR5bxJFfkUtiLdPBXPMw&usqp=CAU'
-                            }
-                            // src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_mNmpqHOTakNgIaKR5bxJFfkUtiLdPBXPMw&usqp=CAU"
-                            alt="imageuser"
-                        />
-                        <Form.Group id="formFile" className="mt-3">
+                        <div className="wrapper">
+                            <Image
+                                className="shop-logo "
+                                src={
+                                    URL ||
+                                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_mNmpqHOTakNgIaKR5bxJFfkUtiLdPBXPMw&usqp=CAU'
+                                }
+                                alt="imageuser"
+                            />
+
+                            <div class="file-upload">
+                                <Form.Group id="formFile">
+                                    <Form.Control
+                                        type="file"
+                                        id="file"
+                                        name="file"
+                                        size="sm"
+                                        multiple={false}
+                                        onChange={onFileChange}
+                                    />
+                                </Form.Group>
+                                <FontAwesomeIcon icon={faArrowUp} className="icon" />
+                                {/* <i class="fa fa-arrow-up"></i> */}
+                            </div>
+                        </div>
+                        {/* <Form.Group id="formFile" className="mt-3">
                             <Form.Control
                                 type="file"
                                 id="file"
@@ -81,7 +108,7 @@ function Profile() {
                                 multiple={false}
                                 onChange={onFileChange}
                             />
-                        </Form.Group>
+                        </Form.Group> */}
                     </div>
                 </div>
                 <div className="row my-5">
@@ -160,27 +187,7 @@ function Profile() {
                         />
                     </div>
                 </div>
-                {/* <div className="row my-5">
-                    <label htmlFor="logoShop" className="col-sm-3 form-label ">
-                        Logo
-                    </label>
-                    <div className="col-sm-9">
-                        <div className="row">
-                            <div className="col me-5">
-                                <Form.Group controlId="formFile" className="mt-3">
-                                    <Form.Control type="file" size="lg" multiple={false} />
-                                </Form.Group>
-                            </div>
-                            <div className="col ">
-                                <Image
-                                    className="shop-logo me-3"
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_mNmpqHOTakNgIaKR5bxJFfkUtiLdPBXPMw&usqp=CAU"
-                                    alt="imageuser"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
+
                 <div className="row my-5">
                     <div className="d-flex justify-content-center ">
                         <Button cart onClick={() => handleClick()}>
