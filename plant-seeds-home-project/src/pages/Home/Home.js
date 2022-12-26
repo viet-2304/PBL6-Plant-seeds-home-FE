@@ -50,7 +50,7 @@ function Home() {
         <div>
             <div className={cx('wrapper')}>
                 <Categories />
-                {/* <SliderProduct items={products} title={'New products'}></SliderProduct> */}
+                <SliderProduct items={products} title={'Products Best Seller'}></SliderProduct>
             </div>
             {/* floating icon */}
             <div className={cx('icons')}>

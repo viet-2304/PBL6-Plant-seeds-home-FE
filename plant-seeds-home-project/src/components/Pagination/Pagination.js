@@ -21,7 +21,7 @@ function Pagination({ title, data, numberPerPage }) {
         setDisplayProducts(data?.slice(visitedPage, visitedPage + numberPerPage));
     }, [data, numberPerPage, visitedPage]);
     return (
-        <Container className="pagination">
+        <Container className="pagination-container">
             <h1 className="fw-bold mb-5">{title.toUpperCase()}</h1>
             <div className="row row-cols-lg-4 row-cols-md-2 g-4">
                 {/* <div className="col">
