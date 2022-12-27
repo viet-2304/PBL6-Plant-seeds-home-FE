@@ -9,6 +9,7 @@ import Button from '../../Button/Button';
 import './ProductForm.scss';
 import handleUpload from '../../../api/firebase';
 const ProductForm = ({ prop }) => {
+    const navigate = useNavigate();
     const [URL, setURL] = useState('');
     const [image, setImage] = useState(document.querySelector('#file'));
     const [products, setProducts] = useState({
@@ -23,7 +24,12 @@ const ProductForm = ({ prop }) => {
         imagesUrl: [''],
         productType: '',
     });
-    const [categories, setCategories] = useState([]);
+    const categories = [
+        { name: 'rau', productTypeId: '5e41c0e652ae11edbdc30242ac120002' },
+        { name: 'củ', productTypeId: '75d100dc52ae11edbdc30242ac120002' },
+        { name: 'hoa', productTypeId: '8202ea1e52ae11edbdc30242ac120002' },
+        { name: 'quả', productTypeId: '8202ea1e52ae11edbdc30242ac120022' },
+    ];
     const location = useLocation();
     const pages = location.pathname.split('/').splice(1);
     const API = axios.create({
@@ -37,20 +43,31 @@ const ProductForm = ({ prop }) => {
     };
 
     useEffect(() => {
-        API.get('/v1/product/getAllProductType')
-            .then((res) => {
-                setCategories(res.data);
-                console.log('r: ', res.data);
-            })
-            .catch((err) => console.log(err));
-
+        console.log('categories', categories);
         prop === 'update' &&
             API.get(`v1/product/getProduct?id=${pages[pages.length - 1]}`)
                 .then((res) => {
+                    console.log('res.data', res.data);
                     setProducts(res.data);
+                    setProducts({
+                        productId: res.data.productId,
+                        productName: res.data.productName,
+                        description: res.data.description,
+                        EXP: res.data.exp,
+                        MFG: res.data.mfg,
+                        manufacturer: res.data.manufacturer,
+                        price: res.data.price,
+                        numberOfProduct: res.data.numberOfProduct,
+                        shops: localStorage.getItem('shopId'),
+                        imagesUrl: [URL],
+                        productType: categories?.find(
+                            (category) => category?.name === res.data?.productType,
+                        )?.productTypeId,
+                    });
                 })
                 .catch((err) => console.log(err));
     }, []);
+    console.log('products', products);
     const handleUpdateImage = () => {
         handleUpload(image, setURL);
     };
@@ -68,9 +85,23 @@ const ProductForm = ({ prop }) => {
                 })
                 .then((res) => {
                     console.log('OK', res.data);
+                    navigate('/seller/product/all');
                 })
                 .catch((err) => console.log(err));
-        } else console.log('update');
+        } else {
+            axios
+                .post(BASE_API_URL + 'v1/product/editProduct', products, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: 'Bearer ' + localStorage.getItem('token'),
+                    },
+                })
+                .then((res) => {
+                    console.log('OK', res.data);
+                    navigate('/seller/product/all');
+                })
+                .catch((err) => console.log(err));
+        }
     };
     console.log('l', products);
     return (
@@ -132,8 +163,7 @@ const ProductForm = ({ prop }) => {
                             </div>
                             {console.log(products, products?.imagesUrl)}
                             <img
-                                // src={products?.imagesUrl !== [''] ? products?.imagesUrl[0] : ''}
-                                src="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
+                                src={products?.imagesUrl !== [''] ? products?.imagesUrl[0] : ''}
                                 alt=""
                                 className="image-product mt-3"
                             />
@@ -142,8 +172,10 @@ const ProductForm = ({ prop }) => {
                     <Col md className="pt-3 pt-md-0">
                         <FloatingLabel className="mb-3" label="Category">
                             <Form.Select
+                                defaultValue={
+                                    products.productType !== '' ? products.productType : 'all'
+                                }
                                 onChange={(e) => {
-                                    console.log('e.target.valueaaa', e.target.value);
                                     setProducts({
                                         ...products,
                                         productType: e.target.value,
@@ -197,7 +229,7 @@ const ProductForm = ({ prop }) => {
                                 className="form-control "
                                 type="date"
                                 placeholder="Date of manufacture"
-                                value={moment(products?.MFG).utc().format('YYYY/MM/DD')}
+                                value={moment(products?.MFG).utc().format('YYYY-MM-DD')}
                                 onChange={(e) =>
                                     setProducts({
                                         ...products,

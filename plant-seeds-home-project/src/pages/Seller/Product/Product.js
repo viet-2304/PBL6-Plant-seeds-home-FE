@@ -45,7 +45,19 @@ function Product({ prop }) {
             })
             .catch((err) => console.log(err));
     };
-
+    const handleDelete = (productId) => {
+        axios
+            .delete(BASE_API_URL + `v1/product/deleteProduct?productId=${productId}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + localStorage.getItem('token'),
+                },
+            })
+            .then(() => {
+                console.log('DELETE OK');
+            })
+            .catch((err) => console.log(err));
+    };
     useEffect(() => {
         const fetchProdutList = () => {
             API.get(`v1/product/getProductByShop?shopId=${localStorage.getItem('shopId')}`)
@@ -154,7 +166,7 @@ function Product({ prop }) {
                     <Button className="icon-pen" to={`/seller/product/update/${row?.productId}`}>
                         <FontAwesomeIcon icon={faPen} />
                     </Button>
-                    <Button className="remove">
+                    <Button className="remove" onClick={() => handleDelete(row?.productId)}>
                         <FontAwesomeIcon icon={faTrash} />
                     </Button>
                 </div>
@@ -205,8 +217,17 @@ function Product({ prop }) {
             )}
             <Modal show={isShow} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                 <Modal.Header closeButton onHide={() => setIsShow(false)}>
-                    <Modal.Title id="contained-modal-title-vcenter">
-                        <h3 className="fw-bolder">Choose a file </h3>
+                    <Modal.Title id="contained-modal-title-vcenter modal-title text-align-center">
+                        <h3 className="fw-bolder text-align-center align-self-center">
+                            Choose a file
+                        </h3>
+                        <Button
+                            variant="primary"
+                            className="pe-5 me-5 fs-3"
+                            onClick={() => handleSave(false)}
+                        >
+                            Save
+                        </Button>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -228,9 +249,6 @@ function Product({ prop }) {
                             <thead>
                                 {items !== null && items !== 'undefined' && (
                                     <tr>
-                                        {/* {Object.keys(items[0]).map((d) => (
-                                            <th scope="col">{d}</th>
-                                        ))} */}
                                         {label.map((d) => (
                                             <th scope="col">{d}</th>
                                         ))}
@@ -258,12 +276,8 @@ function Product({ prop }) {
                     <Button variant="secondary py-2 px-4 fs-3" onClick={() => setIsShow(false)}>
                         Close
                     </Button>
-                    <Button variant="primary py-2 px-4 fs-3" onClick={() => handleSave(false)}>
-                        Save
-                    </Button>
                 </Modal.Footer>
             </Modal>
-            {/* )} */}
         </Container>
     );
 }

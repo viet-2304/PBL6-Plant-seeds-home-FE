@@ -9,7 +9,7 @@ const routes = {
     productByID: '/products/:category/:id',
     profile: '/account/:userid/profile',
     purchase: '/account/:userid/purchase',
-    shop: '/shop',
+    shop: '/shop/:shipId',
     password: '/account/:userid/password',
     checkout: '/checkout',
     thankpage: '/api/v1/paymentsuccess',
