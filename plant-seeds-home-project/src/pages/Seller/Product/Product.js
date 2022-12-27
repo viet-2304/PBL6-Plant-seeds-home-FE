@@ -126,7 +126,7 @@ function Product({ prop }) {
                         src={
                             row.imagesUrl !== []
                                 ? row.imagesUrl[0]
-                                : 'https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1'
+                                : ''
                         }
                         alt=""
                         className="image"
