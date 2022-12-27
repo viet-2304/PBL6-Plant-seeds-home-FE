@@ -85,14 +85,6 @@ function Order({ prop }) {
             selector: (row) => (
                 <div className="cellWrapper">
                     <span className="pe-3">{row.customer}</span>
-                    <img
-                        src={
-                            row.imageURL ||
-                            'https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1'
-                        }
-                        alt=""
-                        className="image"
-                    />
                 </div>
             ),
             sortable: true,

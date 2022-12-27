@@ -31,7 +31,7 @@ function SliderProduct({ items, title }) {
                     ]}
                     mobileBreakpoint={400}
                 >
-                    <Carousel.Item key="1">
+                    {/* <Carousel.Item key="1">
                         <ProductCard
                             title="Cây cảnh"
                             image="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
@@ -103,13 +103,13 @@ function SliderProduct({ items, title }) {
                             price="1"
                             to="product/1"
                         />
-                    </Carousel.Item>
+                    </Carousel.Item> */}
                     {items?.map((item) => {
                         return (
                             <Carousel.Item key={item.productId}>
                                 <ProductCard
                                     title={item.productName}
-                                    image="https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1"
+                                    image={item.imagesUrl ? item.imagesUrl[0] : ''}
                                     price={item.price}
                                     to={`/products/${item.productType}/${item.productId}`}
                                 />
