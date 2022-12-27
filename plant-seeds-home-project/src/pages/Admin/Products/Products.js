@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Form, Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import * as XLSX from 'xlsx';
 import BASE_API_URL from '../../../api/api';
 import ProductForm from '../../../components/Seller/ProductForm/ProductForm';
 import Button from '../../../components/Button/Button';
@@ -12,28 +12,22 @@ import List from '../../../components/Seller/Table/Table';
 import movies from '../../../assets/movies';
 import './Products.scss';
 
-function Products({ prop }) {
-    const navigate = useNavigate();
-    const [products, setProducts] = useState(movies);
-
-    const handleAddNew = () => {
-        navigate('/seller/product/create');
-    };
-
+function Product({ prop }) {
+    const [products, setProducts] = useState([]);
     const API = axios.create({
         baseURL: BASE_API_URL,
     });
-    // useEffect(() => {
-    //     const fetchProdutList = () => {
-    //         API.get('v1/product/getAllProduct')
-    //             .then((res) => {
-    //                 setProducts(res.data);
-    //                 console.log(res.data);
-    //             })
-    //             .catch((err) => console.log(err));
-    //     };
-    //     fetchProdutList();
-    // }, []);
+
+    useEffect(() => {
+        const fetchProductList = () => {
+            API.get('v1/product/getAllProduct')
+                .then((res) => {
+                    setProducts(res.data);
+                })
+                .catch((err) => console.log(err));
+        };
+        fetchProductList();
+    }, []);
 
     const labels = [
         {
@@ -51,11 +45,7 @@ function Products({ prop }) {
             selector: (row) => (
                 <div className="wrapper">
                     <img
-                        src={
-                            row.imageURL !== null
-                                ? row.imageURL
-                                : 'https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1'
-                        }
+                        src={row.imagesUrl !== [] ? row.imagesUrl[0] : ''}
                         alt=""
                         className="image"
                     />
@@ -91,9 +81,6 @@ function Products({ prop }) {
             name: 'Action',
             selector: (row) => (
                 <div className="cellActions">
-                    <Button className="icon-pen" to={`/seller/product/update/${row?.productId}`}>
-                        <FontAwesomeIcon icon={faPen} />
-                    </Button>
                     <Button className="remove">
                         <FontAwesomeIcon icon={faTrash} />
                     </Button>
@@ -105,15 +92,6 @@ function Products({ prop }) {
         <Container className="d-flex flex-column justify-content-center ">
             {prop === 'all' && (
                 <div className="button-action">
-                    <div className="d-flex  aglin-items-center mb-2 mx-5">
-                        <button
-                            type="button"
-                            className="btn btn-outline-success "
-                            onClick={() => handleAddNew()}
-                        >
-                            Add New
-                        </button>
-                    </div>
                     <div className="mx-5">
                         <List
                             title="Products"
@@ -126,7 +104,7 @@ function Products({ prop }) {
             )}
             {prop === 'create' && (
                 <div className="mx-5">
-                    <ProductForm />
+                    <ProductForm prop={'create'} />
                 </div>
             )}
             {prop === 'update' && (
@@ -134,8 +112,10 @@ function Products({ prop }) {
                     <ProductForm prop={'update'} />
                 </div>
             )}
+
+            {/* )} */}
         </Container>
     );
 }
 
-export default Products;
+export default Product;

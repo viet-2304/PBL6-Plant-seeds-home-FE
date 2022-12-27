@@ -9,12 +9,17 @@ const CustomerRow = ({ customer }) => {
             <td>{customer.phoneNumber}</td>
             <td id="emailBar">{customer.email}</td>
             <td>{customer.address}</td>
+            <td>{customer.active}</td>
             <td>{customer.userName}</td>
-            <td>{customer.imageAvatar}</td>
-            <td>{customer.roleId}</td>
-
             <td>
-                <Button variant="link fs-4" href={`/customers/update?userId=${customer.userId}`}>
+                <img
+                    src="https://toigingiuvedep.vn/wp-content/uploads/2022/01/anh-meo-cute.jpg"
+                    width={40}
+                ></img>
+            </td>
+            <td>{customer.roleId}</td>
+            <td>
+                <Button variant="link fs-4" href={`/admin/customers/update/${customer.id}`}>
                     EDIT
                 </Button>
                 <Button variant="link fs-4">

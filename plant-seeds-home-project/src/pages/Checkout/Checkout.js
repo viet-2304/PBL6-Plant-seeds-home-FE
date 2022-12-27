@@ -96,7 +96,7 @@ function Checkout() {
                         <div className="col-md-5 col-lg-4 order-md-last">
                             <h4 className="d-flex justify-content-between align-items-center mb-3">
                                 <span className="text-success fs-3">Your cart</span>
-                                <span className="badge bg-success rounded-pill">{count}</span>
+                                <span className="badge bg-success rounded-pill">3</span>
                             </h4>
                             {/* Cart detail */}
                             {cartItems?.map((item) => {
@@ -116,10 +116,11 @@ function Checkout() {
                                                     parseInt(product?.numberOfProductInCart);
                                                 subTotalByShop += subTotal;
                                                 subFee += subTotal;
-                                                console.log('res: ', subFee);
+                                                // console.log('res: ', subFee);
                                                 // sum = sum + subFee;
                                                 // console.log('a', sum, subFee, subTotalByShop);
-                                                console.log(subFee);
+                                                // console.log(subFee);
+                                                count += 1;
                                                 return (
                                                     <>
                                                         <div className="product-cart d-flex justify-content-between">

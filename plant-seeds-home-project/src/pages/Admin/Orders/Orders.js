@@ -9,13 +9,12 @@ import axios from 'axios';
 import BASE_API_URL from '../../../api/api';
 import DataTable from 'react-data-table-component';
 import { SortDown } from 'react-bootstrap-icons';
-import movies from '../../../assets/movies';
 import Button from '../../../components/Button/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import ProductForm from '../../../components/Seller/ProductForm/ProductForm';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
+import OrderDetail from '../../../components/Admin/OrderDetail/OrderDetail';
 
-function Orders({ prop }) {
+function Order({ prop }) {
     const [orderData, setOrderData] = useState();
 
     const API = axios.create({
@@ -24,8 +23,9 @@ function Orders({ prop }) {
     const [order, setOrder] = useState([]);
 
     useEffect(() => {
-        API.get(`v1/order/getOrderByShopId?shopId=${localStorage.getItem('shopId')}`, {
+        API.get('v1/order/getAllOrder', {
             headers: {
+                'Content-Type': 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
         })
@@ -45,6 +45,7 @@ function Orders({ prop }) {
                 ...pre,
                 {
                     id: item.orderResponseDto.orderId,
+                    shopName: item.listProduct[0]?.shopName,
                     customer: item.orderResponseDto.userName,
                     imageURL: '',
                     quantity: item.listProduct.length,
@@ -81,18 +82,27 @@ function Orders({ prop }) {
             sortable: true,
         },
         {
+            name: 'Shop Name',
+            selector: (row) => (
+                <div className="cellWrapper">
+                    <span className="pe-3">{row.shopName}</span>
+                </div>
+            ),
+            sortable: true,
+        },
+        {
             name: 'Customer',
             selector: (row) => (
                 <div className="cellWrapper">
-                    <span className="pe-2">{row.customer}</span>
-                    <img
+                    <span className="pe-3">{row.customer}</span>
+                    {/* <img
                         src={
                             row.imageURL ||
                             'https://cf.shopee.vn/file/59ced2b1371dd71a64a52af77b69d3d1'
                         }
                         alt=""
                         className="image"
-                    />
+                    /> */}
                 </div>
             ),
             sortable: true,
@@ -108,7 +118,7 @@ function Orders({ prop }) {
             sortable: true,
         },
         {
-            name: 'Payment',
+            name: 'Payment Method',
             selector: (row) => (
                 <div className={row.payment === 'Thanh toán bằng tiền mặt' ? 'cash' : 'paypal'}>
                     {row.payment === 'Thanh toán bằng tiền mặt' ? 'Cash' : 'Paypal'}
@@ -118,15 +128,15 @@ function Orders({ prop }) {
         },
         {
             name: 'Status',
-            selector: (row) => row.status,
+            selector: (row) => <div className={row.status.toLowerCase()}>{row.status}</div>,
             sortable: true,
         },
         {
             name: 'Action',
             selector: (row) => (
                 <div className="action-row">
-                    <Button className="icon-view" to={`/seller/order/${row?.id}`}>
-                        <FontAwesomeIcon icon={faSearch} />
+                    <Button className="icon-view" to={`/admin/orders/${row?.id}`}>
+                        <FontAwesomeIcon icon={faEye} />
                     </Button>
                 </div>
             ),
@@ -159,11 +169,11 @@ function Orders({ prop }) {
 
             {prop === 'detail' && (
                 <div className="mx-5">
-                    <ProductForm />
+                    <OrderDetail />
                 </div>
             )}
         </div>
     );
 }
 
-export default Orders;
+export default Order;
