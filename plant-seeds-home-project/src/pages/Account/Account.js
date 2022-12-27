@@ -127,7 +127,7 @@ function Account({ prop }) {
             >
                 <div className="container-xl px-5 py-5">
                     <Row>
-                        <Col md={4} className="menu-col justify-content-center py-4">
+                        <Col md={4} className="menu-col justify-content-center py-4 shadow">
                             <Nav variant="pills" className="flex-column">
                                 <div className="user my-3 d-flex flex-row align-items-center justify-content-center ">
                                     <Image
@@ -137,7 +137,7 @@ function Account({ prop }) {
                                     />
                                     <div>
                                         <div className="user-name text-center">
-                                            Phan Thị Thu Sương
+                                            {currentUser.userName}
                                         </div>
                                         <button className="text-center">
                                             <FontAwesomeIcon icon={faPen} />
@@ -166,7 +166,7 @@ function Account({ prop }) {
                                 </Nav.Item>
                             </Nav>
                         </Col>
-                        <Col md={8} className="content-col">
+                        <Col md={8} className="content-col shadow">
                             <Tab.Content className="p-4 h-100">
                                 <Tab.Pane eventKey="profile">
                                     <Container className="col px-4">
@@ -355,13 +355,11 @@ function Account({ prop }) {
                                         >
                                             <Tab eventKey="all" title="All">
                                                 <PurchaseItem />
+                                                {/* <PurchaseItem /> */}
+                                            </Tab>
+
+                                            <Tab eventKey="pending" title="Pending">
                                                 <PurchaseItem />
-                                            </Tab>
-                                            <Tab eventKey="topay" title="To Pay">
-                                                ssdf
-                                            </Tab>
-                                            <Tab eventKey="toship" title="To Ship">
-                                                sdfd
                                             </Tab>
                                             <Tab eventKey="toreceive" title="To Receive">
                                                 sdfd

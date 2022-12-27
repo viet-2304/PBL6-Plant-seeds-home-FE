@@ -28,6 +28,8 @@ import Customers from '../pages/Admin/Customers/Customers';
 import OrderAdmin from '../pages/Admin/Orders/Orders';
 import Checkout from '../pages/Checkout/Checkout';
 import Thankpage from '../components/Thankpage/Thankpage';
+import OrderDetailAdmin from '../components/Admin/OrderDetail/OrderDetail';
+import ShopAdmin from '../pages/Admin/ShopAdmin/ShopAdmin';
 
 //Public routes
 const publicRoutes = [
@@ -76,8 +78,18 @@ const privateRoutes = [
     //Admin
     { path: routes.dashboardAdmin, component: AdminDashboard, layout: AdminLayout },
     { path: routes.productsAdmin, component: ProductsAdmin, layout: AdminLayout, prop: 'all' },
-    { path: routes.customers, component: Customers, layout: AdminLayout },
+    { path: routes.customers, component: Customers, layout: AdminLayout, prop: 'all' },
     { path: routes.ordersAdmin, component: OrderAdmin, layout: AdminLayout, prop: 'all' },
+    { path: routes.shopAdmin, component: ShopAdmin, layout: AdminLayout, prop: 'all' },
+    {
+        path: routes.orderDetails,
+        component: OrderDetailAdmin,
+        layout: AdminLayout,
+        prop: 'detail',
+    },
+    { path: routes.createUser, component: Customers, layout: AdminLayout, prop: 'create' },
+    { path: routes.updateUser, component: Customers, layout: AdminLayout, prop: 'update' },
+    { path: routes.editShop, component: ShopAdmin, layout: AdminLayout, prop: 'update' },
 ];
 
 export { publicRoutes, privateRoutes };
