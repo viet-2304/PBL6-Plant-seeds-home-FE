@@ -15,6 +15,7 @@ const CustomerRow = ({ customer }) => {
                 <img
                     src="https://toigingiuvedep.vn/wp-content/uploads/2022/01/anh-meo-cute.jpg"
                     width={40}
+                    alt=""
                 ></img>
             </td>
             <td>{customer.roleId}</td>
